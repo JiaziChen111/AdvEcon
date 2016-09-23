@@ -1,0 +1,319 @@
+{smcl}
+{txt}{sf}{ul off}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}D:\Sony\Econometrics\AdvEcon\DID.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}23 Sep 2016, 09:17:24
+{txt}
+{com}. use D:\Sony\Econometrics\AdvEcon\data\injury.dta
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}.  do "C:\Users\AYSPS\AppData\Local\Temp\STD01000000.tmp"
+{txt}
+{com}. clear all
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}.  do "C:\Users\AYSPS\AppData\Local\Temp\STD01000000.tmp"
+{txt}
+{com}. clear all
+{txt}
+{com}. cd D:\Sony\Econometrics\AdvEcon
+{res}D:\Sony\Econometrics\AdvEcon
+{txt}
+{com}. log using DID.smcl, replace
+{err}log file already open
+{txt}{search r(604), local:r(604);}
+
+end of do-file
+
+{search r(604), local:r(604);}
+
+{com}. do "C:\Users\AYSPS\AppData\Local\Temp\STD01000000.tmp"
+{txt}
+{com}. describe
+
+{txt}Contains data
+  obs:{res}             0                          
+{txt} vars:{res}             0                          
+{txt} size:{res}             0                          
+{txt}Sorted by: 
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\AYSPS\AppData\Local\Temp\STD01000000.tmp"
+{txt}
+{com}. use D:\Sony\Econometrics\AdvEcon\data\injury.dta
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\AYSPS\AppData\Local\Temp\STD01000000.tmp"
+{txt}
+{com}. describe
+
+{txt}Contains data from {res}D:\Sony\Econometrics\AdvEcon\data\injury.dta
+{txt}  obs:{res}         7,150                          
+{txt} vars:{res}            30                          27 Jun 1997 14:53
+{txt} size:{res}       414,700                          
+{txt}{hline}
+              storage   display    value
+variable name   type    format     label      variable label
+{hline}
+{p 0 48}{res}{bind:durat          }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}duration of benefits{p_end}
+{p 0 48}{bind:afchnge        }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}=1 if after change in benefits{p_end}
+{p 0 48}{bind:highearn       }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}=1 if high earner{p_end}
+{p 0 48}{bind:male           }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}=1 if male{p_end}
+{p 0 48}{bind:married        }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}=1 if married{p_end}
+{p 0 48}{bind:hosp           }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}=1 if inj. required hosp. stay{p_end}
+{p 0 48}{bind:indust         }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}industry{p_end}
+{p 0 48}{bind:injtype        }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}type of injury{p_end}
+{p 0 48}{bind:age            }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}age at time of injury{p_end}
+{p 0 48}{bind:prewage        }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}previous weekly wage, 1982 ${p_end}
+{p 0 48}{bind:totmed         }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}total med. costs, 1982 ${p_end}
+{p 0 48}{bind:injdes         }{txt}{bind: int     }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}4 digit injury description{p_end}
+{p 0 48}{bind:benefit        }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}real dollar value of benefit{p_end}
+{p 0 48}{bind:ky             }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}=1 for kentucky{p_end}
+{p 0 48}{bind:mi             }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}=1 for michigan{p_end}
+{p 0 48}{bind:ldurat         }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}log(durat){p_end}
+{p 0 48}{bind:afhigh         }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}afchnge*highearn{p_end}
+{p 0 48}{bind:lprewage       }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}log(wage){p_end}
+{p 0 48}{bind:lage           }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}log(age){p_end}
+{p 0 48}{bind:ltotmed        }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}log(totmed); = 0 if totmed < 1{p_end}
+{p 0 48}{bind:head           }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}=1 if head injury{p_end}
+{p 0 48}{bind:neck           }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}=1 if neck injury{p_end}
+{p 0 48}{bind:upextr         }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}=1 if upper extremities injury{p_end}
+{p 0 48}{bind:trunk          }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}=1 if trunk injury{p_end}
+{p 0 48}{bind:lowback        }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}=1 if lower back injury{p_end}
+{p 0 48}{bind:lowextr        }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}=1 if lower extremities injury{p_end}
+{p 0 48}{bind:occdis         }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}=1 if occupational disease{p_end}
+{p 0 48}{bind:manuf          }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}=1 if manufacturing industry{p_end}
+{p 0 48}{bind:construc       }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}=1 if construction industry{p_end}
+{p 0 48}{bind:highlpre       }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}highearn*lprewage{p_end}
+{txt}{hline}
+Sorted by: 
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\AYSPS\AppData\Local\Temp\STD01000000.tmp"
+{txt}
+{com}. sum
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 7}durat {c |}{res}      7,150    9.922203    24.49754        .25        182
+{txt}{space 5}afchnge {c |}{res}      7,150    .4732867    .4993208          0          1
+{txt}{space 4}highearn {c |}{res}      7,150    .3988811    .4897025          0          1
+{txt}{space 8}male {c |}{res}      7,134     .780628    .4138501          0          1
+{txt}{space 5}married {c |}{res}      6,853    .6922516    .4615955          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 8}hosp {c |}{res}      7,150    .2620979    .4398064          0          1
+{txt}{space 6}indust {c |}{res}      7,125    2.292491    .8767738          1          3
+{txt}{space 5}injtype {c |}{res}      7,150    4.450909    1.516924          1          8
+{txt}{space 9}age {c |}{res}      7,146    34.70585    12.59025         12         98
+{txt}{space 5}prewage {c |}{res}      7,150    329.7285    182.7989    81.7806     1583.1
+{txt}{hline 13}{c +}{hline 57}
+{space 6}totmed {c |}{res}      7,150    1714.422    27853.37          0    2323377
+{txt}{space 6}injdes {c |}{res}      7,150     4384.61    1332.238       1007       9052
+{txt}{space 5}benefit {c |}{res}      7,150    162.9234    61.41936    14.8692   742.2209
+{txt}{space 10}ky {c |}{res}      7,150    .7868531    .4095592          0          1
+{txt}{space 10}mi {c |}{res}      7,150    .2131469    .4095592          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 6}ldurat {c |}{res}      7,150    1.332712    1.308542  -1.386294   5.204007
+{txt}{space 6}afhigh {c |}{res}      7,150     .193007    .3946861          0          1
+{txt}{space 4}lprewage {c |}{res}      7,150    5.653979    .5359215    4.40404    7.36714
+{txt}{space 8}lage {c |}{res}      7,146     3.48347    .3548254   2.484907   4.584968
+{txt}{space 5}ltotmed {c |}{res}      7,150    5.927235    1.743825          0   14.65853
+{txt}{hline 13}{c +}{hline 57}
+{space 8}head {c |}{res}      7,150    .0363636    .1872064          0          1
+{txt}{space 8}neck {c |}{res}      7,150    .0170629     .129515          0          1
+{txt}{space 6}upextr {c |}{res}      7,150    .2952448    .4561846          0          1
+{txt}{space 7}trunk {c |}{res}      7,150    .1141259    .3179863          0          1
+{txt}{space 5}lowback {c |}{res}      7,150    .2618182    .4396549          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 5}lowextr {c |}{res}      7,150    .2316084    .4218896          0          1
+{txt}{space 6}occdis {c |}{res}      7,150    .0107692    .1032218          0          1
+{txt}{space 7}manuf {c |}{res}      7,125    .2808421    .4494421          0          1
+{txt}{space 4}construc {c |}{res}      7,125    .1458246     .352955          0          1
+{txt}{space 4}highlpre {c |}{res}      7,150    2.484137    3.053281          0    7.36714
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\AYSPS\AppData\Local\Temp\STD01000000.tmp"
+{txt}
+{com}. sum if mi==1
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 7}durat {c |}{res}      1,524    13.61844    32.42494        .25        182
+{txt}{space 5}afchnge {c |}{res}      1,524    .4566929    .4982845          0          1
+{txt}{space 4}highearn {c |}{res}      1,524    .3005249    .4586368          0          1
+{txt}{space 8}male {c |}{res}      1,519    .8189598    .3851783          0          1
+{txt}{space 5}married {c |}{res}      1,487    .6664425    .4716423          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 8}hosp {c |}{res}      1,524    .2552493    .4361444          0          1
+{txt}{space 6}indust {c |}{res}      1,515    2.041584    .9036767          1          3
+{txt}{space 5}injtype {c |}{res}      1,524     4.48622    1.518697          1          8
+{txt}{space 9}age {c |}{res}      1,524    36.47047    12.61277         12         73
+{txt}{space 5}prewage {c |}{res}      1,524    416.6518      224.05   245.6352     1583.1
+{txt}{hline 13}{c +}{hline 57}
+{space 6}totmed {c |}{res}      1,524    1947.132    5428.314          0     113030
+{txt}{space 6}injdes {c |}{res}      1,524    4460.322    1380.863       1007       9052
+{txt}{space 5}benefit {c |}{res}      1,524    208.8461    53.10794    28.4958   473.0752
+{txt}{space 10}ky {c |}{res}      1,524           0           0          0          0
+{txt}{space 10}mi {c |}{res}      1,524           1           0          1          1
+{txt}{hline 13}{c +}{hline 57}
+{space 6}ldurat {c |}{res}      1,524     1.53563    1.383316  -1.386294   5.204007
+{txt}{space 6}afhigh {c |}{res}      1,524    .1437008    .3509012          0          1
+{txt}{space 4}lprewage {c |}{res}      1,524    5.913638    .4613674   5.503848    7.36714
+{txt}{space 8}lage {c |}{res}      1,524      3.5377    .3430295   2.484907    4.29046
+{txt}{space 5}ltotmed {c |}{res}      1,524    6.146666    1.967593          0   11.63541
+{txt}{hline 13}{c +}{hline 57}
+{space 8}head {c |}{res}      1,524    .0282152    .1656416          0          1
+{txt}{space 8}neck {c |}{res}      1,524    .0144357    .1193174          0          1
+{txt}{space 6}upextr {c |}{res}      1,524    .3011811    .4589218          0          1
+{txt}{space 7}trunk {c |}{res}      1,524    .1332021    .3399046          0          1
+{txt}{space 5}lowback {c |}{res}      1,524    .2414698    .4281149          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 5}lowextr {c |}{res}      1,524    .2244094    .4173298          0          1
+{txt}{space 6}occdis {c |}{res}      1,524    .0177165    .1319624          0          1
+{txt}{space 7}manuf {c |}{res}      1,515    .3881188    .4874828          0          1
+{txt}{space 4}construc {c |}{res}      1,515    .1821782    .3861188          0          1
+{txt}{space 4}highlpre {c |}{res}      1,524    1.984441    3.029382          0    7.36714
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\AYSPS\AppData\Local\Temp\STD01000000.tmp"
+{txt}
+{com}. bysort highearn afchnge: sum durat ldurat if mi==1
+
+{txt}{hline}
+-> highearn = 0, afchnge = 0
+
+    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 7}durat {c |}{res}        589    10.95883    26.39318        .25        182
+{txt}{space 6}ldurat {c |}{res}        589    1.412737    1.348778  -1.386294   5.204007
+
+{txt}{hline}
+-> highearn = 0, afchnge = 1
+
+    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 7}durat {c |}{res}        477    13.65094    34.05737        .25        182
+{txt}{space 6}ldurat {c |}{res}        477    1.510118    1.353116  -1.386294   5.204007
+
+{txt}{hline}
+-> highearn = 1, afchnge = 0
+
+    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 7}durat {c |}{res}        239    14.77929    34.74099        .25        182
+{txt}{space 6}ldurat {c |}{res}        239    1.581876    1.416181  -1.386294   5.204007
+
+{txt}{hline}
+-> highearn = 1, afchnge = 1
+
+    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 7}durat {c |}{res}        219    19.43379    39.51457        .25        182
+{txt}{space 6}ldurat {c |}{res}        219    1.871247    1.454878  -1.386294   5.204007
+
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\AYSPS\AppData\Local\Temp\STD01000000.tmp"
+{txt}
+{com}. reg ldurat afchnge highearn afhigh if mi==1
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,524
+{txt}{hline 13}{c +}{hline 34}   F(3, 1520)      = {res}     6.05
+{txt}       Model {c |} {res} 34.3850177         3  11.4616726   {txt}Prob > F        ={res}    0.0004
+{txt}    Residual {c |} {res} 2879.96981     1,520  1.89471698   {txt}R-squared       ={res}    0.0118
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0098
+{txt}       Total {c |} {res} 2914.35483     1,523  1.91356194   {txt}Root MSE        =   {res} 1.3765
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      ldurat{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}afchnge {c |}{col 14}{res}{space 2} .0973808{col 26}{space 2} .0847879{col 37}{space 1}    1.15{col 46}{space 3}0.251{col 54}{space 4}-.0689329{col 67}{space 3} .2636945
+{txt}{space 4}highearn {c |}{col 14}{res}{space 2} .1691388{col 26}{space 2} .1055676{col 37}{space 1}    1.60{col 46}{space 3}0.109{col 54}{space 4}-.0379348{col 67}{space 3} .3762124
+{txt}{space 6}afhigh {c |}{col 14}{res}{space 2} .1919906{col 26}{space 2} .1541699{col 37}{space 1}    1.25{col 46}{space 3}0.213{col 54}{space 4}-.1104176{col 67}{space 3} .4943988
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 1.412737{col 26}{space 2} .0567172{col 37}{space 1}   24.91{col 46}{space 3}0.000{col 54}{space 4} 1.301485{col 67}{space 3} 1.523989
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\AYSPS\AppData\Local\Temp\STD01000000.tmp"
+{txt}
+{com}. reg lurat afchnge highearn afhigh male married occdis manuf construc head neck upextr turn lowback lowextr if mi==1
+{err}variable {bf}lurat{sf} not found
+{txt}{search r(111), local:r(111);}
+
+end of do-file
+
+{search r(111), local:r(111);}
+
+{com}. do "C:\Users\AYSPS\AppData\Local\Temp\STD01000000.tmp"
+{txt}
+{com}. reg ldurat afchnge highearn afhigh male married occdis manuf construc head neck upextr turn lowback lowextr if mi==1
+{err}variable {bf}turn{sf} not found
+{txt}{search r(111), local:r(111);}
+
+end of do-file
+
+{search r(111), local:r(111);}
+
+{com}. do "C:\Users\AYSPS\AppData\Local\Temp\STD01000000.tmp"
+{txt}
+{com}. reg ldurat afchnge highearn afhigh male married occdis manuf construc head neck upextr trunk lowback lowextr if mi==1
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,475
+{txt}{hline 13}{c +}{hline 34}   F(14, 1460)     = {res}     6.23
+{txt}       Model {c |} {res} 157.402557        14  11.2430398   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 2634.85251     1,460   1.8046935   {txt}R-squared       ={res}    0.0564
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0473
+{txt}       Total {c |} {res} 2792.25507     1,474  1.89433858   {txt}Root MSE        =   {res} 1.3434
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      ldurat{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}afchnge {c |}{col 14}{res}{space 2} .0945221{col 26}{space 2} .0845739{col 37}{space 1}    1.12{col 46}{space 3}0.264{col 54}{space 4}-.0713771{col 67}{space 3} .2604214
+{txt}{space 4}highearn {c |}{col 14}{res}{space 2} .1283726{col 26}{space 2} .1106405{col 37}{space 1}    1.16{col 46}{space 3}0.246{col 54}{space 4}-.0886587{col 67}{space 3}  .345404
+{txt}{space 6}afhigh {c |}{col 14}{res}{space 2} .1426902{col 26}{space 2} .1535674{col 37}{space 1}    0.93{col 46}{space 3}0.353{col 54}{space 4} -.158546{col 67}{space 3} .4439265
+{txt}{space 8}male {c |}{col 14}{res}{space 2} -.352384{col 26}{space 2} .0967692{col 37}{space 1}   -3.64{col 46}{space 3}0.000{col 54}{space 4}-.5422054{col 67}{space 3}-.1625625
+{txt}{space 5}married {c |}{col 14}{res}{space 2} .0890124{col 26}{space 2} .0772949{col 37}{space 1}    1.15{col 46}{space 3}0.250{col 54}{space 4}-.0626086{col 67}{space 3} .2406334
+{txt}{space 6}occdis {c |}{col 14}{res}{space 2} .4453986{col 26}{space 2} .3282614{col 37}{space 1}    1.36{col 46}{space 3}0.175{col 54}{space 4}-.1985157{col 67}{space 3} 1.089313
+{txt}{space 7}manuf {c |}{col 14}{res}{space 2}-.0840317{col 26}{space 2} .0786529{col 37}{space 1}   -1.07{col 46}{space 3}0.286{col 54}{space 4}-.2383165{col 67}{space 3} .0702531
+{txt}{space 4}construc {c |}{col 14}{res}{space 2} .4377285{col 26}{space 2} .1015789{col 37}{space 1}    4.31{col 46}{space 3}0.000{col 54}{space 4} .2384722{col 67}{space 3} .6369847
+{txt}{space 8}head {c |}{col 14}{res}{space 2}-.7792353{col 26}{space 2} .2719179{col 37}{space 1}   -2.87{col 46}{space 3}0.004{col 54}{space 4}-1.312627{col 67}{space 3}-.2458439
+{txt}{space 8}neck {c |}{col 14}{res}{space 2}-.2364985{col 26}{space 2} .3433302{col 37}{space 1}   -0.69{col 46}{space 3}0.491{col 54}{space 4}-.9099716{col 67}{space 3} .4369747
+{txt}{space 6}upextr {c |}{col 14}{res}{space 2}-.2087999{col 26}{space 2}  .189223{col 37}{space 1}   -1.10{col 46}{space 3}0.270{col 54}{space 4}-.5799779{col 67}{space 3}  .162378
+{txt}{space 7}trunk {c |}{col 14}{res}{space 2} .0829308{col 26}{space 2} .2028098{col 37}{space 1}    0.41{col 46}{space 3}0.683{col 54}{space 4}-.3148988{col 67}{space 3} .4807605
+{txt}{space 5}lowback {c |}{col 14}{res}{space 2}-.4304399{col 26}{space 2} .1918652{col 37}{space 1}   -2.24{col 46}{space 3}0.025{col 54}{space 4}-.8068008{col 67}{space 3} -.054079
+{txt}{space 5}lowextr {c |}{col 14}{res}{space 2}-.3426515{col 26}{space 2} .1929948{col 37}{space 1}   -1.78{col 46}{space 3}0.076{col 54}{space 4}-.7212281{col 67}{space 3} .0359252
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 1.870073{col 26}{space 2} .2033435{col 37}{space 1}    9.20{col 46}{space 3}0.000{col 54}{space 4} 1.471196{col 67}{space 3}  2.26895
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\AYSPS\AppData\Local\Temp\STD01000000.tmp"
+{txt}
+{com}. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}D:\Sony\Econometrics\AdvEcon\DID.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}23 Sep 2016, 09:44:08
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
