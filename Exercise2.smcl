@@ -1,0 +1,19 @@
+{smcl}
+{txt}{sf}{ul off}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}D:\Sony\Econometrics\AdvEcon\Exercise2.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}28 Sep 2016, 15:59:20
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\AYSPS\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. import delimited D:\Sony\Econometrics\AdvEcon\data\tck-data-q.txt
+{res}{text}(3 vars, 76 obs)
+
+{com}. 
+{txt}end of do-file
+
+{com}. exit, clear
