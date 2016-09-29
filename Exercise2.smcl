@@ -1,14 +1,9 @@
 {smcl}
-{txt}{sf}{ul off}{.-}
+{com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
        {txt}log:  {res}D:\Sony\Econometrics\AdvEcon\Exercise2.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}28 Sep 2016, 15:59:20
-{txt}
-{com}. 
-{txt}end of do-file
-
-{com}. do "C:\Users\AYSPS\AppData\Local\Temp\STD00000000.tmp"
+ {txt}opened on:  {res}29 Sep 2016, 14:10:33
 {txt}
 {com}. import delimited D:\Sony\Econometrics\AdvEcon\data\tck-data-q.txt
 {res}{text}(3 vars, 76 obs)
@@ -16,4 +11,56 @@
 {com}. 
 {txt}end of do-file
 
-{com}. exit, clear
+{com}. do "C:\Users\AYSPS\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. summary
+{err}command {bf}summary{sf} is unrecognized
+{txt}{search r(199), local:r(199);}
+
+end of do-file
+
+{search r(199), local:r(199);}
+
+{com}. do "C:\Users\AYSPS\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. sum
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 8}time {c |}{res}          0
+{txt}{space 8}fr_y {c |}{res}         76    .0802368    .0244681       .048       .127
+{txt}{space 8}fr_o {c |}{res}         76    .0324079    .0137939       .013       .064
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\AYSPS\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. describe
+
+{txt}Contains data
+  obs:{res}            76                          
+{txt} vars:{res}             3                          
+{txt} size:{res}         1,064                          
+{txt}{hline}
+              storage   display    value
+variable name   type    format     label      variable label
+{hline}
+{p 0 48}{res}{bind:time           }{txt}{bind: str6    }{bind:{txt}%9s       }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:fr_y           }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}FR_Y{p_end}
+{p 0 48}{bind:fr_o           }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}FR_O{p_end}
+{txt}{hline}
+Sorted by: 
+{res}     Note: Dataset has changed since last saved.
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}D:\Sony\Econometrics\AdvEcon\Exercise2.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}29 Sep 2016, 14:44:36
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
