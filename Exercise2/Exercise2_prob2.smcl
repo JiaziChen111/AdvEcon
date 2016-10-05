@@ -1,0 +1,249 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}D:\Sony\Econometrics\AdvEcon\Exercise2\Exercise2_prob2.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 5 Oct 2016, 13:21:00
+{txt}
+{com}. * I start reading the data from Excel first since it did not import properly on Stata
+. import delimited birpanel.csv, delimiter("", collapse) clear 
+{res}{text}(26 vars, 296222 obs)
+
+{com}. 
+. /* (A) specify the basic econometric model employed in the paper
+> The paper uses panel data to estimate the causual effect of maternal smoking and birth weight
+> on a birth outcome like birthweight.
+> y = X'*beta + gamma*s + epsilon
+> where x is a vector of explanatory variables, s is a smoking indicator variable, and epsilon is an error disturbance
+> */
+. 
+. * (B) Provide the summary statistics
+. sum dbirwt gestat smoke cigar dmage dmeduc married black adeqcode2 adeqcode3 novisit pretri2 pretri3
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 6}dbirwt {c |}{res}    296,218     3456.81    539.5554        227       8020
+{txt}{space 6}gestat {c |}{res}    296,218    39.24945    2.163624         17         47
+{txt}{space 7}smoke {c |}{res}    296,218    .1295364    .3357932          0          1
+{txt}{space 7}cigar {c |}{res}    296,218    2.124341    8.893555          0         99
+{txt}{space 7}dmage {c |}{res}    296,218    28.48051    5.446994         13         50
+{txt}{hline 13}{c +}{hline 57}
+{space 6}dmeduc {c |}{res}    296,218     13.8803     2.27513          0         17
+{txt}{space 5}married {c |}{res}    296,218    .8694104    .3369516          0          1
+{txt}{space 7}black {c |}{res}    296,218    .0742122    .2621164          0          1
+{txt}{space 3}adeqcode2 {c |}{res}    296,218    .1689431    .3747023          0          1
+{txt}{space 3}adeqcode3 {c |}{res}    296,218    .0397579    .1953902          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 5}novisit {c |}{res}    296,218     .007454    .0860141          0          1
+{txt}{space 5}pretri2 {c |}{res}    296,218    .1131363    .3167598          0          1
+{txt}{space 5}pretri3 {c |}{res}    296,218     .019911    .1396948          0          1
+{txt}
+{com}. * all summary statistics match with those reported in Table II of Abrevaya (2006) 
+. * except for the number of cigarettes per day
+. logout, save(result2) word replace: summarize
+
+{smcl}
+{com}{sf}{ul off}{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}D:\Sony\Econometrics\AdvEcon\Exercise2\Exercise2_prob2.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 5 Oct 2016, 13:21:02
+{txt}
+{com}. 
+. * (C) Replicate the results in Table III
+. * Here we declare the panel data
+. xtset momid3 idx 
+{res}{txt}{col 8}panel variable:  {res}momid3 (unbalanced)
+{txt}{col 9}time variable:  {res}{col 25}idx, 1 to 3
+{txt}{col 17}delta:  {res}1 unit
+{txt}
+{com}. 
+. * OLS (pooled OLS) for birthweight
+. reg dbirwt smoke male dmage agesq hsgrad somecoll collgrad married black adeqcode2 adeqcode3 novisit pretri2 pretri3
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}   296,218
+{txt}{hline 13}{c +}{hline 34}   F(14, 296203)   = {res}  1833.92
+{txt}       Model {c |} {res} 6.8786e+09        14   491328029   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 7.9356e+10   296,203  267911.223   {txt}R-squared       ={res}    0.0798
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0797
+{txt}       Total {c |} {res} 8.6235e+10   296,217  291120.025   {txt}Root MSE        =   {res}  517.6
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      dbirwt{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}smoke {c |}{col 14}{res}{space 2}-239.2197{col 26}{space 2} 3.082505{col 37}{space 1}  -77.61{col 46}{space 3}0.000{col 54}{space 4}-245.2613{col 67}{space 3} -233.178
+{txt}{space 8}male {c |}{col 14}{res}{space 2}   126.46{col 26}{space 2} 1.902819{col 37}{space 1}   66.46{col 46}{space 3}0.000{col 54}{space 4} 122.7305{col 67}{space 3} 130.1894
+{txt}{space 7}dmage {c |}{col 14}{res}{space 2} 21.57413{col 26}{space 2} 1.664017{col 37}{space 1}   12.97{col 46}{space 3}0.000{col 54}{space 4}  18.3127{col 67}{space 3} 24.83555
+{txt}{space 7}agesq {c |}{col 14}{res}{space 2}-.2705836{col 26}{space 2}  .028356{col 37}{space 1}   -9.54{col 46}{space 3}0.000{col 54}{space 4}-.3261605{col 67}{space 3}-.2150066
+{txt}{space 6}hsgrad {c |}{col 14}{res}{space 2} 33.22526{col 26}{space 2} 3.895553{col 37}{space 1}    8.53{col 46}{space 3}0.000{col 54}{space 4} 25.59008{col 67}{space 3} 40.86043
+{txt}{space 4}somecoll {c |}{col 14}{res}{space 2} 49.78644{col 26}{space 2} 4.289861{col 37}{space 1}   11.61{col 46}{space 3}0.000{col 54}{space 4} 41.37844{col 67}{space 3} 58.19445
+{txt}{space 4}collgrad {c |}{col 14}{res}{space 2} 40.46456{col 26}{space 2} 4.422052{col 37}{space 1}    9.15{col 46}{space 3}0.000{col 54}{space 4} 31.79746{col 67}{space 3} 49.13165
+{txt}{space 5}married {c |}{col 14}{res}{space 2} 60.91447{col 26}{space 2} 3.425515{col 37}{space 1}   17.78{col 46}{space 3}0.000{col 54}{space 4} 54.20055{col 67}{space 3} 67.62838
+{txt}{space 7}black {c |}{col 14}{res}{space 2}-231.6362{col 26}{space 2} 3.914899{col 37}{space 1}  -59.17{col 46}{space 3}0.000{col 54}{space 4}-239.3093{col 67}{space 3}-223.9631
+{txt}{space 3}adeqcode2 {c |}{col 14}{res}{space 2}-96.53469{col 26}{space 2} 3.861596{col 37}{space 1}  -25.00{col 46}{space 3}0.000{col 54}{space 4}-104.1033{col 67}{space 3}-88.96607
+{txt}{space 3}adeqcode3 {c |}{col 14}{res}{space 2}-160.2748{col 26}{space 2} 9.096453{col 37}{space 1}  -17.62{col 46}{space 3}0.000{col 54}{space 4}-178.1036{col 67}{space 3}-142.4461
+{txt}{space 5}novisit {c |}{col 14}{res}{space 2}  -12.121{col 26}{space 2} 14.22284{col 37}{space 1}   -0.85{col 46}{space 3}0.394{col 54}{space 4}-39.99736{col 67}{space 3} 15.75536
+{txt}{space 5}pretri2 {c |}{col 14}{res}{space 2} 101.0636{col 26}{space 2} 4.644126{col 37}{space 1}   21.76{col 46}{space 3}0.000{col 54}{space 4}  91.9612{col 67}{space 3} 110.1659
+{txt}{space 5}pretri3 {c |}{col 14}{res}{space 2} 162.1459{col 26}{space 2} 11.23208{col 37}{space 1}   14.44{col 46}{space 3}0.000{col 54}{space 4} 140.1313{col 67}{space 3} 184.1605
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 2971.576{col 26}{space 2} 22.72333{col 37}{space 1}  130.77{col 46}{space 3}0.000{col 54}{space 4} 2927.039{col 67}{space 3} 3016.113
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. estimates store reg1
+{txt}
+{com}. * The results are still different from the table III
+. 
+. * OLS (pooled) for smoking
+. reg smoke dmage agesq hsgrad somecoll collgrad married black adeqcode2 adeqcode3 novisit pretri2 pretri3
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}   296,218
+{txt}{hline 13}{c +}{hline 34}   F(12, 296205)   = {res}  4556.27
+{txt}       Model {c |} {res} 5204.58052        12  433.715043   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res}   28195.98   296,205  .095190763   {txt}R-squared       ={res}    0.1558
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1558
+{txt}       Total {c |} {res} 33400.5605   296,217  .112757068   {txt}Root MSE        =   {res} .30853
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       smoke{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}dmage {c |}{col 14}{res}{space 2} .0313748{col 26}{space 2} .0009902{col 37}{space 1}   31.69{col 46}{space 3}0.000{col 54}{space 4}  .029434{col 67}{space 3} .0333155
+{txt}{space 7}agesq {c |}{col 14}{res}{space 2} -.000502{col 26}{space 2} .0000169{col 37}{space 1}  -29.75{col 46}{space 3}0.000{col 54}{space 4}-.0005351{col 67}{space 3}-.0004689
+{txt}{space 6}hsgrad {c |}{col 14}{res}{space 2}-.1680841{col 26}{space 2} .0023014{col 37}{space 1}  -73.04{col 46}{space 3}0.000{col 54}{space 4}-.1725947{col 67}{space 3}-.1635734
+{txt}{space 4}somecoll {c |}{col 14}{res}{space 2}-.2682725{col 26}{space 2} .0025091{col 37}{space 1} -106.92{col 46}{space 3}0.000{col 54}{space 4}-.2731902{col 67}{space 3}-.2633548
+{txt}{space 4}collgrad {c |}{col 14}{res}{space 2}-.3358273{col 26}{space 2} .0025626{col 37}{space 1} -131.05{col 46}{space 3}0.000{col 54}{space 4}-.3408499{col 67}{space 3}-.3308047
+{txt}{space 5}married {c |}{col 14}{res}{space 2}-.1922642{col 26}{space 2} .0020111{col 37}{space 1}  -95.60{col 46}{space 3}0.000{col 54}{space 4}-.1962059{col 67}{space 3}-.1883226
+{txt}{space 7}black {c |}{col 14}{res}{space 2}-.1243687{col 26}{space 2} .0023223{col 37}{space 1}  -53.55{col 46}{space 3}0.000{col 54}{space 4}-.1289205{col 67}{space 3} -.119817
+{txt}{space 3}adeqcode2 {c |}{col 14}{res}{space 2} .0146881{col 26}{space 2} .0023016{col 37}{space 1}    6.38{col 46}{space 3}0.000{col 54}{space 4} .0101769{col 67}{space 3} .0191992
+{txt}{space 3}adeqcode3 {c |}{col 14}{res}{space 2}  .049002{col 26}{space 2} .0054214{col 37}{space 1}    9.04{col 46}{space 3}0.000{col 54}{space 4} .0383761{col 67}{space 3} .0596278
+{txt}{space 5}novisit {c |}{col 14}{res}{space 2} .0558124{col 26}{space 2} .0084773{col 37}{space 1}    6.58{col 46}{space 3}0.000{col 54}{space 4} .0391972{col 67}{space 3} .0724276
+{txt}{space 5}pretri2 {c |}{col 14}{res}{space 2}  .023194{col 26}{space 2} .0027679{col 37}{space 1}    8.38{col 46}{space 3}0.000{col 54}{space 4} .0177689{col 67}{space 3}  .028619
+{txt}{space 5}pretri3 {c |}{col 14}{res}{space 2} .0098548{col 26}{space 2} .0066952{col 37}{space 1}    1.47{col 46}{space 3}0.141{col 54}{space 4}-.0032675{col 67}{space 3} .0229772
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .0659963{col 26}{space 2} .0135302{col 37}{space 1}    4.88{col 46}{space 3}0.000{col 54}{space 4} .0394774{col 67}{space 3} .0925152
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. estimates store reg2
+{txt}
+{com}. * the reuslts come very close like in table III, except for age and age^2
+. esttab reg1 reg2 using tableIII.rtf, replace
+{res}{txt}(note: file tableIII.rtf not found)
+(output written to {browse  `"tableIII.rtf"'})
+
+{com}. 
+. * (D) replicate the OLS and FE results given in table IV
+. reg dbirwt smoke male dmage agesq hsgrad somecoll collgrad married black adeqcode2 adeqcode3 novisit pretri2 pretri3
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}   296,218
+{txt}{hline 13}{c +}{hline 34}   F(14, 296203)   = {res}  1833.92
+{txt}       Model {c |} {res} 6.8786e+09        14   491328029   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 7.9356e+10   296,203  267911.223   {txt}R-squared       ={res}    0.0798
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0797
+{txt}       Total {c |} {res} 8.6235e+10   296,217  291120.025   {txt}Root MSE        =   {res}  517.6
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      dbirwt{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}smoke {c |}{col 14}{res}{space 2}-239.2197{col 26}{space 2} 3.082505{col 37}{space 1}  -77.61{col 46}{space 3}0.000{col 54}{space 4}-245.2613{col 67}{space 3} -233.178
+{txt}{space 8}male {c |}{col 14}{res}{space 2}   126.46{col 26}{space 2} 1.902819{col 37}{space 1}   66.46{col 46}{space 3}0.000{col 54}{space 4} 122.7305{col 67}{space 3} 130.1894
+{txt}{space 7}dmage {c |}{col 14}{res}{space 2} 21.57413{col 26}{space 2} 1.664017{col 37}{space 1}   12.97{col 46}{space 3}0.000{col 54}{space 4}  18.3127{col 67}{space 3} 24.83555
+{txt}{space 7}agesq {c |}{col 14}{res}{space 2}-.2705836{col 26}{space 2}  .028356{col 37}{space 1}   -9.54{col 46}{space 3}0.000{col 54}{space 4}-.3261605{col 67}{space 3}-.2150066
+{txt}{space 6}hsgrad {c |}{col 14}{res}{space 2} 33.22526{col 26}{space 2} 3.895553{col 37}{space 1}    8.53{col 46}{space 3}0.000{col 54}{space 4} 25.59008{col 67}{space 3} 40.86043
+{txt}{space 4}somecoll {c |}{col 14}{res}{space 2} 49.78644{col 26}{space 2} 4.289861{col 37}{space 1}   11.61{col 46}{space 3}0.000{col 54}{space 4} 41.37844{col 67}{space 3} 58.19445
+{txt}{space 4}collgrad {c |}{col 14}{res}{space 2} 40.46456{col 26}{space 2} 4.422052{col 37}{space 1}    9.15{col 46}{space 3}0.000{col 54}{space 4} 31.79746{col 67}{space 3} 49.13165
+{txt}{space 5}married {c |}{col 14}{res}{space 2} 60.91447{col 26}{space 2} 3.425515{col 37}{space 1}   17.78{col 46}{space 3}0.000{col 54}{space 4} 54.20055{col 67}{space 3} 67.62838
+{txt}{space 7}black {c |}{col 14}{res}{space 2}-231.6362{col 26}{space 2} 3.914899{col 37}{space 1}  -59.17{col 46}{space 3}0.000{col 54}{space 4}-239.3093{col 67}{space 3}-223.9631
+{txt}{space 3}adeqcode2 {c |}{col 14}{res}{space 2}-96.53469{col 26}{space 2} 3.861596{col 37}{space 1}  -25.00{col 46}{space 3}0.000{col 54}{space 4}-104.1033{col 67}{space 3}-88.96607
+{txt}{space 3}adeqcode3 {c |}{col 14}{res}{space 2}-160.2748{col 26}{space 2} 9.096453{col 37}{space 1}  -17.62{col 46}{space 3}0.000{col 54}{space 4}-178.1036{col 67}{space 3}-142.4461
+{txt}{space 5}novisit {c |}{col 14}{res}{space 2}  -12.121{col 26}{space 2} 14.22284{col 37}{space 1}   -0.85{col 46}{space 3}0.394{col 54}{space 4}-39.99736{col 67}{space 3} 15.75536
+{txt}{space 5}pretri2 {c |}{col 14}{res}{space 2} 101.0636{col 26}{space 2} 4.644126{col 37}{space 1}   21.76{col 46}{space 3}0.000{col 54}{space 4}  91.9612{col 67}{space 3} 110.1659
+{txt}{space 5}pretri3 {c |}{col 14}{res}{space 2} 162.1459{col 26}{space 2} 11.23208{col 37}{space 1}   14.44{col 46}{space 3}0.000{col 54}{space 4} 140.1313{col 67}{space 3} 184.1605
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 2971.576{col 26}{space 2} 22.72333{col 37}{space 1}  130.77{col 46}{space 3}0.000{col 54}{space 4} 2927.039{col 67}{space 3} 3016.113
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. estimates store reg3
+{txt}
+{com}. xtreg dbirwt smoke male dmage agesq adeqcode2 adeqcode3 novisit pretri2 pretri3, fe
+{res}
+{txt}Fixed-effects (within) regression{col 49}Number of obs{col 67}={col 69}{res}   296,218
+{txt}Group variable: {res}momid3{txt}{col 49}Number of groups{col 67}={col 69}{res}   141,929
+
+{txt}R-sq:{col 49}Obs per group:
+     within  = {res}0.0418{col 63}{txt}min{col 67}={col 69}{res}         2
+{txt}     between = {res}0.0546{col 63}{txt}avg{col 67}={col 69}{res}       2.1
+{txt}     overall = {res}0.0512{col 63}{txt}max{col 67}={col 69}{res}         3
+
+{txt}{col 49}F({res}9{txt},{res}154280{txt}){col 67}={col 70}{res}   748.71
+{txt}corr(u_i, Xb){col 16}= {res}-0.0400{txt}{col 49}Prob > F{col 67}={col 73}{res}0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      dbirwt{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}smoke {c |}{col 14}{res}{space 2}-143.5786{col 26}{space 2}  4.76983{col 37}{space 1}  -30.10{col 46}{space 3}0.000{col 54}{space 4}-152.9274{col 67}{space 3}-134.2298
+{txt}{space 8}male {c |}{col 14}{res}{space 2} 133.5015{col 26}{space 2} 2.086501{col 37}{space 1}   63.98{col 46}{space 3}0.000{col 54}{space 4}  129.412{col 67}{space 3}  137.591
+{txt}{space 7}dmage {c |}{col 14}{res}{space 2} 19.39657{col 26}{space 2} 3.003753{col 37}{space 1}    6.46{col 46}{space 3}0.000{col 54}{space 4} 13.50928{col 67}{space 3} 25.28386
+{txt}{space 7}agesq {c |}{col 14}{res}{space 2}-.0231534{col 26}{space 2} .0509765{col 37}{space 1}   -0.45{col 46}{space 3}0.650{col 54}{space 4}-.1230662{col 67}{space 3} .0767594
+{txt}{space 3}adeqcode2 {c |}{col 14}{res}{space 2}-81.84057{col 26}{space 2} 4.470248{col 37}{space 1}  -18.31{col 46}{space 3}0.000{col 54}{space 4}-90.60217{col 67}{space 3}-73.07898
+{txt}{space 3}adeqcode3 {c |}{col 14}{res}{space 2} -139.908{col 26}{space 2} 10.31938{col 37}{space 1}  -13.56{col 46}{space 3}0.000{col 54}{space 4}-160.1338{col 67}{space 3}-119.6822
+{txt}{space 5}novisit {c |}{col 14}{res}{space 2}-42.71156{col 26}{space 2} 16.62655{col 37}{space 1}   -2.57{col 46}{space 3}0.010{col 54}{space 4}-75.29925{col 67}{space 3}-10.12387
+{txt}{space 5}pretri2 {c |}{col 14}{res}{space 2} 66.70879{col 26}{space 2} 5.285129{col 37}{space 1}   12.62{col 46}{space 3}0.000{col 54}{space 4} 56.35005{col 67}{space 3} 77.06753
+{txt}{space 5}pretri3 {c |}{col 14}{res}{space 2} 114.3018{col 26}{space 2} 12.53854{col 37}{space 1}    9.12{col 46}{space 3}0.000{col 54}{space 4} 89.72647{col 67}{space 3}  138.877
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 2883.817{col 26}{space 2} 43.91869{col 37}{space 1}   65.66{col 46}{space 3}0.000{col 54}{space 4} 2797.737{col 67}{space 3} 2969.896
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+     sigma_u {c |} {res} 436.17953
+     {txt}sigma_e {c |} {res} 409.83452
+         {txt}rho {c |} {res} .53110999{txt}   (fraction of variance due to u_i)
+{hline 13}{c BT}{hline 64}
+F test that all u_i=0: F({res}141928{txt}, {res}154280{txt}) = {res}2.30{col 62}{txt}Prob > F = {res}0.0000
+{txt}
+{com}. estimates store reg4
+{txt}
+{com}. * In both regressions, the results come quite close to the one in table IV
+. 
+. * (E) Random effects specification
+. xtreg dbirwt smoke male dmage agesq adeqcode2 adeqcode3 novisit pretri2 pretri3, re
+{res}
+{txt}Random-effects GLS regression                   Number of obs     = {res}   296,218
+{txt}Group variable: {res}momid3                          {txt}Number of groups  = {res}   141,929
+
+{txt}R-sq:                                           Obs per group:
+     within  = {res}0.0378                                         {txt}min = {res}         2
+{txt}     between = {res}0.0736                                         {txt}avg = {res}       2.1
+{txt}     overall = {res}0.0629                                         {txt}max = {res}         3
+
+                                                {txt}Wald chi2({res}9{txt})      =  {res} 17291.87
+{txt}corr(u_i, X)   = {res}0{txt} (assumed)                    Prob > chi2       =     {res}0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      dbirwt{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}smoke {c |}{col 14}{res}{space 2}-227.9396{col 26}{space 2} 3.046569{col 37}{space 1}  -74.82{col 46}{space 3}0.000{col 54}{space 4}-233.9107{col 67}{space 3}-221.9684
+{txt}{space 8}male {c |}{col 14}{res}{space 2} 129.5803{col 26}{space 2} 1.765334{col 37}{space 1}   73.40{col 46}{space 3}0.000{col 54}{space 4} 126.1203{col 67}{space 3} 133.0402
+{txt}{space 7}dmage {c |}{col 14}{res}{space 2} 37.08276{col 26}{space 2} 1.672227{col 37}{space 1}   22.18{col 46}{space 3}0.000{col 54}{space 4} 33.80526{col 67}{space 3} 40.36027
+{txt}{space 7}agesq {c |}{col 14}{res}{space 2}-.4733263{col 26}{space 2} .0289872{col 37}{space 1}  -16.33{col 46}{space 3}0.000{col 54}{space 4}-.5301402{col 67}{space 3}-.4165125
+{txt}{space 3}adeqcode2 {c |}{col 14}{res}{space 2}-98.31425{col 26}{space 2} 3.654647{col 37}{space 1}  -26.90{col 46}{space 3}0.000{col 54}{space 4}-105.4772{col 67}{space 3}-91.15128
+{txt}{space 3}adeqcode3 {c |}{col 14}{res}{space 2}  -188.02{col 26}{space 2}  8.52165{col 37}{space 1}  -22.06{col 46}{space 3}0.000{col 54}{space 4}-204.7221{col 67}{space 3}-171.3178
+{txt}{space 5}novisit {c |}{col 14}{res}{space 2}-51.38271{col 26}{space 2} 13.52696{col 37}{space 1}   -3.80{col 46}{space 3}0.000{col 54}{space 4}-77.89507{col 67}{space 3}-24.87036
+{txt}{space 5}pretri2 {c |}{col 14}{res}{space 2} 76.56762{col 26}{space 2} 4.367266{col 37}{space 1}   17.53{col 46}{space 3}0.000{col 54}{space 4} 68.00793{col 67}{space 3}  85.1273
+{txt}{space 5}pretri3 {c |}{col 14}{res}{space 2} 144.0581{col 26}{space 2} 10.50332{col 37}{space 1}   13.72{col 46}{space 3}0.000{col 54}{space 4}  123.472{col 67}{space 3} 164.6442
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 2773.826{col 26}{space 2} 23.75647{col 37}{space 1}  116.76{col 46}{space 3}0.000{col 54}{space 4} 2727.264{col 67}{space 3} 2820.388
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+     sigma_u {c |} {res}  322.5066
+     {txt}sigma_e {c |} {res} 409.83452
+         {txt}rho {c |} {res} .38242695{txt}   (fraction of variance due to u_i)
+{hline 13}{c BT}{hline 64}
+
+{com}. estimates store reg5
+{txt}
+{com}. esttab reg3 reg4 reg5 using tableIV.rtf, replace
+{res}{txt}(note: file tableIV.rtf not found)
+(output written to {browse  `"tableIV.rtf"'})
+
+{com}. * from the result table, all of the statistical tests are significantly rejected.
+. 
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}D:\Sony\Econometrics\AdvEcon\Exercise2\Exercise2_prob2.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 5 Oct 2016, 13:21:08
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

@@ -1,0 +1,157 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}D:\Sony\Econometrics\AdvEcon\Exercise2\Exercise2_prob1.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 5 Oct 2016, 13:20:13
+{txt}
+{com}. import delimited tck-data-q.txt
+{res}{text}(3 vars, 76 obs)
+
+{com}. 
+. encode time, gen(t)
+{txt}
+{com}. 
+. gen first = 0
+{txt}
+{com}. replace first =1 if t > 41
+{txt}(35 real changes made)
+
+{com}. gen second = 0
+{txt}
+{com}. replace second =1 if t > 54
+{txt}(22 real changes made)
+
+{com}. 
+. label var fr_y "Treatment Group"
+{txt}
+{com}. label var fr_o "Control Group"
+{txt}
+{com}. label var first "the first post-program dummy variable"
+{txt}
+{com}. label var second "the second post-program dummy variable"
+{txt}
+{com}. 
+. * (A) Summary statistics
+. sum fr_y fr_o first second
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 8}fr_y {c |}{res}         76    .0802368    .0244681       .048       .127
+{txt}{space 8}fr_o {c |}{res}         76    .0324079    .0137939       .013       .064
+{txt}{space 7}first {c |}{res}         76    .4605263    .5017513          0          1
+{txt}{space 6}second {c |}{res}         76    .2894737    .4565315          0          1
+{txt}
+{com}. logout, save(result1) word replace: summarize
+
+{smcl}
+{com}{sf}{ul off}{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}D:\Sony\Econometrics\AdvEcon\Exercise2\Exercise2_prob1.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 5 Oct 2016, 13:20:13
+{txt}
+{com}. 
+. * (B) Replicate Figure 1
+. replace t=t+95
+{txt}(76 real changes made)
+
+{com}. tsset t, format(%tq)
+{res}{txt}{col 9}time variable:  {res}{col 25}t, 1984q1 to 2002q4
+{txt}{col 17}delta:  {res}1 quarter
+{txt}
+{com}. twoway (tsline fr_y) (tsline fr_o, lpattern(dash)), ytitle(Fatality Rate) ttitle() legend(on)
+{res}{txt}
+{com}. 
+. * (C) Replicate the result in Table I
+. reg fr_y first second  fr_o
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}        76
+{txt}{hline 13}{c +}{hline 34}   F(3, 72)        = {res}   341.08
+{txt}       Model {c |} {res} .041949937         3  .013983312   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res}   .0029518        72  .000040997   {txt}R-squared       ={res}    0.9343
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.9315
+{txt}       Total {c |} {res} .044901737        75   .00059869   {txt}Root MSE        =   {res}  .0064
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        fr_y{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}first {c |}{col 14}{res}{space 2}-.0016491{col 26}{space 2}  .002776{col 37}{space 1}   -0.59{col 46}{space 3}0.554{col 54}{space 4} -.007183{col 67}{space 3} .0038847
+{txt}{space 6}second {c |}{col 14}{res}{space 2}-.0029776{col 26}{space 2} .0022545{col 37}{space 1}   -1.32{col 46}{space 3}0.191{col 54}{space 4} -.007472{col 67}{space 3} .0015167
+{txt}{space 8}fr_o {c |}{col 14}{res}{space 2} 1.603258{col 26}{space 2} .0919214{col 37}{space 1}   17.44{col 46}{space 3}0.000{col 54}{space 4} 1.420016{col 67}{space 3}   1.7865
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}    .0299{col 26}{space 2} .0040467{col 37}{space 1}    7.39{col 46}{space 3}0.000{col 54}{space 4}  .021833{col 67}{space 3}  .037967
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. outreg2 using table1, title(Table I) bdec(4) word  replace 
+{txt}{stata `"shellout using `"table1.rtf"'"':table1.rtf}
+{browse `"D:\Sony\Econometrics\AdvEcon\Exercise2"' :dir}{com} : {txt}{stata `"seeout using "table1.txt""':seeout}
+
+{com}. * The policy effects are not statistically significant
+. nlcom (_b[first]/_b[_cons]) (_b[second]/(_b[_cons]+_b[first])), post
+
+       {txt}_nl_1:  {res}_b[first]/_b[_cons]
+       {txt}_nl_2:  {res}_b[second]/(_b[_cons]+_b[first])
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        fr_y{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}_nl_1 {c |}{col 14}{res}{space 2} -.055155{col 26}{space 2} .0874077{col 37}{space 1}   -0.63{col 46}{space 3}0.528{col 54}{space 4} -.226471{col 67}{space 3} .1161609
+{txt}{space 7}_nl_2 {c |}{col 14}{res}{space 2}-.1053992{col 26}{space 2}  .074158{col 37}{space 1}   -1.42{col 46}{space 3}0.155{col 54}{space 4}-.2507462{col 67}{space 3} .0399478
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. outreg2 using table1_post, title(Table1 - post estimation) bdec(4) word  replace 
+{txt}{stata `"shellout using `"table1_post.rtf"'"':table1_post.rtf}
+{browse `"D:\Sony\Econometrics\AdvEcon\Exercise2"' :dir}{com} : {txt}{stata `"seeout using "table1_post.txt""':seeout}
+
+{com}. 
+. * (D) Replicate the result in Table VII
+. clear all
+{txt}
+{com}. import delimited tck-data-m.txt
+{res}{text}(3 vars, 228 obs)
+
+{com}. encode time, gen(t)
+{txt}
+{com}. gen first = 0
+{txt}
+{com}. replace first =1 if t >= 125
+{txt}(104 real changes made)
+
+{com}. gen second = 0
+{txt}
+{com}. replace second =1 if t >= 161
+{txt}(68 real changes made)
+
+{com}. reg fr_y first second fr_o
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       228
+{txt}{hline 13}{c +}{hline 34}   F(3, 224)       = {res}   272.29
+{txt}       Model {c |} {res} .013024862         3  .004341621   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} .003571608       224  .000015945   {txt}R-squared       ={res}    0.7848
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.7819
+{txt}       Total {c |} {res}  .01659647       227  .000073112   {txt}Root MSE        =   {res} .00399
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        fr_y{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}first {c |}{col 14}{res}{space 2}-.0031054{col 26}{space 2} .0009423{col 37}{space 1}   -3.30{col 46}{space 3}0.001{col 54}{space 4}-.0049622{col 67}{space 3}-.0012485
+{txt}{space 6}second {c |}{col 14}{res}{space 2}-.0004845{col 26}{space 2} .0008298{col 37}{space 1}   -0.58{col 46}{space 3}0.560{col 54}{space 4}-.0021197{col 67}{space 3} .0011507
+{txt}{space 8}fr_o {c |}{col 14}{res}{space 2} 1.289955{col 26}{space 2} .0862877{col 37}{space 1}   14.95{col 46}{space 3}0.000{col 54}{space 4} 1.119915{col 67}{space 3} 1.459994
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .0143546{col 26}{space 2} .0012755{col 37}{space 1}   11.25{col 46}{space 3}0.000{col 54}{space 4} .0118411{col 67}{space 3} .0168681
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. * The policy effects are significant now.
+. outreg2 using tableVII, title (TableVII) bdec(4) word replace
+{txt}{stata `"shellout using `"tableVII.rtf"'"':tableVII.rtf}
+{browse `"D:\Sony\Econometrics\AdvEcon\Exercise2"' :dir}{com} : {txt}{stata `"seeout using "tableVII.txt""':seeout}
+
+{com}. 
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}D:\Sony\Econometrics\AdvEcon\Exercise2\Exercise2_prob1.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 5 Oct 2016, 13:20:14
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

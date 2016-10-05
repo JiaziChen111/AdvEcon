@@ -1,0 +1,17 @@
+Table I	
+	(1)
+VARIABLES	fr_y
+	
+first	-0.0016
+	(0.003)
+second	-0.0030
+	(0.002)
+fr_o	1.6033***
+	(0.092)
+Constant	0.0299***
+	(0.004)
+	
+Observations	76
+R-squared	0.934
+Standard errors in parentheses	
+*** p<0.01, ** p<0.05, * p<0.1	
