@@ -1,6 +1,5 @@
 /* Author: Sony Nghiem
-Problem 2: Estimating the Effect of Smoking on Birth Outcomes Using a
-Matched Panel Data Approach*/
+Problem 2: Estimating the Effect of Smoking on Birth Outcomes Using a Matched Panel Data Approach*/
 
 clear all
 cd D:\Sony\Econometrics\AdvEcon\Exercise2

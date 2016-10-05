@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}D:\Sony\Econometrics\AdvEcon\Exercise2\Exercise2_prob1.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 5 Oct 2016, 13:20:13
+ {txt}opened on:  {res} 5 Oct 2016, 13:32:56
 {txt}
 {com}. import delimited tck-data-q.txt
 {res}{text}(3 vars, 76 obs)
@@ -50,7 +50,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}D:\Sony\Econometrics\AdvEcon\Exercise2\Exercise2_prob1.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 5 Oct 2016, 13:20:13
+ {txt}opened on:  {res} 5 Oct 2016, 13:32:56
 {txt}
 {com}. 
 . * (B) Replicate Figure 1
@@ -63,6 +63,10 @@
 {txt}
 {com}. twoway (tsline fr_y) (tsline fr_o, lpattern(dash)), ytitle(Fatality Rate) ttitle() legend(on)
 {res}{txt}
+{com}. graph save figure1, replace
+{txt}(note: file figure1.gph not found)
+{res}{txt}(file figure1.gph saved)
+
 {com}. 
 . * (C) Replicate the result in Table I
 . reg fr_y first second  fr_o
@@ -151,7 +155,7 @@
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}D:\Sony\Econometrics\AdvEcon\Exercise2\Exercise2_prob1.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 5 Oct 2016, 13:20:14
+ {txt}closed on:  {res} 5 Oct 2016, 13:32:57
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

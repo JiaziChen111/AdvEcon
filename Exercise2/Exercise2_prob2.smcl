@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}D:\Sony\Econometrics\AdvEcon\Exercise2\Exercise2_prob2.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 5 Oct 2016, 13:21:00
+ {txt}opened on:  {res} 5 Oct 2016, 13:40:10
 {txt}
 {com}. * I start reading the data from Excel first since it did not import properly on Stata
 . import delimited birpanel.csv, delimiter("", collapse) clear 
@@ -48,7 +48,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}D:\Sony\Econometrics\AdvEcon\Exercise2\Exercise2_prob2.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 5 Oct 2016, 13:21:02
+ {txt}opened on:  {res} 5 Oct 2016, 13:40:12
 {txt}
 {com}. 
 . * (C) Replicate the results in Table III
@@ -125,8 +125,7 @@
 {txt}
 {com}. * the reuslts come very close like in table III, except for age and age^2
 . esttab reg1 reg2 using tableIII.rtf, replace
-{res}{txt}(note: file tableIII.rtf not found)
-(output written to {browse  `"tableIII.rtf"'})
+{res}{txt}(output written to {browse  `"tableIII.rtf"'})
 
 {com}. 
 . * (D) replicate the OLS and FE results given in table IV
@@ -234,8 +233,7 @@ F test that all u_i=0: F({res}141928{txt}, {res}154280{txt}) = {res}2.30{col 62}
 {com}. estimates store reg5
 {txt}
 {com}. esttab reg3 reg4 reg5 using tableIV.rtf, replace
-{res}{txt}(note: file tableIV.rtf not found)
-(output written to {browse  `"tableIV.rtf"'})
+{res}{txt}(output written to {browse  `"tableIV.rtf"'})
 
 {com}. * from the result table, all of the statistical tests are significantly rejected.
 . 
@@ -243,7 +241,7 @@ F test that all u_i=0: F({res}141928{txt}, {res}154280{txt}) = {res}2.30{col 62}
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}D:\Sony\Econometrics\AdvEcon\Exercise2\Exercise2_prob2.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 5 Oct 2016, 13:21:08
+ {txt}closed on:  {res} 5 Oct 2016, 13:40:18
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

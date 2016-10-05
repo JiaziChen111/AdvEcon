@@ -26,6 +26,7 @@ log using Exercise2_prob1.smcl, append
 replace t=t+95
 tsset t, format(%tq)
 twoway (tsline fr_y) (tsline fr_o, lpattern(dash)), ytitle(Fatality Rate) ttitle() legend(on)
+graph save figure1, replace
 
 * (C) Replicate the result in Table I
 reg fr_y first second  fr_o
