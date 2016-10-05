@@ -49,4 +49,8 @@ estimates store reg5
 esttab reg3 reg4 reg5 using tableIV.rtf, replace
 * from the result table, all of the statistical tests are significantly rejected.
 
+hausman reg4 reg5
+outreg2 using hausman, title(Hausman) bdec(4) word  replace 
+* So I can reject the null hypothesis that there is no systematic difference in coefficients
+
 log close

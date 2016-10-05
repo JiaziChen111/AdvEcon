@@ -1,0 +1,29 @@
+Hausman	
+	(1)
+VARIABLES	dbirwt
+	
+smoke	-227.9396***
+	(3.047)
+male	129.5803***
+	(1.765)
+dmage	37.0828***
+	(1.672)
+agesq	-0.4733***
+	(0.029)
+adeqcode2	-98.3143***
+	(3.655)
+adeqcode3	-188.0200***
+	(8.522)
+novisit	-51.3827***
+	(13.527)
+pretri2	76.5676***
+	(4.367)
+pretri3	144.0581***
+	(10.503)
+Constant	2,773.8262***
+	(23.756)
+	
+Observations	296,218
+Number of momid3	141,929
+Standard errors in parentheses	
+*** p<0.01, ** p<0.05, * p<0.1	

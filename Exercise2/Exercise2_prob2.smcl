@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}D:\Sony\Econometrics\AdvEcon\Exercise2\Exercise2_prob2.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 5 Oct 2016, 13:40:10
+ {txt}opened on:  {res} 5 Oct 2016, 16:10:31
 {txt}
 {com}. * I start reading the data from Excel first since it did not import properly on Stata
 . import delimited birpanel.csv, delimiter("", collapse) clear 
@@ -48,7 +48,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}D:\Sony\Econometrics\AdvEcon\Exercise2\Exercise2_prob2.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 5 Oct 2016, 13:40:12
+ {txt}opened on:  {res} 5 Oct 2016, 16:10:33
 {txt}
 {com}. 
 . * (C) Replicate the results in Table III
@@ -237,11 +237,42 @@ F test that all u_i=0: F({res}141928{txt}, {res}154280{txt}) = {res}2.30{col 62}
 
 {com}. * from the result table, all of the statistical tests are significantly rejected.
 . 
+. hausman reg4 reg5
+
+{txt}{col 18}{hline 4} Coefficients {hline 4}
+{col 14}{c |}{col 21}(b){col 34}(B){col 49}(b-B){col 59}sqrt(diag(V_b-V_B))
+{col 14}{c |}{col 17}    reg4    {col 30}    reg5    {col 46}Difference{col 66}S.E.
+{hline 13}{c +}{hline 64}
+{space 7}smoke {c |}{res}{col 18}-143.5786{col 31}-227.9396{col 47}   84.361{col 63} 3.670109
+{txt}{space 8}male {c |}{res}{col 18} 133.5015{col 31} 129.5803{col 47} 3.921296{col 63} 1.112241
+{txt}{space 7}dmage {c |}{res}{col 18} 19.39657{col 31} 37.08276{col 47}-17.68619{col 63} 2.495233
+{txt}{space 7}agesq {c |}{res}{col 18}-.0231534{col 31}-.4733263{col 47}  .450173{col 63} .0419326
+{txt}{space 3}adeqcode2 {c |}{res}{col 18}-81.84057{col 31}-98.31425{col 47} 16.47368{col 63} 2.574232
+{txt}{space 3}adeqcode3 {c |}{res}{col 18} -139.908{col 31}  -188.02{col 47} 48.11196{col 63} 5.819881
+{txt}{space 5}novisit {c |}{res}{col 18}-42.71156{col 31}-51.38271{col 47} 8.671155{col 63} 9.667649
+{txt}{space 5}pretri2 {c |}{res}{col 18} 66.70879{col 31} 76.56762{col 47} -9.85883{col 63} 2.976504
+{txt}{space 5}pretri3 {c |}{res}{col 18} 114.3018{col 31} 144.0581{col 47}-29.75637{col 63} 6.848019
+{txt}{hline 13}{c BT}{hline 64}
+{ralign 78:b = consistent under Ho and Ha; obtained from xtreg}
+{ralign 78:B = inconsistent under Ha, efficient under Ho; obtained from xtreg}
+
+    Test:  Ho:  difference in coefficients not systematic
+
+{ralign 25:chi2({res:9})} = (b-B)'[(V_b-V_B)^(-1)](b-B)
+{col 27}=  {res}   1115.95
+{txt}{col 17}Prob>chi2 =  {res}    0.0000
+{txt}
+{com}. outreg2 using hausman, title(Hausman) bdec(4) word  replace 
+{txt}{stata `"shellout using `"hausman.rtf"'"':hausman.rtf}
+{browse `"D:\Sony\Econometrics\AdvEcon\Exercise2"' :dir}{com} : {txt}{stata `"seeout using "hausman.txt""':seeout}
+
+{com}. * So I can reject the null hypothesis that there is no systematic difference in coefficients
+. 
 . log close
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}D:\Sony\Econometrics\AdvEcon\Exercise2\Exercise2_prob2.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 5 Oct 2016, 13:40:18
+ {txt}closed on:  {res} 5 Oct 2016, 16:10:40
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
