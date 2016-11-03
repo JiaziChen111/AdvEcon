@@ -1,0 +1,52 @@
+Pooled Poisson regression for female- with robust	
+	(1)
+VARIABLES	docvis
+	
+1985.year	0.0779
+	(0.0633)
+1986.year	0.217***
+	(0.0636)
+1987.year	0.114
+	(0.0719)
+1988.year	0.0540
+	(0.0605)
+1991.year	-0.00299
+	(0.0625)
+1994.year	0.248***
+	(0.0630)
+age	-0.0238*
+	(0.0137)
+c.age#c.age	0.000369**
+	(0.000155)
+hsat	-0.225***
+	(0.00707)
+handdum	0.0691
+	(0.0536)
+handper	0.00286***
+	(0.000959)
+married	0.0572
+	(0.0518)
+educ	-0.0235***
+	(0.00703)
+hhninc	-2.21e-05**
+	(1.03e-05)
+hhkids	-0.0749*
+	(0.0436)
+self	-0.211***
+	(0.0691)
+beamt	0.0918
+	(0.0618)
+bluec	0.0176
+	(0.0398)
+working	-0.0556
+	(0.0578)
+public	0.1000*
+	(0.0598)
+addon	0.0665
+	(0.0971)
+Constant	2.768***
+	(0.278)
+	
+Observations	14,236
+Robust standard errors in parentheses	
+*** p<0.01, ** p<0.05, * p<0.1	

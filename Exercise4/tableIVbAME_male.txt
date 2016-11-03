@@ -1,0 +1,48 @@
+Marginal Effects for male with robust	
+	(1)
+VARIABLES	y1
+	
+1985.year	0.193
+	(0.156)
+1986.year	0.576***
+	(0.168)
+1987.year	0.287
+	(0.181)
+1988.year	0.132
+	(0.147)
+1991.year	-0.00710
+	(0.148)
+1994.year	0.670***
+	(0.167)
+age	0.0270***
+	(0.00500)
+hsat	-0.591***
+	(0.0228)
+handdum	0.181
+	(0.141)
+handper	0.00751***
+	(0.00251)
+married	0.150
+	(0.136)
+educ	-0.0617***
+	(0.0186)
+hhninc	-5.81e-05**
+	(2.72e-05)
+hhkids	-0.197*
+	(0.114)
+self	-0.554***
+	(0.181)
+beamt	0.241
+	(0.162)
+bluec	0.0462
+	(0.104)
+working	-0.146
+	(0.152)
+public	0.263*
+	(0.157)
+addon	0.175
+	(0.255)
+	
+Observations	14,236
+Standard errors in parentheses	
+*** p<0.01, ** p<0.05, * p<0.1	

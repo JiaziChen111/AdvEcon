@@ -36,8 +36,14 @@ save data, replace
 use data, clear
 
 *(A) Replicate the descriptive statistics for Hospital visits and Doctor visits reported in Table I
-tab docvis, sum(female) 
-tab hospvis, sum(female)
+sum docvis hospvis if female
+sum docvis hospvis if !female
+
+tab docvis if female
+tab docvis if !female
+tab hospvis if female
+tab hospvis if !female
+
 
 *(B) Obtain the means and standard deviations for the list of variables given in Table II
 * First, I am going to create dummy variables for years 1985, 1986, 1987, 1988, 1991, 1994
@@ -67,14 +73,73 @@ gen inc2400_3200 = 2400<=hhninc & hhninc<3200
 gen inc3200_4300 = 3200<=hhninc & hhninc<4300
 gen inc4300 = 4300<=hhninc
 
-global factor_list "public addon age* handdum self married hhkids inc*"
-foreach var of varlist $factor_list {
-	table `var' docvis female
-}
 
-summarize docvis hospvis public i.addon age* i.handdum i.self i.married i.hhkids inc*, allbaselevels
+by female, sort: tabulate public, sum(docvis)
+by female, sort: tab addon, sum(docvis)
+by female, sort: tab handdum, sum(docvis)
+by female, sort: tab self, sum(docvis)
+by female, sort: tab married, sum(docvis)
+by female, sort: tab hhkids, sum(docvis)
+by female, sort: tab age25_35, sum(docvis)
+by female, sort: tab age35_45, sum(docvis)
+by female, sort: tab age45_55, sum(docvis)
+by female, sort: tab age55_65, sum(docvis)
+by female, sort: tab inc2400, sum(docvis)
+by female, sort: tab inc2400_3200, sum(docvis)
+by female, sort: tab inc2400_3200, sum(docvis)
+by female, sort: tab inc3200_4300, sum(docvis)
+by female, sort: tab inc4300, sum(docvis)
 
+by female, sort: tabulate public, sum(hospvis)
+by female, sort: tab addon, sum(hospvis)
+by female, sort: tab handdum, sum(hospvis)
+by female, sort: tab self, sum(hospvis)
+by female, sort: tab married, sum(hospvis)
+by female, sort: tab hhkids, sum(hospvis)
+by female, sort: tab age25_35, sum(hospvis)
+by female, sort: tab age35_45, sum(hospvis)
+by female, sort: tab age45_55, sum(hospvis)
+by female, sort: tab age55_65, sum(hospvis)
+by female, sort: tab inc2400, sum(hospvis)
+by female, sort: tab inc2400_3200, sum(hospvis)
+by female, sort: tab inc2400_3200, sum(hospvis)
+by female, sort: tab inc3200_4300, sum(hospvis)
+by female, sort: tab inc4300, sum(hospvis)
 
+* (D) estimate a pooled Poisson regression model for Doctor visits by gender 
+poisson docvis i.year c.age c.age#c.age hsat handdum handper married educ hhninc hhkids self beamt bluec working public addon if !female
+estimates store poisson1male
+outreg2 using tableIVa_male, title(Pooled Poisson regression male - no robust) word replace
 
+poisson docvis i.year c.age c.age#c.age hsat handdum handper married educ hhninc hhkids self beamt bluec working public addon if female
+estimates store poisson1female
+outreg2 using tableIVa_female, title(Pooled Poisson regression for female- no robust) word replace
+
+* (E) Find AME for the regression above
+estimates restore poisson1male
+margins, dydx(*) post
+outreg2 using tableIVaAME_male, title(Marginal Effects for male) word replace
+
+estimates restore poisson1female
+margins, dydx(*) post
+outreg2 using tableIVaAME_female, title(Marginal Effects for female) word replace
+
+* (F) Re-estimate using the heteroskedasticity-robust standard errors.
+poisson docvis i.year c.age c.age#c.age hsat handdum handper married educ hhninc hhkids self beamt bluec working public addon if !female,vce(robust)
+estimates store poisson2male
+outreg2 using tableIVb_male, title(Pooled Poisson regression for male - with robust) word replace
+
+poisson docvis i.year c.age c.age#c.age hsat handdum handper married educ hhninc hhkids self beamt bluec working public addon if !female,vce(robust)
+estimates store poisson2female
+outreg2 using tableIVb_female, title(Pooled Poisson regression for female- with robust) word replace
+
+* (G) Esimate the AMEs
+estimates restore poisson2male
+margins, dydx(*) post
+outreg2 using tableIVbAME_male, title(Marginal Effects for male with robust) word replace
+
+estimates restore poisson2female
+margins, dydx(*) post
+outreg2 using tableIVbAME_female, title(Marginal Effects for female with robust) word replace
 
 log close
