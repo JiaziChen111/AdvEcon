@@ -1,0 +1,40 @@
+Ordered probit model for pctstk with heteroskedasticity-robust to cluster correlation within family	
+	(1)
+VARIABLES	pctstck
+	
+choice	0.371**
+	(0.183)
+age	-0.0501**
+	(0.0242)
+educ	0.0261
+	(0.0351)
+female	0.0456
+	(0.200)
+black	0.0934
+	(0.253)
+married	0.0936
+	(0.255)
+finc25	-0.578
+	(0.524)
+finc35	-0.135
+	(0.500)
+finc50	-0.262
+	(0.496)
+finc75	-0.566
+	(0.539)
+finc100	-0.228
+	(0.534)
+finc101	-0.864
+	(0.539)
+wealth89	-9.56e-05
+	(0.000374)
+prftshr	0.482*
+	(0.251)
+Constant cut1	-3.087*
+	(1.724)
+Constant cut2	-2.054
+	(1.714)
+	
+Observations	194
+Robust standard errors in parentheses	
+*** p<0.01, ** p<0.05, * p<0.1	

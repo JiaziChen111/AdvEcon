@@ -1,0 +1,5331 @@
+{smcl}
+{txt}{sf}{ul off}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}D:\Sony\Econometrics\AdvEcon\Exercise6\Exercise6.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}17 Nov 2016, 14:35:34
+{txt}
+{com}. *cd C:\sony\github\AdvEcon\Exercise6
+. infile id  pyears    prftshr   choice    female    married   age  educ finc25    finc35    finc50    finc75    finc100   finc101   wealth89  black stckin89  irain89   pctstck   using "pension.raw", clear 
+{txt}(194 observations read)
+
+{com}. 
+. label var id                                                            "family identifier"
+{txt}
+{com}. label var pyears                            "years in pension plan"
+{txt}
+{com}. label var prftshr                           "=1 if profit sharing plan"
+{txt}
+{com}. label var choice                            "=1 if can choose method invest"
+{txt}
+{com}. label var female                            "=1 if female"
+{txt}
+{com}. label var married                           "=1 if married"
+{txt}
+{com}. label var age                               "age in years"
+{txt}
+{com}. label var educ                              "highest grade completed"
+{txt}
+{com}. label var finc25                            "$15,000 < faminc92 <= $25,000"
+{txt}
+{com}. label var finc35                            "$25,000 < faminc92 <= $35,000"
+{txt}
+{com}. label var finc50                            "$35,000 < faminc92 <= $50,000"
+{txt}
+{com}. label var finc75                            "$50,000 < faminc92 <= $75,000"
+{txt}
+{com}. label var finc100                           "$75,000 < faminc92 <= $100,000"
+{txt}
+{com}. label var finc101                           "$100,000 < faminc92"
+{txt}
+{com}. label var wealth89                          "net worth, 1989, $1000"
+{txt}
+{com}. label var black                             "=1 if black"
+{txt}
+{com}. label var stckin89                          "=1 if owned stock in 1989"
+{txt}
+{com}. label var irain89                           "=1 if had IRA in 1989"
+{txt}
+{com}. label var pctstck                           "0=mstbnds,50=mixed,100=mststcks"
+{txt}
+{com}. 
+. * (A)Estimate an ordered probit model for pctstk, where the explanatory variables are as identified above.
+. oprobit pctstck choice age educ female black married finc* wealth89 prftshr, nolog
+{res}
+{txt}Ordered probit regression{col 49}Number of obs{col 67}= {res}       194
+{txt}{col 49}LR chi2({res}14{txt}){col 67}= {res}     20.77
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.1077
+{txt}Log likelihood = {res} -201.9865{txt}{col 49}Pseudo R2{col 67}= {res}    0.0489
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}     pctstck{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}choice {c |}{col 14}{res}{space 2}  .371171{col 26}{space 2} .1841121{col 37}{space 1}    2.02{col 46}{space 3}0.044{col 54}{space 4}  .010318{col 67}{space 3} .7320241
+{txt}{space 9}age {c |}{col 14}{res}{space 2}-.0500516{col 26}{space 2} .0226063{col 37}{space 1}   -2.21{col 46}{space 3}0.027{col 54}{space 4}-.0943591{col 67}{space 3} -.005744
+{txt}{space 8}educ {c |}{col 14}{res}{space 2} .0261382{col 26}{space 2} .0352561{col 37}{space 1}    0.74{col 46}{space 3}0.458{col 54}{space 4}-.0429626{col 67}{space 3} .0952389
+{txt}{space 6}female {c |}{col 14}{res}{space 2} .0455642{col 26}{space 2}  .206004{col 37}{space 1}    0.22{col 46}{space 3}0.825{col 54}{space 4}-.3581963{col 67}{space 3} .4493246
+{txt}{space 7}black {c |}{col 14}{res}{space 2} .0933923{col 26}{space 2} .2820403{col 37}{space 1}    0.33{col 46}{space 3}0.741{col 54}{space 4}-.4593965{col 67}{space 3} .6461811
+{txt}{space 5}married {c |}{col 14}{res}{space 2} .0935981{col 26}{space 2} .2332114{col 37}{space 1}    0.40{col 46}{space 3}0.688{col 54}{space 4}-.3634878{col 67}{space 3}  .550684
+{txt}{space 6}finc25 {c |}{col 14}{res}{space 2}-.5784299{col 26}{space 2}  .423162{col 37}{space 1}   -1.37{col 46}{space 3}0.172{col 54}{space 4}-1.407812{col 67}{space 3} .2509524
+{txt}{space 6}finc35 {c |}{col 14}{res}{space 2}-.1346721{col 26}{space 2} .4305242{col 37}{space 1}   -0.31{col 46}{space 3}0.754{col 54}{space 4}-.9784841{col 67}{space 3} .7091399
+{txt}{space 6}finc50 {c |}{col 14}{res}{space 2}-.2620401{col 26}{space 2} .4265936{col 37}{space 1}   -0.61{col 46}{space 3}0.539{col 54}{space 4}-1.098148{col 67}{space 3} .5740681
+{txt}{space 6}finc75 {c |}{col 14}{res}{space 2}-.5662312{col 26}{space 2} .4780035{col 37}{space 1}   -1.18{col 46}{space 3}0.236{col 54}{space 4}-1.503101{col 67}{space 3} .3706385
+{txt}{space 5}finc100 {c |}{col 14}{res}{space 2}-.2278963{col 26}{space 2} .4685942{col 37}{space 1}   -0.49{col 46}{space 3}0.627{col 54}{space 4}-1.146324{col 67}{space 3} .6905316
+{txt}{space 5}finc101 {c |}{col 14}{res}{space 2}-.8641109{col 26}{space 2} .5291111{col 37}{space 1}   -1.63{col 46}{space 3}0.102{col 54}{space 4} -1.90115{col 67}{space 3} .1729279
+{txt}{space 4}wealth89 {c |}{col 14}{res}{space 2}-.0000956{col 26}{space 2} .0003737{col 37}{space 1}   -0.26{col 46}{space 3}0.798{col 54}{space 4}-.0008279{col 67}{space 3} .0006368
+{txt}{space 5}prftshr {c |}{col 14}{res}{space 2} .4817182{col 26}{space 2} .2161233{col 37}{space 1}    2.23{col 46}{space 3}0.026{col 54}{space 4} .0581243{col 67}{space 3}  .905312
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+       /cut1 {c |}{col 14}{res}{space 2}-3.087373{col 26}{space 2} 1.623765{col 54}{space 4}-6.269894{col 67}{space 3} .0951479
+{txt}       /cut2 {c |}{col 14}{res}{space 2}-2.053553{col 26}{space 2} 1.618611{col 54}{space 4}-5.225972{col 67}{space 3} 1.118865
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. estimates store oprobit1 
+{txt}
+{com}. outreg2 using oprobit1_table, title(Ordered probit model for pctstk) word replace
+{txt}{stata `"shellout using `"oprobit1_table.rtf"'"':oprobit1_table.rtf}
+{browse `"D:\Sony\Econometrics\AdvEcon\Exercise6"' :dir}{com} : {txt}{stata `"seeout using "oprobit1_table.txt""':seeout}
+
+{com}. 
+. * (B) With heteroskedasticity-robust to cluster correlation within family
+. oprobit pctstck choice age educ female black married finc* wealth89 prftshr, nolog vce(cluster id) 
+{res}
+{txt}Ordered probit regression{col 49}Number of obs{col 67}= {res}       194
+{txt}{col 49}Wald chi2({res}14{txt}){col 67}= {res}     25.06
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0340
+{txt}Log pseudolikelihood = {res} -201.9865{txt}{col 49}Pseudo R2{col 67}= {res}    0.0489
+
+{txt}{ralign 78:(Std. Err. adjusted for {res:171} clusters in id)}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}     pctstck{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}choice {c |}{col 14}{res}{space 2}  .371171{col 26}{space 2}  .182698{col 37}{space 1}    2.03{col 46}{space 3}0.042{col 54}{space 4} .0130896{col 67}{space 3} .7292525
+{txt}{space 9}age {c |}{col 14}{res}{space 2}-.0500516{col 26}{space 2} .0242462{col 37}{space 1}   -2.06{col 46}{space 3}0.039{col 54}{space 4}-.0975733{col 67}{space 3}-.0025299
+{txt}{space 8}educ {c |}{col 14}{res}{space 2} .0261382{col 26}{space 2} .0351353{col 37}{space 1}    0.74{col 46}{space 3}0.457{col 54}{space 4}-.0427258{col 67}{space 3} .0950021
+{txt}{space 6}female {c |}{col 14}{res}{space 2} .0455642{col 26}{space 2} .2000286{col 37}{space 1}    0.23{col 46}{space 3}0.820{col 54}{space 4}-.3464848{col 67}{space 3} .4376131
+{txt}{space 7}black {c |}{col 14}{res}{space 2} .0933923{col 26}{space 2}  .252677{col 37}{space 1}    0.37{col 46}{space 3}0.712{col 54}{space 4}-.4018455{col 67}{space 3} .5886301
+{txt}{space 5}married {c |}{col 14}{res}{space 2} .0935981{col 26}{space 2} .2546688{col 37}{space 1}    0.37{col 46}{space 3}0.713{col 54}{space 4}-.4055436{col 67}{space 3} .5927398
+{txt}{space 6}finc25 {c |}{col 14}{res}{space 2}-.5784299{col 26}{space 2} .5239993{col 37}{space 1}   -1.10{col 46}{space 3}0.270{col 54}{space 4} -1.60545{col 67}{space 3} .4485899
+{txt}{space 6}finc35 {c |}{col 14}{res}{space 2}-.1346721{col 26}{space 2} .4998878{col 37}{space 1}   -0.27{col 46}{space 3}0.788{col 54}{space 4}-1.114434{col 67}{space 3} .8450899
+{txt}{space 6}finc50 {c |}{col 14}{res}{space 2}-.2620401{col 26}{space 2} .4960936{col 37}{space 1}   -0.53{col 46}{space 3}0.597{col 54}{space 4}-1.234366{col 67}{space 3} .7102856
+{txt}{space 6}finc75 {c |}{col 14}{res}{space 2}-.5662312{col 26}{space 2} .5389199{col 37}{space 1}   -1.05{col 46}{space 3}0.293{col 54}{space 4}-1.622495{col 67}{space 3} .4900325
+{txt}{space 5}finc100 {c |}{col 14}{res}{space 2}-.2278963{col 26}{space 2} .5337036{col 37}{space 1}   -0.43{col 46}{space 3}0.669{col 54}{space 4}-1.273936{col 67}{space 3} .8181435
+{txt}{space 5}finc101 {c |}{col 14}{res}{space 2}-.8641109{col 26}{space 2} .5387136{col 37}{space 1}   -1.60{col 46}{space 3}0.109{col 54}{space 4} -1.91997{col 67}{space 3} .1917484
+{txt}{space 4}wealth89 {c |}{col 14}{res}{space 2}-.0000956{col 26}{space 2} .0003743{col 37}{space 1}   -0.26{col 46}{space 3}0.798{col 54}{space 4}-.0008291{col 67}{space 3}  .000638
+{txt}{space 5}prftshr {c |}{col 14}{res}{space 2} .4817182{col 26}{space 2} .2507571{col 37}{space 1}    1.92{col 46}{space 3}0.055{col 54}{space 4}-.0097567{col 67}{space 3}  .973193
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+       /cut1 {c |}{col 14}{res}{space 2}-3.087373{col 26}{space 2} 1.723981{col 54}{space 4}-6.466315{col 67}{space 3} .2915686
+{txt}       /cut2 {c |}{col 14}{res}{space 2}-2.053553{col 26}{space 2} 1.713553{col 54}{space 4}-5.412056{col 67}{space 3}  1.30495
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. outreg2 using oprobit1_table2, title(Ordered probit model for pctstk with heteroskedasticity-robust to cluster correlation within family) word replace
+{txt}{stata `"shellout using `"oprobit1_table2.rtf"'"':oprobit1_table2.rtf}
+{browse `"D:\Sony\Econometrics\AdvEcon\Exercise6"' :dir}{com} : {txt}{stata `"seeout using "oprobit1_table2.txt""':seeout}
+
+{com}. 
+. *With heteroskedasticity-robust standard errors
+. oprobit pctstck choice age educ female black married finc* wealth89 prftshr, nolog vce(robust) 
+{res}
+{txt}Ordered probit regression{col 49}Number of obs{col 67}= {res}       194
+{txt}{col 49}Wald chi2({res}14{txt}){col 67}= {res}     25.32
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0315
+{txt}Log pseudolikelihood = {res} -201.9865{txt}{col 49}Pseudo R2{col 67}= {res}    0.0489
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}     pctstck{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}choice {c |}{col 14}{res}{space 2}  .371171{col 26}{space 2} .1777561{col 37}{space 1}    2.09{col 46}{space 3}0.037{col 54}{space 4} .0227754{col 67}{space 3} .7195666
+{txt}{space 9}age {c |}{col 14}{res}{space 2}-.0500516{col 26}{space 2}  .024625{col 37}{space 1}   -2.03{col 46}{space 3}0.042{col 54}{space 4}-.0983156{col 67}{space 3}-.0017876
+{txt}{space 8}educ {c |}{col 14}{res}{space 2} .0261382{col 26}{space 2} .0349858{col 37}{space 1}    0.75{col 46}{space 3}0.455{col 54}{space 4}-.0424328{col 67}{space 3} .0947091
+{txt}{space 6}female {c |}{col 14}{res}{space 2} .0455642{col 26}{space 2} .2046529{col 37}{space 1}    0.22{col 46}{space 3}0.824{col 54}{space 4}-.3555482{col 67}{space 3} .4466765
+{txt}{space 7}black {c |}{col 14}{res}{space 2} .0933923{col 26}{space 2}  .260261{col 37}{space 1}    0.36{col 46}{space 3}0.720{col 54}{space 4}-.4167099{col 67}{space 3} .6034945
+{txt}{space 5}married {c |}{col 14}{res}{space 2} .0935981{col 26}{space 2} .2469335{col 37}{space 1}    0.38{col 46}{space 3}0.705{col 54}{space 4}-.3903826{col 67}{space 3} .5775788
+{txt}{space 6}finc25 {c |}{col 14}{res}{space 2}-.5784299{col 26}{space 2} .4954707{col 37}{space 1}   -1.17{col 46}{space 3}0.243{col 54}{space 4}-1.549535{col 67}{space 3} .3926749
+{txt}{space 6}finc35 {c |}{col 14}{res}{space 2}-.1346721{col 26}{space 2} .4861239{col 37}{space 1}   -0.28{col 46}{space 3}0.782{col 54}{space 4}-1.087457{col 67}{space 3} .8181132
+{txt}{space 6}finc50 {c |}{col 14}{res}{space 2}-.2620401{col 26}{space 2} .4754706{col 37}{space 1}   -0.55{col 46}{space 3}0.582{col 54}{space 4}-1.193945{col 67}{space 3} .6698653
+{txt}{space 6}finc75 {c |}{col 14}{res}{space 2}-.5662312{col 26}{space 2} .5155575{col 37}{space 1}   -1.10{col 46}{space 3}0.272{col 54}{space 4}-1.576705{col 67}{space 3}  .444243
+{txt}{space 5}finc100 {c |}{col 14}{res}{space 2}-.2278963{col 26}{space 2} .5148156{col 37}{space 1}   -0.44{col 46}{space 3}0.658{col 54}{space 4}-1.236916{col 67}{space 3} .7811237
+{txt}{space 5}finc101 {c |}{col 14}{res}{space 2}-.8641109{col 26}{space 2} .5178841{col 37}{space 1}   -1.67{col 46}{space 3}0.095{col 54}{space 4}-1.879145{col 67}{space 3} .1509233
+{txt}{space 4}wealth89 {c |}{col 14}{res}{space 2}-.0000956{col 26}{space 2} .0003586{col 37}{space 1}   -0.27{col 46}{space 3}0.790{col 54}{space 4}-.0007983{col 67}{space 3} .0006072
+{txt}{space 5}prftshr {c |}{col 14}{res}{space 2} .4817182{col 26}{space 2} .2437364{col 37}{space 1}    1.98{col 46}{space 3}0.048{col 54}{space 4} .0040037{col 67}{space 3} .9594326
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+       /cut1 {c |}{col 14}{res}{space 2}-3.087373{col 26}{space 2} 1.737134{col 54}{space 4}-6.492093{col 67}{space 3} .3173472
+{txt}       /cut2 {c |}{col 14}{res}{space 2}-2.053553{col 26}{space 2} 1.728599{col 54}{space 4}-5.441544{col 67}{space 3} 1.334437
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. outreg2 using oprobit1_table3, title(Ordered probit model with heteroskedasticity-robust standard errors) word replace
+{txt}{stata `"shellout using `"oprobit1_table3.rtf"'"':oprobit1_table3.rtf}
+{browse `"D:\Sony\Econometrics\AdvEcon\Exercise6"' :dir}{com} : {txt}{stata `"seeout using "oprobit1_table3.txt""':seeout}
+
+{com}. 
+. *(C) Obtain the estimated average marginal effects of choice on probabilities of asset allocation in defined contribution plans. Interpret the results.
+. margins, dydx(choice) post
+{res}
+{txt}Average marginal effects{col 49}Number of obs{col 67}= {res}       194
+{txt}Model VCE{col 14}: {res}Robust
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:dy/dx w.r.t.}:{space 1}{res:choice}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:1._predict}:{space 1}{res:Pr(pctstck==0), predict(pr outcome(0))}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:2._predict}:{space 1}{res:Pr(pctstck==50), predict(pr outcome(50))}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:3._predict}:{space 1}{res:Pr(pctstck==100), predict(pr outcome(100))}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}choice       {txt}{c |}
+{space 4}_predict {c |}
+{space 10}1  {c |}{col 14}{res}{space 2}-.1255342{col 26}{space 2}  .059416{col 37}{space 1}   -2.11{col 46}{space 3}0.035{col 54}{space 4}-.2419874{col 67}{space 3} -.009081
+{txt}{space 10}2  {c |}{col 14}{res}{space 2} .0052252{col 26}{space 2} .0094579{col 37}{space 1}    0.55{col 46}{space 3}0.581{col 54}{space 4}-.0133119{col 67}{space 3} .0237622
+{txt}{space 10}3  {c |}{col 14}{res}{space 2}  .120309{col 26}{space 2} .0569061{col 37}{space 1}    2.11{col 46}{space 3}0.035{col 54}{space 4} .0087751{col 67}{space 3} .2318429
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+. *(D) Estimate the marginal effect of choice on probabilities of asset allocation in defined contribution
+. estimates restore oprobit1
+{txt}(results {stata estimates replay oprobit1:oprobit1} are active now)
+
+{com}. margins, dydx(choice) at (married=0 female=1 black=1 age=60 educ=12 wealth89=150 finc50=1) post
+{res}
+{txt}Average marginal effects{col 49}Number of obs{col 67}= {res}       194
+{txt}Model VCE{col 14}: {res}OIM
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:dy/dx w.r.t.}:{space 1}{res:choice}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:1._predict}:{space 1}{res:Pr(pctstck==0), predict(pr outcome(0))}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:2._predict}:{space 1}{res:Pr(pctstck==50), predict(pr outcome(50))}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:3._predict}:{space 1}{res:Pr(pctstck==100), predict(pr outcome(100))}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:at}:{space 1}{res:{txt:age}{space 13}{txt:=} {space 9}60}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:educ}{space 12}{txt:=} {space 9}12}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:female}{space 10}{txt:=} {space 10}1}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:black}{space 11}{txt:=} {space 10}1}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:married}{space 9}{txt:=} {space 10}0}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:finc50}{space 10}{txt:=} {space 10}1}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:wealth89}{space 8}{txt:=} {space 8}150}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}choice       {txt}{c |}
+{space 4}_predict {c |}
+{space 10}1  {c |}{col 14}{res}{space 2}-.1343462{col 26}{space 2} .0650534{col 37}{space 1}   -2.07{col 46}{space 3}0.039{col 54}{space 4}-.2618484{col 67}{space 3}-.0068439
+{txt}{space 10}2  {c |}{col 14}{res}{space 2} .0255342{col 26}{space 2} .0501028{col 37}{space 1}    0.51{col 46}{space 3}0.610{col 54}{space 4}-.0726655{col 67}{space 3} .1237338
+{txt}{space 10}3  {c |}{col 14}{res}{space 2}  .108812{col 26}{space 2} .0668719{col 37}{space 1}    1.63{col 46}{space 3}0.104{col 54}{space 4}-.0222545{col 67}{space 3} .2398785
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+. * (E) Expected value
+. * Then the mean value when choice =1
+. estimates restore oprobit1
+{txt}(results {stata estimates replay oprobit1:oprobit1} are active now)
+
+{com}. margins, at (choice=1 married=0 female=1 black=1 age=60 educ=12 wealth89=150 finc50=1) predict(outcome(#1))
+{res}
+{txt}Predictive margins{col 49}Number of obs{col 67}= {res}       194
+{txt}Model VCE{col 14}: {res}OIM
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:Expression}:{space 1}{res:Pr(pctstck==0), predict(outcome(#1))}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:at}:{space 1}{res:{txt:choice}{space 10}{txt:=} {space 10}1}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:age}{space 13}{txt:=} {space 9}60}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:educ}{space 12}{txt:=} {space 9}12}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:female}{space 10}{txt:=} {space 10}1}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:black}{space 11}{txt:=} {space 10}1}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:married}{space 9}{txt:=} {space 10}0}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:finc50}{space 10}{txt:=} {space 10}1}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:wealth89}{space 8}{txt:=} {space 8}150}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}     Margin{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}_cons {c |}{col 14}{res}{space 2} .3425539{col 26}{space 2} .1757892{col 37}{space 1}    1.95{col 46}{space 3}0.051{col 54}{space 4}-.0019866{col 67}{space 3} .6870944
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. margins, at (choice=1 married=0 female=1 black=1 age=60 educ=12 wealth89=150 finc50=1) predict(outcome(#2))
+{res}
+{txt}Predictive margins{col 49}Number of obs{col 67}= {res}       194
+{txt}Model VCE{col 14}: {res}OIM
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:Expression}:{space 1}{res:Pr(pctstck==50), predict(outcome(#2))}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:at}:{space 1}{res:{txt:choice}{space 10}{txt:=} {space 10}1}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:age}{space 13}{txt:=} {space 9}60}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:educ}{space 12}{txt:=} {space 9}12}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:female}{space 10}{txt:=} {space 10}1}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:black}{space 11}{txt:=} {space 10}1}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:married}{space 9}{txt:=} {space 10}0}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:finc50}{space 10}{txt:=} {space 10}1}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:wealth89}{space 8}{txt:=} {space 8}150}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}     Margin{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}_cons {c |}{col 14}{res}{space 2} .3742912{col 26}{space 2} .0415856{col 37}{space 1}    9.00{col 46}{space 3}0.000{col 54}{space 4} .2927849{col 67}{space 3} .4557975
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. margins, at (choice=1 married=0 female=1 black=1 age=60 educ=12 wealth89=150 finc50=1) predict(outcome(#3))
+{res}
+{txt}Predictive margins{col 49}Number of obs{col 67}= {res}       194
+{txt}Model VCE{col 14}: {res}OIM
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:Expression}:{space 1}{res:Pr(pctstck==100), predict(outcome(#3))}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:at}:{space 1}{res:{txt:choice}{space 10}{txt:=} {space 10}1}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:age}{space 13}{txt:=} {space 9}60}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:educ}{space 12}{txt:=} {space 9}12}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:female}{space 10}{txt:=} {space 10}1}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:black}{space 11}{txt:=} {space 10}1}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:married}{space 9}{txt:=} {space 10}0}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:finc50}{space 10}{txt:=} {space 10}1}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:wealth89}{space 8}{txt:=} {space 8}150}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}     Margin{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}_cons {c |}{col 14}{res}{space 2} .2831549{col 26}{space 2} .1543282{col 37}{space 1}    1.83{col 46}{space 3}0.067{col 54}{space 4}-.0193229{col 67}{space 3} .5856327
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. display  .3742912 * 50 +  .2831549 * 100
+{res}47.03005
+{txt}
+{com}. 
+. * Then the mean value when choice =0
+. estimates restore oprobit1
+{txt}(results {stata estimates replay oprobit1:oprobit1} are active now)
+
+{com}. margins, at (choice=0 married=0 female=1 black=1 age=60 educ=12 wealth89=150 finc50=1) predict(outcome(#1))
+{res}
+{txt}Predictive margins{col 49}Number of obs{col 67}= {res}       194
+{txt}Model VCE{col 14}: {res}OIM
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:Expression}:{space 1}{res:Pr(pctstck==0), predict(outcome(#1))}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:at}:{space 1}{res:{txt:choice}{space 10}{txt:=} {space 10}0}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:age}{space 13}{txt:=} {space 9}60}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:educ}{space 12}{txt:=} {space 9}12}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:female}{space 10}{txt:=} {space 10}1}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:black}{space 11}{txt:=} {space 10}1}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:married}{space 9}{txt:=} {space 10}0}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:finc50}{space 10}{txt:=} {space 10}1}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:wealth89}{space 8}{txt:=} {space 8}150}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}     Margin{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}_cons {c |}{col 14}{res}{space 2} .4784586{col 26}{space 2} .1836431{col 37}{space 1}    2.61{col 46}{space 3}0.009{col 54}{space 4} .1185247{col 67}{space 3} .8383924
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. margins, at (choice=0 married=0 female=1 black=1 age=60 educ=12 wealth89=150 finc50=1) predict(outcome(#2))
+{res}
+{txt}Predictive margins{col 49}Number of obs{col 67}= {res}       194
+{txt}Model VCE{col 14}: {res}OIM
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:Expression}:{space 1}{res:Pr(pctstck==50), predict(outcome(#2))}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:at}:{space 1}{res:{txt:choice}{space 10}{txt:=} {space 10}0}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:age}{space 13}{txt:=} {space 9}60}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:educ}{space 12}{txt:=} {space 9}12}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:female}{space 10}{txt:=} {space 10}1}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:black}{space 11}{txt:=} {space 10}1}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:married}{space 9}{txt:=} {space 10}0}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:finc50}{space 10}{txt:=} {space 10}1}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:wealth89}{space 8}{txt:=} {space 8}150}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}     Margin{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}_cons {c |}{col 14}{res}{space 2} .3440748{col 26}{space 2} .0765673{col 37}{space 1}    4.49{col 46}{space 3}0.000{col 54}{space 4} .1940056{col 67}{space 3}  .494144
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. margins, at (choice=0 married=0 female=1 black=1 age=60 educ=12 wealth89=150 finc50=1) predict(outcome(#3))
+{res}
+{txt}Predictive margins{col 49}Number of obs{col 67}= {res}       194
+{txt}Model VCE{col 14}: {res}OIM
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:Expression}:{space 1}{res:Pr(pctstck==100), predict(outcome(#3))}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:at}:{space 1}{res:{txt:choice}{space 10}{txt:=} {space 10}0}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:age}{space 13}{txt:=} {space 9}60}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:educ}{space 12}{txt:=} {space 9}12}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:female}{space 10}{txt:=} {space 10}1}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:black}{space 11}{txt:=} {space 10}1}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:married}{space 9}{txt:=} {space 10}0}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:finc50}{space 10}{txt:=} {space 10}1}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:wealth89}{space 8}{txt:=} {space 8}150}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}     Margin{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}_cons {c |}{col 14}{res}{space 2} .1774666{col 26}{space 2}  .114386{col 37}{space 1}    1.55{col 46}{space 3}0.121{col 54}{space 4}-.0467257{col 67}{space 3}  .401659
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. display    .3440748  * 50 + .1774666 * 100
+{res}34.9504
+{txt}
+{com}. 
+. * Problem 2
+. infile  NR YEAR AG BLACK BUS CON ENT EXPER FIN HISP HLTH HOURS MAN MAR MIN NC NE OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 OCC9 PER PRO PUB RUR S SCHOOL TRA TRAD UNION WAGE  using vv-data.dat, clear
+{txt}(4,360 observations read)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\AYSPS\AppData\Local\Temp\STD04000000.tmp"
+{txt}
+{com}. logout, save(problem2_summary) word replace: sum
+
+{smcl}
+{com}{sf}{ul off}{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}D:\Sony\Econometrics\AdvEcon\Exercise6\Exercise6.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}17 Nov 2016, 14:37:10
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\AYSPS\AppData\Local\Temp\STD04000000.tmp"
+{txt}
+{com}. gen logexper = log(EXPER+1)
+{txt}
+{com}. by sort NR: probit UNION logexper SCHOOL MAR BLACK HISP RUR HLTH NE S NC AG MIN CON MAN TRA TRAD FIN BUS PER ENT PRO OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 i.YEAR, nolog
+{err}variable {bf}sort{sf} not found
+{txt}{search r(111), local:r(111);}
+
+end of do-file
+
+{search r(111), local:r(111);}
+
+{com}. do "C:\Users\AYSPS\AppData\Local\Temp\STD04000000.tmp"
+{txt}
+{com}. bysort NR: probit UNION logexper SCHOOL MAR BLACK HISP RUR HLTH NE S NC AG MIN CON MAN TRA TRAD FIN BUS PER ENT PRO OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 i.YEAR, nolog
+
+{txt}{hline}
+-> NR = 13
+note: BUS != 0 predicts failure perfectly
+      BUS dropped and 6 obs not used
+
+outcome = logexper <= 1.098612 predicts data perfectly
+
+{hline}
+-> NR = 17
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 18
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 45
+outcome = logexper <= 1.386294 predicts data perfectly
+
+{hline}
+-> NR = 110
+outcome = logexper <= 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 120
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 126
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 150
+outcome = logexper > 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 162
+outcome = logexper <= 1.098612 predicts data perfectly
+
+{hline}
+-> NR = 166
+outcome = logexper <= 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 189
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 193
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 209
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 212
+note: OCC4 != 0 predicts failure perfectly
+      OCC4 dropped and 1 obs not used
+
+note: OCC5 != 0 predicts failure perfectly
+      OCC5 dropped and 1 obs not used
+
+note: 1981.YEAR != 0 predicts failure perfectly
+      1981.YEAR dropped and 1 obs not used
+
+note: 1982.YEAR != 0 predicts success perfectly
+      1982.YEAR dropped and 1 obs not used
+
+outcome = logexper > 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 218
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 243
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 259
+outcome = logexper <= 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 260
+outcome = logexper <= 1.386294 predicts data perfectly
+
+{hline}
+-> NR = 309
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 351
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 353
+note: CON != 0 predicts failure perfectly
+      CON dropped and 1 obs not used
+
+note: MAN != 1 predicts failure perfectly
+      MAN dropped and 2 obs not used
+
+note: OCC5 != 0 predicts failure perfectly
+      OCC5 dropped and 2 obs not used
+
+note: 1980.YEAR != 0 predicts failure perfectly
+      1980.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 1.609438 predicts data perfectly
+
+{hline}
+-> NR = 383
+note: OCC4 != 0 predicts failure perfectly
+      OCC4 dropped and 2 obs not used
+
+note: OCC5 != 0 predicts failure perfectly
+      OCC5 dropped and 3 obs not used
+
+outcome = logexper > 1.386294 predicts data perfectly
+
+{hline}
+-> NR = 408
+outcome = logexper > 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 424
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 464
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 483
+note: OCC2 != 0 predicts failure perfectly
+      OCC2 dropped and 1 obs not used
+
+note: OCC4 != 0 predicts failure perfectly
+      OCC4 dropped and 1 obs not used
+
+note: OCC5 != 0 predicts failure perfectly
+      OCC5 dropped and 2 obs not used
+
+outcome = logexper <= 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 556
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 560
+note: TRA != 1 predicts failure perfectly
+      TRA dropped and 4 obs not used
+
+outcome = logexper > 1.609438 predicts data perfectly
+
+{hline}
+-> NR = 569
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 583
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 3 obs not used
+
+note: MAN != 1 predicts failure perfectly
+      MAN dropped and 1 obs not used
+
+note: OCC5 != 1 predicts success perfectly
+      OCC5 dropped and 1 obs not used
+
+note: 1981.YEAR != 0 predicts failure perfectly
+      1981.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 647
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 658
+note: MAN != 1 predicts failure perfectly
+      MAN dropped and 1 obs not used
+
+note: 1980.YEAR != 0 predicts success perfectly
+      1980.YEAR dropped and 1 obs not used
+
+note: 1981.YEAR != 0 predicts failure perfectly
+      1981.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 2.079442 predicts data perfectly
+
+{hline}
+-> NR = 684
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 711
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 729
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+outcome = logexper <= 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 731
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 732
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 793
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 797
+note: MAN != 0 predicts success perfectly
+      MAN dropped and 4 obs not used
+
+outcome = logexper > 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 800
+note: MAR != 0 predicts success perfectly
+      MAR dropped and 2 obs not used
+
+outcome = logexper <= 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 813
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 823
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+{err}{hline 2}Break{hline 2}
+{txt}{search r(1), local:r(1);}
+
+end of do-file
+
+{err}{hline 2}Break{hline 2}
+{txt}{search r(1), local:r(1);}
+
+{com}. do "C:\Users\AYSPS\AppData\Local\Temp\STD04000000.tmp"
+{txt}
+{com}. probit UNION logexper SCHOOL MAR BLACK HISP RUR HLTH NE S NC AG MIN CON MAN TRA TRAD FIN BUS PER ENT PRO OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 i.YEAR, nolog
+{res}
+{txt}Probit regression{col 49}Number of obs{col 67}= {res}     4,360
+{txt}{col 49}LR chi2({res}36{txt}){col 67}= {res}    570.06
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log likelihood = {res}-2137.7713{txt}{col 49}Pseudo R2{col 67}= {res}    0.1176
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       UNION{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}logexper {c |}{col 14}{res}{space 2} .3213463{col 26}{space 2} .1119392{col 37}{space 1}    2.87{col 46}{space 3}0.004{col 54}{space 4} .1019495{col 67}{space 3} .5407431
+{txt}{space 6}SCHOOL {c |}{col 14}{res}{space 2}  .065344{col 26}{space 2} .0165104{col 37}{space 1}    3.96{col 46}{space 3}0.000{col 54}{space 4} .0329842{col 67}{space 3} .0977038
+{txt}{space 9}MAR {c |}{col 14}{res}{space 2} .1456957{col 26}{space 2}  .048593{col 37}{space 1}    3.00{col 46}{space 3}0.003{col 54}{space 4} .0504552{col 67}{space 3} .2409362
+{txt}{space 7}BLACK {c |}{col 14}{res}{space 2} .3994051{col 26}{space 2} .0687009{col 37}{space 1}    5.81{col 46}{space 3}0.000{col 54}{space 4} .2647537{col 67}{space 3} .5340565
+{txt}{space 8}HISP {c |}{col 14}{res}{space 2} .1992929{col 26}{space 2} .0691834{col 37}{space 1}    2.88{col 46}{space 3}0.004{col 54}{space 4} .0636959{col 67}{space 3}   .33489
+{txt}{space 9}RUR {c |}{col 14}{res}{space 2} -.063686{col 26}{space 2} .0587423{col 37}{space 1}   -1.08{col 46}{space 3}0.278{col 54}{space 4}-.1788188{col 67}{space 3} .0514469
+{txt}{space 8}HLTH {c |}{col 14}{res}{space 2}-.4984663{col 26}{space 2} .1953893{col 37}{space 1}   -2.55{col 46}{space 3}0.011{col 54}{space 4}-.8814224{col 67}{space 3}-.1155103
+{txt}{space 10}NE {c |}{col 14}{res}{space 2} .1685646{col 26}{space 2} .0748482{col 37}{space 1}    2.25{col 46}{space 3}0.024{col 54}{space 4} .0218648{col 67}{space 3} .3152644
+{txt}{space 11}S {c |}{col 14}{res}{space 2}-.0285951{col 26}{space 2} .0686276{col 37}{space 1}   -0.42{col 46}{space 3}0.677{col 54}{space 4}-.1631026{col 67}{space 3} .1059124
+{txt}{space 10}NC {c |}{col 14}{res}{space 2} .1698988{col 26}{space 2} .0725448{col 37}{space 1}    2.34{col 46}{space 3}0.019{col 54}{space 4} .0277137{col 67}{space 3}  .312084
+{txt}{space 10}AG {c |}{col 14}{res}{space 2}-.7722583{col 26}{space 2} .1923116{col 37}{space 1}   -4.02{col 46}{space 3}0.000{col 54}{space 4}-1.149182{col 67}{space 3}-.3953345
+{txt}{space 9}MIN {c |}{col 14}{res}{space 2}-.3038761{col 26}{space 2} .1907388{col 37}{space 1}   -1.59{col 46}{space 3}0.111{col 54}{space 4}-.6777171{col 67}{space 3}  .069965
+{txt}{space 9}CON {c |}{col 14}{res}{space 2}-.7386713{col 26}{space 2}  .133057{col 37}{space 1}   -5.55{col 46}{space 3}0.000{col 54}{space 4}-.9994583{col 67}{space 3}-.4778843
+{txt}{space 9}MAN {c |}{col 14}{res}{space 2}-.3835445{col 26}{space 2} .1105875{col 37}{space 1}   -3.47{col 46}{space 3}0.001{col 54}{space 4}-.6002921{col 67}{space 3}-.1667969
+{txt}{space 9}TRA {c |}{col 14}{res}{space 2}-.0008608{col 26}{space 2} .1270332{col 37}{space 1}   -0.01{col 46}{space 3}0.995{col 54}{space 4}-.2498414{col 67}{space 3} .2481197
+{txt}{space 8}TRAD {c |}{col 14}{res}{space 2}-.7496549{col 26}{space 2} .1109381{col 37}{space 1}   -6.76{col 46}{space 3}0.000{col 54}{space 4}-.9670897{col 67}{space 3}-.5322201
+{txt}{space 9}FIN {c |}{col 14}{res}{space 2}-1.053801{col 26}{space 2} .1796603{col 37}{space 1}   -5.87{col 46}{space 3}0.000{col 54}{space 4}-1.405929{col 67}{space 3}-.7016732
+{txt}{space 9}BUS {c |}{col 14}{res}{space 2}-1.134537{col 26}{space 2} .1454581{col 37}{space 1}   -7.80{col 46}{space 3}0.000{col 54}{space 4}-1.419629{col 67}{space 3} -.849444
+{txt}{space 9}PER {c |}{col 14}{res}{space 2}-1.105549{col 26}{space 2} .2223098{col 37}{space 1}   -4.97{col 46}{space 3}0.000{col 54}{space 4}-1.541268{col 67}{space 3}  -.66983
+{txt}{space 9}ENT {c |}{col 14}{res}{space 2}-.8261857{col 26}{space 2} .2172345{col 37}{space 1}   -3.80{col 46}{space 3}0.000{col 54}{space 4}-1.251957{col 67}{space 3} -.400414
+{txt}{space 9}PRO {c |}{col 14}{res}{space 2} -.303772{col 26}{space 2} .1275002{col 37}{space 1}   -2.38{col 46}{space 3}0.017{col 54}{space 4}-.5536679{col 67}{space 3}-.0538761
+{txt}{space 8}OCC1 {c |}{col 14}{res}{space 2}-.8081782{col 26}{space 2} .1050769{col 37}{space 1}   -7.69{col 46}{space 3}0.000{col 54}{space 4}-1.014125{col 67}{space 3}-.6022314
+{txt}{space 8}OCC2 {c |}{col 14}{res}{space 2}-.9058924{col 26}{space 2} .1164071{col 37}{space 1}   -7.78{col 46}{space 3}0.000{col 54}{space 4}-1.134046{col 67}{space 3}-.6777385
+{txt}{space 8}OCC3 {c |}{col 14}{res}{space 2}-.9414642{col 26}{space 2} .1541168{col 37}{space 1}   -6.11{col 46}{space 3}0.000{col 54}{space 4}-1.243528{col 67}{space 3}-.6394009
+{txt}{space 8}OCC4 {c |}{col 14}{res}{space 2}-.1741098{col 26}{space 2} .0914655{col 37}{space 1}   -1.90{col 46}{space 3}0.057{col 54}{space 4}-.3533789{col 67}{space 3} .0051592
+{txt}{space 8}OCC5 {c |}{col 14}{res}{space 2}-.2441014{col 26}{space 2} .0866546{col 37}{space 1}   -2.82{col 46}{space 3}0.005{col 54}{space 4}-.4139412{col 67}{space 3}-.0742616
+{txt}{space 8}OCC6 {c |}{col 14}{res}{space 2}-.0344374{col 26}{space 2} .0858726{col 37}{space 1}   -0.40{col 46}{space 3}0.688{col 54}{space 4}-.2027446{col 67}{space 3} .1338699
+{txt}{space 8}OCC7 {c |}{col 14}{res}{space 2} .1523234{col 26}{space 2} .0945472{col 37}{space 1}    1.61{col 46}{space 3}0.107{col 54}{space 4}-.0329856{col 67}{space 3} .3376325
+{txt}{space 8}OCC8 {c |}{col 14}{res}{space 2}-.6297154{col 26}{space 2} .2767548{col 37}{space 1}   -2.28{col 46}{space 3}0.023{col 54}{space 4}-1.172145{col 67}{space 3}-.0872859
+{txt}{space 12} {c |}
+{space 8}YEAR {c |}
+{space 7}1981  {c |}{col 14}{res}{space 2}-.0917971{col 26}{space 2} .0908833{col 37}{space 1}   -1.01{col 46}{space 3}0.312{col 54}{space 4}-.2699252{col 67}{space 3}  .086331
+{txt}{space 7}1982  {c |}{col 14}{res}{space 2}-.1211369{col 26}{space 2} .0992179{col 37}{space 1}   -1.22{col 46}{space 3}0.222{col 54}{space 4}-.3156005{col 67}{space 3} .0733267
+{txt}{space 7}1983  {c |}{col 14}{res}{space 2}-.2334464{col 26}{space 2} .1096081{col 37}{space 1}   -2.13{col 46}{space 3}0.033{col 54}{space 4}-.4482744{col 67}{space 3}-.0186185
+{txt}{space 7}1984  {c |}{col 14}{res}{space 2}-.2248228{col 26}{space 2} .1194995{col 37}{space 1}   -1.88{col 46}{space 3}0.060{col 54}{space 4}-.4590376{col 67}{space 3} .0093919
+{txt}{space 7}1985  {c |}{col 14}{res}{space 2}-.3785973{col 26}{space 2} .1293501{col 37}{space 1}   -2.93{col 46}{space 3}0.003{col 54}{space 4}-.6321188{col 67}{space 3}-.1250758
+{txt}{space 7}1986  {c |}{col 14}{res}{space 2}-.4675467{col 26}{space 2} .1391467{col 37}{space 1}   -3.36{col 46}{space 3}0.001{col 54}{space 4}-.7402692{col 67}{space 3}-.1948243
+{txt}{space 7}1987  {c |}{col 14}{res}{space 2}-.2966825{col 26}{space 2} .1458285{col 37}{space 1}   -2.03{col 46}{space 3}0.042{col 54}{space 4} -.582501{col 67}{space 3} -.010864
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2}-1.281985{col 26}{space 2} .3293848{col 37}{space 1}   -3.89{col 46}{space 3}0.000{col 54}{space 4}-1.927568{col 67}{space 3}-.6364031
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. outreg2 using pooledprobit1_table1, title(Pooled probit model with heteroskedasticity-robust standard errors) word replace
+{txt}{stata `"shellout using `"pooledprobit1_table1.rtf"'"':pooledprobit1_table1.rtf}
+{browse `"D:\Sony\Econometrics\AdvEcon\Exercise6"' :dir}{com} : {txt}{stata `"seeout using "pooledprobit1_table1.txt""':seeout}
+
+{com}. estimates store probit1
+{txt}
+{com}. margins, dydx(logexper MAR) post
+{res}
+{txt}Average marginal effects{col 49}Number of obs{col 67}= {res}     4,360
+{txt}Model VCE{col 14}: {res}OIM
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:Expression}:{space 1}{res:Pr(UNION), predict()}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:dy/dx w.r.t.}:{space 1}{res:logexper MAR}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}logexper {c |}{col 14}{res}{space 2} .0888919{col 26}{space 2} .0309068{col 37}{space 1}    2.88{col 46}{space 3}0.004{col 54}{space 4} .0283158{col 67}{space 3} .1494681
+{txt}{space 9}MAR {c |}{col 14}{res}{space 2} .0403029{col 26}{space 2} .0134081{col 37}{space 1}    3.01{col 46}{space 3}0.003{col 54}{space 4} .0140235{col 67}{space 3} .0665822
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. estimates restore probit1
+{txt}(results {stata estimates replay probit1:probit1} are active now)
+
+{com}. margins, expression(_b[logexper]*predict()/100) post
+{res}
+{txt}Predictive margins{col 49}Number of obs{col 67}= {res}     4,360
+{txt}Model VCE{col 14}: {res}OIM
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:Expression}:{space 1}{res:_b[logexper]*predict()/100}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}     Margin{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}_cons {c |}{col 14}{res}{space 2} .0007857{col 26}{space 2} .0002747{col 37}{space 1}    2.86{col 46}{space 3}0.004{col 54}{space 4} .0002473{col 67}{space 3} .0013241
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\AYSPS\AppData\Local\Temp\STD04000000.tmp"
+{txt}
+{com}. bysort NR: probit UNION logexper SCHOOL MAR BLACK HISP RUR HLTH NE S NC AG MIN CON MAN TRA TRAD FIN BUS PER ENT PRO OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 i.YEAR, nolog
+
+{txt}{hline}
+-> NR = 13
+note: BUS != 0 predicts failure perfectly
+      BUS dropped and 6 obs not used
+
+outcome = logexper <= 1.098612 predicts data perfectly
+
+{hline}
+-> NR = 17
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 18
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 45
+outcome = logexper <= 1.386294 predicts data perfectly
+
+{hline}
+-> NR = 110
+outcome = logexper <= 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 120
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 126
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 150
+outcome = logexper > 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 162
+outcome = logexper <= 1.098612 predicts data perfectly
+
+{hline}
+-> NR = 166
+outcome = logexper <= 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 189
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 193
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 209
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 212
+note: OCC4 != 0 predicts failure perfectly
+      OCC4 dropped and 1 obs not used
+
+note: OCC5 != 0 predicts failure perfectly
+      OCC5 dropped and 1 obs not used
+
+note: 1981.YEAR != 0 predicts failure perfectly
+      1981.YEAR dropped and 1 obs not used
+
+note: 1982.YEAR != 0 predicts success perfectly
+      1982.YEAR dropped and 1 obs not used
+
+outcome = logexper > 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 218
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 243
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 259
+outcome = logexper <= 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 260
+outcome = logexper <= 1.386294 predicts data perfectly
+
+{hline}
+-> NR = 309
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 351
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 353
+note: CON != 0 predicts failure perfectly
+      CON dropped and 1 obs not used
+
+note: MAN != 1 predicts failure perfectly
+      MAN dropped and 2 obs not used
+
+note: OCC5 != 0 predicts failure perfectly
+      OCC5 dropped and 2 obs not used
+
+note: 1980.YEAR != 0 predicts failure perfectly
+      1980.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 1.609438 predicts data perfectly
+
+{hline}
+-> NR = 383
+note: OCC4 != 0 predicts failure perfectly
+      OCC4 dropped and 2 obs not used
+
+note: OCC5 != 0 predicts failure perfectly
+      OCC5 dropped and 3 obs not used
+
+outcome = logexper > 1.386294 predicts data perfectly
+
+{hline}
+-> NR = 408
+outcome = logexper > 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 424
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 464
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 483
+note: OCC2 != 0 predicts failure perfectly
+      OCC2 dropped and 1 obs not used
+
+note: OCC4 != 0 predicts failure perfectly
+      OCC4 dropped and 1 obs not used
+
+note: OCC5 != 0 predicts failure perfectly
+      OCC5 dropped and 2 obs not used
+
+outcome = logexper <= 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 556
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 560
+note: TRA != 1 predicts failure perfectly
+      TRA dropped and 4 obs not used
+
+outcome = logexper > 1.609438 predicts data perfectly
+
+{hline}
+-> NR = 569
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 583
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 3 obs not used
+
+note: MAN != 1 predicts failure perfectly
+      MAN dropped and 1 obs not used
+
+note: OCC5 != 1 predicts success perfectly
+      OCC5 dropped and 1 obs not used
+
+note: 1981.YEAR != 0 predicts failure perfectly
+      1981.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 647
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 658
+note: MAN != 1 predicts failure perfectly
+      MAN dropped and 1 obs not used
+
+note: 1980.YEAR != 0 predicts success perfectly
+      1980.YEAR dropped and 1 obs not used
+
+note: 1981.YEAR != 0 predicts failure perfectly
+      1981.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 2.079442 predicts data perfectly
+
+{hline}
+-> NR = 684
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 711
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 729
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+outcome = logexper <= 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 731
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 732
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 793
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 797
+note: MAN != 0 predicts success perfectly
+      MAN dropped and 4 obs not used
+
+outcome = logexper > 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 800
+note: MAR != 0 predicts success perfectly
+      MAR dropped and 2 obs not used
+
+outcome = logexper <= 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 813
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 823
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 827
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 847
+note: MAR != 0 predicts success perfectly
+      MAR dropped and 1 obs not used
+
+note: NE != 1 predicts success perfectly
+      NE dropped and 2 obs not used
+
+note: CON != 1 predicts failure perfectly
+      CON dropped and 2 obs not used
+
+note: OCC2 != 0 predicts failure perfectly
+      OCC2 dropped and 1 obs not used
+
+outcome = logexper > 1.609438 predicts data perfectly
+
+{hline}
+-> NR = 851
+outcome = logexper > 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 863
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 873
+note: RUR != 0 predicts success perfectly
+      RUR dropped and 1 obs not used
+
+note: TRAD != 0 predicts failure perfectly
+      TRAD dropped and 1 obs not used
+
+note: MAN != 1 predicts success perfectly
+      MAN dropped and 3 obs not used
+
+note: 1980.YEAR != 0 predicts success perfectly
+      1980.YEAR dropped and 1 obs not used
+
+outcome = logexper > 1.609438 predicts data perfectly
+
+{hline}
+-> NR = 891
+note: NC != 0 predicts success perfectly
+      NC dropped and 4 obs not used
+
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+outcome = logexper > 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 908
+outcome = logexper <= 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 910
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 916
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 919
+outcome = logexper > 1.386294 predicts data perfectly
+
+{hline}
+-> NR = 922
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 924
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 925
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 944
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 945
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 947
+outcome = logexper <= 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 955
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 965
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 996
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1007
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1054
+outcome = logexper > 2.302585 predicts data perfectly
+
+{hline}
+-> NR = 1064
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1081
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1085
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1091
+note: MAR != 1 predicts success perfectly
+      MAR dropped and 1 obs not used
+
+note: MAN != 0 predicts failure perfectly
+      MAN dropped and 1 obs not used
+
+note: TRA != 0 predicts failure perfectly
+      TRA dropped and 1 obs not used
+
+note: OCC6 != 0 predicts failure perfectly
+      OCC6 dropped and 1 obs not used
+
+note: 1981.YEAR != 0 predicts failure perfectly
+      1981.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 2.484907 predicts data perfectly
+
+{hline}
+-> NR = 1094
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1096
+outcome = logexper > 2.564949 predicts data perfectly
+
+{hline}
+-> NR = 1098
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1102
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1107
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1142
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1156
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1180
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 4 obs not used
+
+outcome = logexper > 1.386294 predicts data perfectly
+
+{hline}
+-> NR = 1190
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1204
+outcome = logexper > 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 1249
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1272
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 3 obs not used
+
+note: HLTH != 0 predicts failure perfectly
+      HLTH dropped and 1 obs not used
+
+note: TRAD != 1 predicts success perfectly
+      TRAD dropped and 1 obs not used
+
+note: OCC4 != 1 predicts failure perfectly
+      OCC4 dropped and 1 obs not used
+
+outcome = logexper <= 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 1311
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1316
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1318
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1345
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1397
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1434
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+note: CON != 0 predicts failure perfectly
+      CON dropped and 1 obs not used
+
+outcome = logexper <= 2.079442 predicts data perfectly
+
+{hline}
+-> NR = 1492
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1496
+outcome = logexper <= 1.098612 predicts data perfectly
+
+{hline}
+-> NR = 1506
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1515
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+note: TRA != 0 predicts failure perfectly
+      TRA dropped and 3 obs not used
+
+note: OCC2 != 1 predicts failure perfectly
+      OCC2 dropped and 1 obs not used
+
+outcome = logexper <= 1.386294 predicts data perfectly
+
+{hline}
+-> NR = 1520
+note: TRAD != 0 predicts success perfectly
+      TRAD dropped and 1 obs not used
+
+outcome = logexper <= 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 1528
+outcome = logexper <= 1.609438 predicts data perfectly
+
+{hline}
+-> NR = 1554
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+note: MAN != 1 predicts failure perfectly
+      MAN dropped and 1 obs not used
+
+outcome = logexper <= 1.609438 predicts data perfectly
+
+{hline}
+-> NR = 1575
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1576
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1628
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1641
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1644
+outcome = logexper <= .6931472 predicts data perfectly
+
+{hline}
+-> NR = 1653
+outcome = logexper <= 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 1654
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1721
+note: TRAD != 1 predicts failure perfectly
+      TRAD dropped and 1 obs not used
+
+note: OCC5 != 1 predicts failure perfectly
+      OCC5 dropped and 1 obs not used
+
+note: 1981.YEAR != 0 predicts success perfectly
+      1981.YEAR dropped and 1 obs not used
+
+note: 1982.YEAR != 0 predicts failure perfectly
+      1982.YEAR dropped and 1 obs not used
+
+note: 1983.YEAR != 0 predicts failure perfectly
+      1983.YEAR dropped and 1 obs not used
+
+note: 1984.YEAR != 0 predicts failure perfectly
+      1984.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 2.397895 predicts data perfectly
+
+{hline}
+-> NR = 1742
+outcome = logexper <= 1.386294 predicts data perfectly
+
+{hline}
+-> NR = 1744
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1763
+note: HLTH != 0 predicts failure perfectly
+      HLTH dropped and 1 obs not used
+
+note: TRAD != 1 predicts failure perfectly
+      TRAD dropped and 1 obs not used
+
+note: 1981.YEAR != 0 predicts failure perfectly
+      1981.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 1.609438 predicts data perfectly
+
+{hline}
+-> NR = 1777
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 2 obs not used
+
+note: NC != 0 predicts failure perfectly
+      NC dropped and 3 obs not used
+
+outcome = logexper > .6931472 predicts data perfectly
+
+{hline}
+-> NR = 1843
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1891
+outcome = logexper <= 1.098612 predicts data perfectly
+
+{hline}
+-> NR = 1895
+outcome = logexper > 1.386294 predicts data perfectly
+
+{hline}
+-> NR = 1899
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1925
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1930
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1961
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1963
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1979
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 1988
+note: RUR != 1 predicts failure perfectly
+      RUR dropped and 5 obs not used
+
+note: OCC5 != 0 predicts failure perfectly
+      OCC5 dropped and 1 obs not used
+
+outcome = logexper > 1.386294 predicts data perfectly
+
+{hline}
+-> NR = 2000
+note: MAN != 1 predicts failure perfectly
+      MAN dropped and 3 obs not used
+
+note: OCC5 != 0 predicts success perfectly
+      OCC5 dropped and 1 obs not used
+
+note: 1980.YEAR != 0 predicts success perfectly
+      1980.YEAR dropped and 1 obs not used
+
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+outcome = logexper <= 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 2014
+outcome = logexper <= 1.098612 predicts data perfectly
+
+{hline}
+-> NR = 2025
+outcome = logexper > 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 2038
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 2075
+outcome = logexper <= 2.079442 predicts data perfectly
+
+{hline}
+-> NR = 2101
+note: NC != 0 predicts failure perfectly
+      NC dropped and 2 obs not used
+
+note: OCC5 != 1 predicts success perfectly
+      OCC5 dropped and 1 obs not used
+
+note: 1982.YEAR != 0 predicts failure perfectly
+      1982.YEAR dropped and 1 obs not used
+
+note: 1984.YEAR != 0 predicts failure perfectly
+      1984.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 2.302585 predicts data perfectly
+
+{hline}
+-> NR = 2106
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 2107
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 4 obs not used
+
+outcome = logexper > 1.386294 predicts data perfectly
+
+{hline}
+-> NR = 2108
+outcome = logexper > 1.098612 predicts data perfectly
+
+{hline}
+-> NR = 2147
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 2157
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+note: HLTH != 0 predicts failure perfectly
+      HLTH dropped and 5 obs not used
+
+outcome = logexper <= 2.302585 predicts data perfectly
+
+{hline}
+-> NR = 2163
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 2173
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 2180
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 2183
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 2216
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 3 obs not used
+
+note: RUR != 0 predicts failure perfectly
+      RUR dropped and 2 obs not used
+
+outcome = logexper <= 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 2220
+note: TRA != 1 predicts failure perfectly
+      TRA dropped and 1 obs not used
+
+note: OCC1 != 1 predicts success perfectly
+      OCC1 dropped and 3 obs not used
+
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 2 obs not used
+
+outcome = logexper > 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 2227
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+note: CON != 1 predicts failure perfectly
+      CON dropped and 1 obs not used
+
+note: OCC5 != 1 predicts failure perfectly
+      OCC5 dropped and 2 obs not used
+
+note: 1982.YEAR != 0 predicts success perfectly
+      1982.YEAR dropped and 1 obs not used
+
+outcome = logexper > 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 2264
+note: MAN != 1 predicts success perfectly
+      MAN dropped and 1 obs not used
+
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+note: 1980.YEAR != 0 predicts failure perfectly
+      1980.YEAR dropped and 1 obs not used
+
+note: 1981.YEAR != 0 predicts failure perfectly
+      1981.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 2306
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+note: AG != 0 predicts failure perfectly
+      AG dropped and 1 obs not used
+
+note: OCC5 != 1 predicts failure perfectly
+      OCC5 dropped and 1 obs not used
+
+note: 1983.YEAR != 0 predicts failure perfectly
+      1983.YEAR dropped and 1 obs not used
+
+note: 1984.YEAR != 0 predicts failure perfectly
+      1984.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 2312
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 2314
+outcome = logexper > 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 2329
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 2335
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 2341
+outcome = logexper > 1.098612 predicts data perfectly
+
+{hline}
+-> NR = 2351
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 2386
+outcome = logexper <= 1.386294 predicts data perfectly
+
+{hline}
+-> NR = 2401
+note: HLTH != 0 predicts failure perfectly
+      HLTH dropped and 1 obs not used
+
+note: MAR != 1 predicts success perfectly
+      MAR dropped and 1 obs not used
+
+outcome = MIN <= 0 predicts data perfectly
+
+{hline}
+-> NR = 2413
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 2421
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 2445
+outcome = logexper <= 1.609438 predicts data perfectly
+
+{hline}
+-> NR = 2451
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 2494
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+note: RUR != 1 predicts success perfectly
+      RUR dropped and 2 obs not used
+
+note: PRO != 0 predicts failure perfectly
+      PRO dropped and 1 obs not used
+
+note: OCC5 != 1 predicts success perfectly
+      OCC5 dropped and 2 obs not used
+
+outcome = logexper <= 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 2508
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 2535
+note: MAN != 0 predicts failure perfectly
+      MAN dropped and 2 obs not used
+
+note: TRA != 0 predicts failure perfectly
+      TRA dropped and 2 obs not used
+
+note: AG != 1 predicts success perfectly
+      AG dropped and 2 obs not used
+
+outcome = logexper > 2.302585 predicts data perfectly
+
+{hline}
+-> NR = 2540
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 3 obs not used
+
+note: AG != 0 predicts failure perfectly
+      AG dropped and 3 obs not used
+
+outcome = logexper <= 1.609438 predicts data perfectly
+
+{hline}
+-> NR = 2685
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 2711
+note: MIN != 0 predicts failure perfectly
+      MIN dropped and 1 obs not used
+
+note: MAN != 0 predicts success perfectly
+      MAN dropped and 1 obs not used
+
+note: 1980.YEAR != 0 predicts success perfectly
+      1980.YEAR dropped and 1 obs not used
+
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 2 obs not used
+
+note: 1982.YEAR != 0 predicts success perfectly
+      1982.YEAR dropped and 1 obs not used
+
+outcome = logexper > 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 2718
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 2721
+note: AG != 0 predicts success perfectly
+      AG dropped and 1 obs not used
+
+note: RUR != 1 predicts failure perfectly
+      RUR dropped and 2 obs not used
+
+note: CON != 1 predicts failure perfectly
+      CON dropped and 3 obs not used
+
+outcome = logexper <= 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 2733
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 2 obs not used
+
+note: MAN != 0 predicts failure perfectly
+      MAN dropped and 2 obs not used
+
+note: TRAD != 1 predicts failure perfectly
+      TRAD dropped and 1 obs not used
+
+note: 1982.YEAR != 0 predicts success perfectly
+      1982.YEAR dropped and 1 obs not used
+
+outcome = logexper > 2.079442 predicts data perfectly
+
+{hline}
+-> NR = 2741
+outcome = MAN > 0 predicts data perfectly
+
+{hline}
+-> NR = 2745
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 3 obs not used
+
+note: OCC2 != 0 predicts failure perfectly
+      OCC2 dropped and 1 obs not used
+
+outcome = logexper <= 1.609438 predicts data perfectly
+
+{hline}
+-> NR = 2751
+note: MAR != 1 predicts success perfectly
+      MAR dropped and 1 obs not used
+
+note: OCC5 != 1 predicts success perfectly
+      OCC5 dropped and 1 obs not used
+
+note: 1981.YEAR != 0 predicts failure perfectly
+      1981.YEAR dropped and 1 obs not used
+
+note: 1982.YEAR != 0 predicts success perfectly
+      1982.YEAR dropped and 1 obs not used
+
+note: 1983.YEAR != 0 predicts success perfectly
+      1983.YEAR dropped and 1 obs not used
+
+note: 1984.YEAR != 0 predicts success perfectly
+      1984.YEAR dropped and 1 obs not used
+
+outcome = logexper > 2.397895 predicts data perfectly
+
+{hline}
+-> NR = 2774
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 2801
+note: BUS != 0 predicts failure perfectly
+      BUS dropped and 1 obs not used
+
+note: OCC2 != 0 predicts success perfectly
+      OCC2 dropped and 1 obs not used
+
+outcome = logexper <= 1.098612 predicts data perfectly
+
+{hline}
+-> NR = 2813
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 2833
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 2839
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 2842
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 2866
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+outcome = logexper <= 1.609438 predicts data perfectly
+
+{hline}
+-> NR = 2868
+outcome = logexper <= 1.386294 predicts data perfectly
+
+{hline}
+-> NR = 2874
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 2916
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 2951
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 2980
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 2994
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 2997
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3017
+outcome = logexper <= 1.609438 predicts data perfectly
+
+{hline}
+-> NR = 3037
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3059
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3062
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3100
+outcome = logexper > 2.079442 predicts data perfectly
+
+{hline}
+-> NR = 3102
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3127
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3136
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3137
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3138
+note: RUR != 0 predicts success perfectly
+      RUR dropped and 3 obs not used
+
+note: NE != 0 predicts success perfectly
+      NE dropped and 1 obs not used
+
+note: CON != 0 predicts failure perfectly
+      CON dropped and 1 obs not used
+
+outcome = logexper <= 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 3140
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3193
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3196
+outcome = logexper <= 2.302585 predicts data perfectly
+
+{hline}
+-> NR = 3200
+outcome = logexper <= 2.484907 predicts data perfectly
+
+{hline}
+-> NR = 3202
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3207
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3208
+outcome = logexper <= 2.079442 predicts data perfectly
+
+{hline}
+-> NR = 3210
+outcome = logexper <= 2.079442 predicts data perfectly
+
+{hline}
+-> NR = 3215
+note: TRA != 1 predicts success perfectly
+      TRA dropped and 3 obs not used
+
+note: 1980.YEAR != 0 predicts failure perfectly
+      1980.YEAR dropped and 1 obs not used
+
+note: 1981.YEAR != 0 predicts success perfectly
+      1981.YEAR dropped and 1 obs not used
+
+outcome = logexper > 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 3219
+note: OCC1 != 0 predicts failure perfectly
+      OCC1 dropped and 1 obs not used
+
+note: 1980.YEAR != 0 predicts failure perfectly
+      1980.YEAR dropped and 1 obs not used
+
+note: 1981.YEAR != 0 predicts success perfectly
+      1981.YEAR dropped and 1 obs not used
+
+note: BUS != 1 predicts failure perfectly
+      BUS dropped and 1 obs not used
+
+note: 1983.YEAR != 0 predicts failure perfectly
+      1983.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 2.079442 predicts data perfectly
+
+{hline}
+-> NR = 3226
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3235
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+note: MAN != 1 predicts failure perfectly
+      MAN dropped and 2 obs not used
+
+note: 1981.YEAR != 0 predicts failure perfectly
+      1981.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 1.609438 predicts data perfectly
+
+{hline}
+-> NR = 3239
+outcome = logexper > 2.079442 predicts data perfectly
+
+{hline}
+-> NR = 3271
+outcome = logexper <= 2.079442 predicts data perfectly
+
+{hline}
+-> NR = 3275
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3282
+note: CON != 0 predicts failure perfectly
+      CON dropped and 1 obs not used
+
+note: BUS != 0 predicts failure perfectly
+      BUS dropped and 2 obs not used
+
+note: ENT != 0 predicts failure perfectly
+      ENT dropped and 2 obs not used
+
+note: PER != 1 predicts success perfectly
+      PER dropped and 1 obs not used
+
+outcome = logexper <= 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 3289
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 5 obs not used
+
+note: BUS != 0 predicts failure perfectly
+      BUS dropped and 1 obs not used
+
+outcome = logexper > .6931472 predicts data perfectly
+
+{hline}
+-> NR = 3290
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 3 obs not used
+
+note: TRAD != 1 predicts failure perfectly
+      TRAD dropped and 1 obs not used
+
+note: OCC4 != 1 predicts failure perfectly
+      OCC4 dropped and 1 obs not used
+
+note: 1981.YEAR != 0 predicts failure perfectly
+      1981.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 1.386294 predicts data perfectly
+
+{hline}
+-> NR = 3307
+note: OCC3 != 0 predicts success perfectly
+      OCC3 dropped and 1 obs not used
+
+note: 1980.YEAR != 0 predicts success perfectly
+      1980.YEAR dropped and 1 obs not used
+
+note: 1981.YEAR != 0 predicts success perfectly
+      1981.YEAR dropped and 1 obs not used
+
+outcome = logexper > 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 3333
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3353
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3380
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3381
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3389
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3394
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3401
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3414
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3420
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3440
+outcome = MAR > 0 predicts data perfectly
+
+{hline}
+-> NR = 3461
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3468
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3482
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3495
+note: MAR != 1 predicts success perfectly
+      MAR dropped and 6 obs not used
+
+outcome = logexper > 2.484907 predicts data perfectly
+
+{hline}
+-> NR = 3503
+outcome = logexper <= 2.397895 predicts data perfectly
+
+{hline}
+-> NR = 3525
+outcome = logexper <= .6931472 predicts data perfectly
+
+{hline}
+-> NR = 3526
+outcome = logexper > 2.079442 predicts data perfectly
+
+{hline}
+-> NR = 3538
+outcome = logexper <= 2.484907 predicts data perfectly
+
+{hline}
+-> NR = 3563
+note: MIN != 0 predicts success perfectly
+      MIN dropped and 1 obs not used
+
+note: 1980.YEAR != 0 predicts success perfectly
+      1980.YEAR dropped and 1 obs not used
+
+note: 1981.YEAR != 0 predicts success perfectly
+      1981.YEAR dropped and 1 obs not used
+
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 2 obs not used
+
+note: 1984.YEAR != 0 predicts success perfectly
+      1984.YEAR dropped and 1 obs not used
+
+outcome = logexper > 2.302585 predicts data perfectly
+
+{hline}
+-> NR = 3575
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3580
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3581
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3589
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3591
+outcome = logexper > 1.386294 predicts data perfectly
+
+{hline}
+-> NR = 3598
+outcome = logexper > 2.302585 predicts data perfectly
+
+{hline}
+-> NR = 3602
+note: RUR != 0 predicts success perfectly
+      RUR dropped and 1 obs not used
+
+note: OCC1 != 0 predicts success perfectly
+      OCC1 dropped and 2 obs not used
+
+note: 1981.YEAR != 0 predicts success perfectly
+      1981.YEAR dropped and 1 obs not used
+
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+outcome = logexper <= 2.397895 predicts data perfectly
+
+{hline}
+-> NR = 3607
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3621
+note: HLTH != 1 predicts success perfectly
+      HLTH dropped and 5 obs not used
+
+note: OCC6 != 1 predicts failure perfectly
+      OCC6 dropped and 1 obs not used
+
+outcome = logexper > 1.609438 predicts data perfectly
+
+{hline}
+-> NR = 3628
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3653
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3706
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3707
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3708
+outcome = logexper > 1.098612 predicts data perfectly
+
+{hline}
+-> NR = 3743
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3777
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3831
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3844
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3847
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3848
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 3882
+outcome = logexper <= .6931472 predicts data perfectly
+
+{hline}
+-> NR = 3937
+note: PRO != 0 predicts success perfectly
+      PRO dropped and 1 obs not used
+
+note: OCC2 != 0 predicts success perfectly
+      OCC2 dropped and 1 obs not used
+
+note: OCC6 != 0 predicts success perfectly
+      OCC6 dropped and 1 obs not used
+
+note: 1980.YEAR != 0 predicts failure perfectly
+      1980.YEAR dropped and 1 obs not used
+
+note: 1982.YEAR != 0 predicts success perfectly
+      1982.YEAR dropped and 1 obs not used
+
+outcome = logexper > 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 4000
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 4004
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 4025
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 2 obs not used
+
+note: RUR != 0 predicts failure perfectly
+      RUR dropped and 1 obs not used
+
+outcome = CON <= 0 predicts data perfectly
+
+{hline}
+-> NR = 4032
+outcome = logexper <= .6931472 predicts data perfectly
+
+{hline}
+-> NR = 4046
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 4088
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 4091
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 4122
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 4127
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 4128
+note: CON != 1 predicts success perfectly
+      CON dropped and 1 obs not used
+
+note: OCC1 != 0 predicts success perfectly
+      OCC1 dropped and 1 obs not used
+
+note: OCC5 != 0 predicts success perfectly
+      OCC5 dropped and 1 obs not used
+
+note: 1982.YEAR != 0 predicts success perfectly
+      1982.YEAR dropped and 1 obs not used
+
+note: 1983.YEAR != 0 predicts success perfectly
+      1983.YEAR dropped and 1 obs not used
+
+outcome = logexper > 2.302585 predicts data perfectly
+
+{hline}
+-> NR = 4159
+outcome = logexper <= 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 4204
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+note: TRA != 0 predicts failure perfectly
+      TRA dropped and 2 obs not used
+
+note: TRAD != 1 predicts success perfectly
+      TRAD dropped and 1 obs not used
+
+outcome = logexper > 2.397895 predicts data perfectly
+
+{hline}
+-> NR = 4229
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 4258
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 4261
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 3 obs not used
+
+note: CON != 0 predicts failure perfectly
+      CON dropped and 2 obs not used
+
+outcome = TRAD > 0 predicts data perfectly
+
+{hline}
+-> NR = 4264
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+note: MAN != 0 predicts failure perfectly
+      MAN dropped and 1 obs not used
+
+note: OCC2 != 0 predicts failure perfectly
+      OCC2 dropped and 1 obs not used
+
+note: OCC5 != 0 predicts failure perfectly
+      OCC5 dropped and 1 obs not used
+
+note: OCC6 != 0 predicts failure perfectly
+      OCC6 dropped and 1 obs not used
+
+note: 1981.YEAR != 0 predicts failure perfectly
+      1981.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 4278
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 4297
+outcome = logexper <= 1.098612 predicts data perfectly
+
+{hline}
+-> NR = 4302
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 4321
+note: MAN != 0 predicts success perfectly
+      MAN dropped and 3 obs not used
+
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+note: TRA != 0 predicts success perfectly
+      TRA dropped and 2 obs not used
+
+outcome = logexper <= 1.098612 predicts data perfectly
+
+{hline}
+-> NR = 4328
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 4332
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 4335
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 4357
+note: MAR != 1 predicts success perfectly
+      MAR dropped and 2 obs not used
+
+outcome = logexper > 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 4365
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 4380
+outcome = logexper <= 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 4394
+note: S != 0 predicts failure perfectly
+      S dropped and 1 obs not used
+
+note: OCC5 != 0 predicts failure perfectly
+      OCC5 dropped and 2 obs not used
+
+outcome = logexper <= 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 4510
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+note: HLTH != 0 predicts failure perfectly
+      HLTH dropped and 2 obs not used
+
+outcome = logexper <= 1.386294 predicts data perfectly
+
+{hline}
+-> NR = 4559
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 4563
+note: AG != 0 predicts success perfectly
+      AG dropped and 1 obs not used
+
+outcome = logexper > 2.079442 predicts data perfectly
+
+{hline}
+-> NR = 4569
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 4603
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 4607
+outcome = logexper > 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 4633
+outcome = logexper > 2.302585 predicts data perfectly
+
+{hline}
+-> NR = 4676
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 4701
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 4716
+outcome = logexper > 1.386294 predicts data perfectly
+
+{hline}
+-> NR = 4720
+note: OCC6 != 0 predicts failure perfectly
+      OCC6 dropped and 1 obs not used
+
+note: RUR != 0 predicts success perfectly
+      RUR dropped and 4 obs not used
+
+note: 1980.YEAR != 0 predicts success perfectly
+      1980.YEAR dropped and 1 obs not used
+
+outcome = logexper > 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 4759
+outcome = logexper <= 2.397895 predicts data perfectly
+
+{hline}
+-> NR = 4791
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 4811
+note: HLTH != 0 predicts failure perfectly
+      HLTH dropped and 1 obs not used
+
+note: MAN != 1 predicts failure perfectly
+      MAN dropped and 3 obs not used
+
+outcome = OCC5 > 0 predicts data perfectly
+
+{hline}
+-> NR = 4828
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 2 obs not used
+
+note: NC != 0 predicts failure perfectly
+      NC dropped and 1 obs not used
+
+note: TRAD != 0 predicts failure perfectly
+      TRAD dropped and 1 obs not used
+
+note: BUS != 1 predicts failure perfectly
+      BUS dropped and 1 obs not used
+
+outcome = logexper <= 1.609438 predicts data perfectly
+
+{hline}
+-> NR = 4857
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 4858
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 6 obs not used
+
+outcome = logexper > 1.098612 predicts data perfectly
+
+{hline}
+-> NR = 4859
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 4866
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 4881
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 4884
+outcome = logexper > 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 4888
+note: MAR != 1 predicts success perfectly
+      MAR dropped and 1 obs not used
+
+note: AG != 0 predicts failure perfectly
+      AG dropped and 1 obs not used
+
+note: OCC7 != 0 predicts success perfectly
+      OCC7 dropped and 1 obs not used
+
+note: 1981.YEAR != 0 predicts success perfectly
+      1981.YEAR dropped and 1 obs not used
+
+note: OCC5 != 1 predicts failure perfectly
+      OCC5 dropped and 1 obs not used
+
+outcome = logexper <= 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 4901
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 4917
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 4926
+note: MAR != 1 predicts success perfectly
+      MAR dropped and 1 obs not used
+
+note: MAN != 0 predicts success perfectly
+      MAN dropped and 2 obs not used
+
+note: 1982.YEAR != 0 predicts failure perfectly
+      1982.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 2.079442 predicts data perfectly
+
+{hline}
+-> NR = 4982
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5017
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5033
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5048
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5122
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5141
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5147
+note: MAR != 1 predicts success perfectly
+      MAR dropped and 1 obs not used
+
+note: RUR != 1 predicts success perfectly
+      RUR dropped and 4 obs not used
+
+note: 1980.YEAR != 0 predicts success perfectly
+      1980.YEAR dropped and 1 obs not used
+
+outcome = logexper > 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 5158
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5221
+note: AG != 0 predicts failure perfectly
+      AG dropped and 1 obs not used
+
+note: OCC1 != 0 predicts success perfectly
+      OCC1 dropped and 1 obs not used
+
+note: OCC8 != 0 predicts failure perfectly
+      OCC8 dropped and 1 obs not used
+
+note: 1981.YEAR != 0 predicts success perfectly
+      1981.YEAR dropped and 1 obs not used
+
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+note: 1982.YEAR != 0 predicts success perfectly
+      1982.YEAR dropped and 1 obs not used
+
+outcome = logexper > 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 5223
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5227
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 2 obs not used
+
+note: OCC5 != 1 predicts failure perfectly
+      OCC5 dropped and 2 obs not used
+
+note: 1980.YEAR != 0 predicts failure perfectly
+      1980.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 5248
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+note: RUR != 1 predicts failure perfectly
+      RUR dropped and 1 obs not used
+
+note: HLTH != 0 predicts failure perfectly
+      HLTH dropped and 1 obs not used
+
+note: OCC6 != 0 predicts failure perfectly
+      OCC6 dropped and 1 obs not used
+
+outcome = OCC7 > 0 predicts data perfectly
+
+{hline}
+-> NR = 5252
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 3 obs not used
+
+note: AG != 0 predicts failure perfectly
+      AG dropped and 2 obs not used
+
+outcome = MAN > 0 predicts data perfectly
+
+{hline}
+-> NR = 5263
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5274
+outcome = logexper > 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 5335
+outcome = logexper > 2.302585 predicts data perfectly
+
+{hline}
+-> NR = 5345
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5359
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5368
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5377
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5390
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5419
+outcome = logexper > 2.079442 predicts data perfectly
+
+{hline}
+-> NR = 5435
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5437
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5497
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5525
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5529
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5531
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5579
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5588
+outcome = logexper > 2.70805 predicts data perfectly
+
+{hline}
+-> NR = 5599
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5650
+note: MAN != 1 predicts failure perfectly
+      MAN dropped and 1 obs not used
+
+note: OCC5 != 0 predicts success perfectly
+      OCC5 dropped and 1 obs not used
+
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 2 obs not used
+
+note: 1981.YEAR != 0 predicts success perfectly
+      1981.YEAR dropped and 1 obs not used
+
+note: OCC6 != 1 predicts failure perfectly
+      OCC6 dropped and 1 obs not used
+
+outcome = logexper > 1.609438 predicts data perfectly
+
+{hline}
+-> NR = 5660
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5665
+note: TRAD != 1 predicts success perfectly
+      TRAD dropped and 1 obs not used
+
+note: OCC2 != 1 predicts failure perfectly
+      OCC2 dropped and 1 obs not used
+
+note: 1981.YEAR != 0 predicts failure perfectly
+      1981.YEAR dropped and 1 obs not used
+
+note: 1982.YEAR != 0 predicts failure perfectly
+      1982.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 2.079442 predicts data perfectly
+
+{hline}
+-> NR = 5666
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5698
+outcome = logexper > 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 5699
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5731
+note: OCC4 != 0 predicts failure perfectly
+      OCC4 dropped and 4 obs not used
+
+note: OCC5 != 0 predicts failure perfectly
+      OCC5 dropped and 1 obs not used
+
+note: OCC6 != 0 predicts success perfectly
+      OCC6 dropped and 1 obs not used
+
+outcome = logexper > 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 5750
+note: S != 0 predicts success perfectly
+      S dropped and 1 obs not used
+
+note: 1981.YEAR != 0 predicts success perfectly
+      1981.YEAR dropped and 1 obs not used
+
+note: 1982.YEAR != 0 predicts failure perfectly
+      1982.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 2.302585 predicts data perfectly
+
+{hline}
+-> NR = 5755
+note: TRA != 0 predicts failure perfectly
+      TRA dropped and 3 obs not used
+
+note: OCC7 != 0 predicts failure perfectly
+      OCC7 dropped and 1 obs not used
+
+note: 1980.YEAR != 0 predicts success perfectly
+      1980.YEAR dropped and 1 obs not used
+
+outcome = logexper > 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 5772
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5816
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5823
+note: MAN != 1 predicts failure perfectly
+      MAN dropped and 6 obs not used
+
+outcome = logexper <= 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 5851
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5857
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 5859
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 6016
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 6020
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 6025
+note: MAR != 0 predicts success perfectly
+      MAR dropped and 3 obs not used
+
+outcome = logexper > 2.302585 predicts data perfectly
+
+{hline}
+-> NR = 6056
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 6094
+note: 1980.YEAR != 0 predicts success perfectly
+      1980.YEAR dropped and 1 obs not used
+
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 2 obs not used
+
+outcome = OCC2 <= 0 predicts data perfectly
+
+{hline}
+-> NR = 6186
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 6395
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 6430
+outcome = logexper > 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 6446
+note: MAR != 1 predicts success perfectly
+      MAR dropped and 1 obs not used
+
+note: RUR != 1 predicts success perfectly
+      RUR dropped and 3 obs not used
+
+note: MAN != 1 predicts failure perfectly
+      MAN dropped and 1 obs not used
+
+note: 1983.YEAR != 0 predicts success perfectly
+      1983.YEAR dropped and 1 obs not used
+
+outcome = logexper > 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 6463
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 6558
+outcome = logexper <= 1.098612 predicts data perfectly
+
+{hline}
+-> NR = 6559
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 6561
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 6574
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 6648
+note: 1980.YEAR != 0 predicts success perfectly
+      1980.YEAR dropped and 1 obs not used
+
+note: 1981.YEAR != 0 predicts failure perfectly
+      1981.YEAR dropped and 1 obs not used
+
+note: NE != 0 predicts success perfectly
+      NE dropped and 3 obs not used
+
+outcome = logexper > 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 6813
+note: 1980.YEAR != 0 predicts success perfectly
+      1980.YEAR dropped and 1 obs not used
+
+outcome = logexper > 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 6824
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 6888
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 3 obs not used
+
+note: MAN != 0 predicts failure perfectly
+      MAN dropped and 2 obs not used
+
+outcome = BUS <= 0 predicts data perfectly
+
+{hline}
+-> NR = 6942
+outcome = logexper <= 1.386294 predicts data perfectly
+
+{hline}
+-> NR = 6954
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 6955
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+note: HLTH != 0 predicts success perfectly
+      HLTH dropped and 1 obs not used
+
+note: MAN != 1 predicts failure perfectly
+      MAN dropped and 1 obs not used
+
+note: OCC5 != 0 predicts failure perfectly
+      OCC5 dropped and 1 obs not used
+
+note: 1982.YEAR != 0 predicts failure perfectly
+      1982.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 6964
+note: 1980.YEAR != 0 predicts success perfectly
+      1980.YEAR dropped and 1 obs not used
+
+outcome = logexper > 2.484907 predicts data perfectly
+
+{hline}
+-> NR = 6987
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 7025
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 7043
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 7060
+note: 1980.YEAR != 0 predicts failure perfectly
+      1980.YEAR dropped and 1 obs not used
+
+note: CON != 0 predicts success perfectly
+      CON dropped and 4 obs not used
+
+note: OCC6 != 1 predicts success perfectly
+      OCC6 dropped and 1 obs not used
+
+outcome = logexper <= 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 7087
+note: HLTH != 0 predicts success perfectly
+      HLTH dropped and 1 obs not used
+
+note: S != 0 predicts failure perfectly
+      S dropped and 1 obs not used
+
+note: TRA != 0 predicts success perfectly
+      TRA dropped and 1 obs not used
+
+outcome = TRAD <= 0 predicts data perfectly
+
+{hline}
+-> NR = 7238
+outcome = logexper <= 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 7279
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 7342
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 7343
+note: TRA != 0 predicts success perfectly
+      TRA dropped and 3 obs not used
+
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 2 obs not used
+
+note: TRAD != 0 predicts failure perfectly
+      TRAD dropped and 1 obs not used
+
+outcome = logexper <= 1.098612 predicts data perfectly
+
+{hline}
+-> NR = 7411
+note: MAR != 0 predicts success perfectly
+      MAR dropped and 2 obs not used
+
+outcome = logexper <= 1.609438 predicts data perfectly
+
+{hline}
+-> NR = 7424
+outcome = logexper > 1.098612 predicts data perfectly
+
+{hline}
+-> NR = 7429
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+outcome = logexper <= 2.079442 predicts data perfectly
+
+{hline}
+-> NR = 7454
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 7472
+note: MAR != 1 predicts success perfectly
+      MAR dropped and 1 obs not used
+
+note: MAN != 1 predicts failure perfectly
+      MAN dropped and 1 obs not used
+
+note: OCC4 != 0 predicts failure perfectly
+      OCC4 dropped and 1 obs not used
+
+note: 1982.YEAR != 0 predicts failure perfectly
+      1982.YEAR dropped and 1 obs not used
+
+note: 1983.YEAR != 0 predicts failure perfectly
+      1983.YEAR dropped and 1 obs not used
+
+note: 1985.YEAR != 0 predicts success perfectly
+      1985.YEAR dropped and 1 obs not used
+
+outcome = logexper > 2.302585 predicts data perfectly
+
+{hline}
+-> NR = 7474
+outcome = logexper > 1.098612 predicts data perfectly
+
+{hline}
+-> NR = 7509
+note: OCC4 != 0 predicts success perfectly
+      OCC4 dropped and 1 obs not used
+
+note: OCC5 != 0 predicts success perfectly
+      OCC5 dropped and 3 obs not used
+
+note: 1980.YEAR != 0 predicts success perfectly
+      1980.YEAR dropped and 1 obs not used
+
+note: 1982.YEAR != 0 predicts success perfectly
+      1982.YEAR dropped and 1 obs not used
+
+outcome = logexper > 2.302585 predicts data perfectly
+
+{hline}
+-> NR = 7539
+note: TRAD != 0 predicts failure perfectly
+      TRAD dropped and 1 obs not used
+
+outcome = BUS <= 0 predicts data perfectly
+
+{hline}
+-> NR = 7769
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 7783
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 7784
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 7801
+note: MAN != 0 predicts success perfectly
+      MAN dropped and 1 obs not used
+
+note: HLTH != 1 predicts failure perfectly
+      HLTH dropped and 5 obs not used
+
+outcome = logexper > 1.098612 predicts data perfectly
+
+{hline}
+-> NR = 7824
+outcome = logexper <= 1.098612 predicts data perfectly
+
+{hline}
+-> NR = 7874
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 7887
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 4 obs not used
+
+outcome = HLTH > 0 predicts data perfectly
+
+{hline}
+-> NR = 7923
+outcome = logexper > 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 7926
+note: 1980.YEAR != 0 predicts success perfectly
+      1980.YEAR dropped and 1 obs not used
+
+note: 1981.YEAR != 0 predicts success perfectly
+      1981.YEAR dropped and 1 obs not used
+
+note: 1982.YEAR != 0 predicts success perfectly
+      1982.YEAR dropped and 1 obs not used
+
+note: 1983.YEAR != 0 predicts success perfectly
+      1983.YEAR dropped and 1 obs not used
+
+note: 1984.YEAR != 0 predicts success perfectly
+      1984.YEAR dropped and 1 obs not used
+
+outcome = logexper > 2.397895 predicts data perfectly
+
+{hline}
+-> NR = 8021
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 8087
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 8089
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 8090
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 8096
+outcome = logexper <= 2.484907 predicts data perfectly
+
+{hline}
+-> NR = 8106
+outcome = logexper <= 2.302585 predicts data perfectly
+
+{hline}
+-> NR = 8107
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 8142
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 8168
+note: MAR != 1 predicts success perfectly
+      MAR dropped and 3 obs not used
+
+note: OCC5 != 0 predicts success perfectly
+      OCC5 dropped and 2 obs not used
+
+note: 1985.YEAR != 0 predicts success perfectly
+      1985.YEAR dropped and 1 obs not used
+
+outcome = logexper > 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 8173
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 8203
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 8211
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+note: MAN != 0 predicts success perfectly
+      MAN dropped and 1 obs not used
+
+note: 1982.YEAR != 0 predicts failure perfectly
+      1982.YEAR dropped and 1 obs not used
+
+note: 1983.YEAR != 0 predicts failure perfectly
+      1983.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 2.564949 predicts data perfectly
+
+{hline}
+-> NR = 8224
+outcome = logexper > 2.397895 predicts data perfectly
+
+{hline}
+-> NR = 8272
+note: 1980.YEAR != 0 predicts failure perfectly
+      1980.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 2.302585 predicts data perfectly
+
+{hline}
+-> NR = 8300
+note: BUS != 0 predicts failure perfectly
+      BUS dropped and 1 obs not used
+
+note: 1981.YEAR != 0 predicts failure perfectly
+      1981.YEAR dropped and 1 obs not used
+
+note: 1982.YEAR != 0 predicts failure perfectly
+      1982.YEAR dropped and 1 obs not used
+
+note: 1983.YEAR != 0 predicts success perfectly
+      1983.YEAR dropped and 1 obs not used
+
+note: 1984.YEAR != 0 predicts success perfectly
+      1984.YEAR dropped and 1 obs not used
+
+outcome = logexper > 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 8304
+outcome = logexper > 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 8364
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+note: RUR != 0 predicts failure perfectly
+      RUR dropped and 2 obs not used
+
+note: CON != 0 predicts failure perfectly
+      CON dropped and 1 obs not used
+
+outcome = logexper <= 2.079442 predicts data perfectly
+
+{hline}
+-> NR = 8370
+note: CON != 0 predicts success perfectly
+      CON dropped and 1 obs not used
+
+note: 1980.YEAR != 0 predicts failure perfectly
+      1980.YEAR dropped and 1 obs not used
+
+note: RUR != 0 predicts success perfectly
+      RUR dropped and 2 obs not used
+
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+outcome = logexper <= 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 8381
+note: HLTH != 0 predicts failure perfectly
+      HLTH dropped and 1 obs not used
+
+note: MAN != 0 predicts failure perfectly
+      MAN dropped and 2 obs not used
+
+note: OCC3 != 0 predicts failure perfectly
+      OCC3 dropped and 1 obs not used
+
+note: OCC4 != 0 predicts failure perfectly
+      OCC4 dropped and 1 obs not used
+
+note: OCC6 != 0 predicts failure perfectly
+      OCC6 dropped and 1 obs not used
+
+outcome = logexper > 1.098612 predicts data perfectly
+
+{hline}
+-> NR = 8388
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 8406
+outcome = logexper <= 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 8415
+note: MAR != 0 predicts success perfectly
+      MAR dropped and 3 obs not used
+
+note: AG != 0 predicts failure perfectly
+      AG dropped and 1 obs not used
+
+note: MIN != 0 predicts success perfectly
+      MIN dropped and 1 obs not used
+
+outcome = logexper > 1.609438 predicts data perfectly
+
+{hline}
+-> NR = 8496
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 8501
+note: OCC4 != 0 predicts failure perfectly
+      OCC4 dropped and 1 obs not used
+
+note: 1981.YEAR != 0 predicts success perfectly
+      1981.YEAR dropped and 1 obs not used
+
+note: 1982.YEAR != 0 predicts success perfectly
+      1982.YEAR dropped and 1 obs not used
+
+note: 1983.YEAR != 0 predicts success perfectly
+      1983.YEAR dropped and 1 obs not used
+
+note: 1984.YEAR != 0 predicts failure perfectly
+      1984.YEAR dropped and 1 obs not used
+
+note: 1985.YEAR != 0 predicts failure perfectly
+      1985.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 2.484907 predicts data perfectly
+
+{hline}
+-> NR = 8518
+outcome = logexper <= 2.397895 predicts data perfectly
+
+{hline}
+-> NR = 8520
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 5 obs not used
+
+outcome = RUR <= 0 predicts data perfectly
+
+{hline}
+-> NR = 8524
+outcome = logexper > 1.098612 predicts data perfectly
+
+{hline}
+-> NR = 8548
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 8556
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 8564
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 8581
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 8586
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 8587
+note: MAN != 1 predicts failure perfectly
+      MAN dropped and 3 obs not used
+
+note: OCC6 != 1 predicts failure perfectly
+      OCC6 dropped and 1 obs not used
+
+outcome = logexper <= 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 8597
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 8656
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 3 obs not used
+
+note: BUS != 1 predicts failure perfectly
+      BUS dropped and 1 obs not used
+
+note: 1983.YEAR != 0 predicts failure perfectly
+      1983.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 8722
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 8743
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 8749
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 8758
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 8796
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 8838
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 8842
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 8846
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 8860
+note: MAN != 0 predicts failure perfectly
+      MAN dropped and 1 obs not used
+
+note: OCC3 != 1 predicts success perfectly
+      OCC3 dropped and 2 obs not used
+
+outcome = logexper <= 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 8862
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 8880
+outcome = logexper > 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 8886
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 8903
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 8908
+note: MAR != 1 predicts success perfectly
+      MAR dropped and 1 obs not used
+
+note: OCC6 != 0 predicts success perfectly
+      OCC6 dropped and 1 obs not used
+
+outcome = logexper > 2.079442 predicts data perfectly
+
+{hline}
+-> NR = 8911
+note: TRA != 0 predicts success perfectly
+      TRA dropped and 1 obs not used
+
+note: 1980.YEAR != 0 predicts failure perfectly
+      1980.YEAR dropped and 1 obs not used
+
+note: 1981.YEAR != 0 predicts success perfectly
+      1981.YEAR dropped and 1 obs not used
+
+note: 1982.YEAR != 0 predicts success perfectly
+      1982.YEAR dropped and 1 obs not used
+
+note: 1983.YEAR != 0 predicts failure perfectly
+      1983.YEAR dropped and 1 obs not used
+
+note: 1985.YEAR != 0 predicts failure perfectly
+      1985.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 2.397895 predicts data perfectly
+
+{hline}
+-> NR = 8917
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 8991
+note: MAR != 0 predicts success perfectly
+      MAR dropped and 1 obs not used
+
+note: MAN != 1 predicts failure perfectly
+      MAN dropped and 1 obs not used
+
+note: OCC5 != 0 predicts failure perfectly
+      OCC5 dropped and 1 obs not used
+
+note: 1981.YEAR != 0 predicts success perfectly
+      1981.YEAR dropped and 1 obs not used
+
+note: 1982.YEAR != 0 predicts failure perfectly
+      1982.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 8997
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 9014
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 2 obs not used
+
+note: BUS != 0 predicts failure perfectly
+      BUS dropped and 1 obs not used
+
+note: 1980.YEAR != 0 predicts failure perfectly
+      1980.YEAR dropped and 1 obs not used
+
+note: 1982.YEAR != 0 predicts failure perfectly
+      1982.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 2.079442 predicts data perfectly
+
+{hline}
+-> NR = 9015
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 3 obs not used
+
+note: OCC6 != 0 predicts failure perfectly
+      OCC6 dropped and 1 obs not used
+
+note: OCC4 != 1 predicts success perfectly
+      OCC4 dropped and 1 obs not used
+
+outcome = logexper > 2.639057 predicts data perfectly
+
+{hline}
+-> NR = 9027
+outcome = logexper > 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 9066
+note: ENT != 0 predicts failure perfectly
+      ENT dropped and 1 obs not used
+
+note: 1980.YEAR != 0 predicts success perfectly
+      1980.YEAR dropped and 1 obs not used
+
+note: 1982.YEAR != 0 predicts failure perfectly
+      1982.YEAR dropped and 1 obs not used
+
+note: 1983.YEAR != 0 predicts failure perfectly
+      1983.YEAR dropped and 1 obs not used
+
+note: 1984.YEAR != 0 predicts success perfectly
+      1984.YEAR dropped and 1 obs not used
+
+outcome = logexper > 2.079442 predicts data perfectly
+
+{hline}
+-> NR = 9082
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 9131
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 9132
+outcome = logexper > 2.639057 predicts data perfectly
+
+{hline}
+-> NR = 9154
+note: RUR != 0 predicts success perfectly
+      RUR dropped and 5 obs not used
+
+note: 1983.YEAR != 0 predicts success perfectly
+      1983.YEAR dropped and 1 obs not used
+
+outcome = logexper > 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 9158
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 9184
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 9230
+outcome = logexper > 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 9265
+note: MAN != 1 predicts failure perfectly
+      MAN dropped and 4 obs not used
+
+outcome = OCC1 <= 0 predicts data perfectly
+
+{hline}
+-> NR = 9367
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 9390
+note: CON != 1 predicts failure perfectly
+      CON dropped and 1 obs not used
+
+note: OCC5 != 0 predicts success perfectly
+      OCC5 dropped and 2 obs not used
+
+outcome = logexper <= 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 9391
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 9418
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 9424
+note: MAR != 0 predicts success perfectly
+      MAR dropped and 1 obs not used
+
+note: OCC4 != 0 predicts success perfectly
+      OCC4 dropped and 2 obs not used
+
+note: OCC5 != 0 predicts success perfectly
+      OCC5 dropped and 2 obs not used
+
+note: 1980.YEAR != 0 predicts success perfectly
+      1980.YEAR dropped and 1 obs not used
+
+outcome = logexper > 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 9447
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 9449
+outcome = logexper > 2.079442 predicts data perfectly
+
+{hline}
+-> NR = 9453
+outcome = logexper <= 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 9468
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 9502
+outcome = logexper <= 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 9505
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 9603
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 9643
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 9667
+note: MAR != 0 predicts failure perfectly
+      MAR dropped and 4 obs not used
+
+outcome = MAN > 0 predicts data perfectly
+
+{hline}
+-> NR = 9683
+note: CON != 0 predicts failure perfectly
+      CON dropped and 2 obs not used
+
+note: MAN != 0 predicts success perfectly
+      MAN dropped and 1 obs not used
+
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+outcome = logexper <= 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 9694
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 9710
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 9718
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 9725
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 9744
+note: PRO != 0 predicts failure perfectly
+      PRO dropped and 5 obs not used
+
+note: MAR != 0 predicts success perfectly
+      MAR dropped and 1 obs not used
+
+outcome = logexper <= 1.098612 predicts data perfectly
+
+{hline}
+-> NR = 9752
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 9776
+outcome = logexper > 1.386294 predicts data perfectly
+
+{hline}
+-> NR = 9786
+outcome = logexper <= 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 9791
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 9794
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+note: PRO != 1 predicts success perfectly
+      PRO dropped and 2 obs not used
+
+note: OCC5 != 1 predicts success perfectly
+      OCC5 dropped and 3 obs not used
+
+outcome = logexper > 1.791759 predicts data perfectly
+
+{hline}
+-> NR = 9810
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 3 obs not used
+
+outcome = logexper <= 1.609438 predicts data perfectly
+
+{hline}
+-> NR = 9846
+outcome = logexper > 2.302585 predicts data perfectly
+
+{hline}
+-> NR = 9859
+note: PRO != 1 predicts success perfectly
+      PRO dropped and 3 obs not used
+
+note: OCC7 != 1 predicts success perfectly
+      OCC7 dropped and 1 obs not used
+
+outcome = logexper <= 2.302585 predicts data perfectly
+
+{hline}
+-> NR = 9868
+outcome = logexper > 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 9876
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 9883
+note: MAN != 1 predicts failure perfectly
+      MAN dropped and 1 obs not used
+
+note: OCC1 != 0 predicts failure perfectly
+      OCC1 dropped and 2 obs not used
+
+note: MAR != 0 predicts success perfectly
+      MAR dropped and 1 obs not used
+
+outcome = logexper <= 1.609438 predicts data perfectly
+
+{hline}
+-> NR = 9889
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 9901
+note: MAN != 0 predicts failure perfectly
+      MAN dropped and 3 obs not used
+
+outcome = logexper > 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 9936
+note: MAN != 0 predicts success perfectly
+      MAN dropped and 2 obs not used
+
+note: CON != 1 predicts failure perfectly
+      CON dropped and 2 obs not used
+
+note: MAR != 1 predicts success perfectly
+      MAR dropped and 1 obs not used
+
+outcome = logexper > 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 9964
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 10043
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 3 obs not used
+
+note: RUR != 0 predicts failure perfectly
+      RUR dropped and 1 obs not used
+
+outcome = logexper > 2.302585 predicts data perfectly
+
+{hline}
+-> NR = 10067
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 10091
+note: RUR != 1 predicts failure perfectly
+      RUR dropped and 1 obs not used
+
+note: CON != 0 predicts failure perfectly
+      CON dropped and 5 obs not used
+
+outcome = logexper > 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 10120
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 10121
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 10167
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 10209
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 10230
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 10265
+outcome = logexper <= 1.098612 predicts data perfectly
+
+{hline}
+-> NR = 10274
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 1 obs not used
+
+outcome = logexper <= 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 10311
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 4 obs not used
+
+outcome = MAN > 0 predicts data perfectly
+
+{hline}
+-> NR = 10392
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 10425
+note: AG != 0 predicts success perfectly
+      AG dropped and 1 obs not used
+
+note: OCC4 != 0 predicts success perfectly
+      OCC4 dropped and 2 obs not used
+
+note: OCC6 != 0 predicts failure perfectly
+      OCC6 dropped and 1 obs not used
+
+outcome = logexper <= 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 10441
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 10457
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 10469
+outcome = logexper <= 1.609438 predicts data perfectly
+
+{hline}
+-> NR = 10524
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 10552
+note: TRA != 0 predicts failure perfectly
+      TRA dropped and 1 obs not used
+
+note: TRAD != 0 predicts failure perfectly
+      TRAD dropped and 4 obs not used
+
+outcome = logexper <= 2.079442 predicts data perfectly
+
+{hline}
+-> NR = 10553
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 10570
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 10593
+note: MAN != 0 predicts failure perfectly
+      MAN dropped and 1 obs not used
+
+outcome = logexper > 2.197225 predicts data perfectly
+
+{hline}
+-> NR = 10666
+outcome = logexper <= 1.386294 predicts data perfectly
+
+{hline}
+-> NR = 11275
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 11328
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 11750
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 11821
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 11857
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 11887
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 11890
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 11892
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 11924
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 11925
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 11957
+note: MAN != 0 predicts failure perfectly
+      MAN dropped and 1 obs not used
+
+note: PRO != 0 predicts success perfectly
+      PRO dropped and 1 obs not used
+
+note: TRAD != 1 predicts failure perfectly
+      TRAD dropped and 1 obs not used
+
+note: OCC2 != 0 predicts failure perfectly
+      OCC2 dropped and 1 obs not used
+
+note: OCC3 != 1 predicts failure perfectly
+      OCC3 dropped and 1 obs not used
+
+note: 1981.YEAR != 0 predicts success perfectly
+      1981.YEAR dropped and 1 obs not used
+
+outcome = logexper > 2.079442 predicts data perfectly
+
+{hline}
+-> NR = 11973
+note: MAN != 1 predicts failure perfectly
+      MAN dropped and 3 obs not used
+
+outcome = logexper <= 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 11990
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 12012
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 12013
+note: RUR != 0 predicts failure perfectly
+      RUR dropped and 1 obs not used
+
+note: NC != 0 predicts failure perfectly
+      NC dropped and 1 obs not used
+
+note: TRAD != 1 predicts failure perfectly
+      TRAD dropped and 1 obs not used
+
+outcome = logexper <= 1.609438 predicts data perfectly
+
+{hline}
+-> NR = 12045
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 12055
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 3 obs not used
+
+note: TRAD != 1 predicts failure perfectly
+      TRAD dropped and 1 obs not used
+
+note: OCC4 != 0 predicts failure perfectly
+      OCC4 dropped and 1 obs not used
+
+note: 1985.YEAR != 0 predicts success perfectly
+      1985.YEAR dropped and 1 obs not used
+
+outcome = logexper > 2.302585 predicts data perfectly
+
+{hline}
+-> NR = 12084
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 12088
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 12122
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 12179
+note: PER != 0 predicts failure perfectly
+      PER dropped and 1 obs not used
+
+note: TRAD != 1 predicts success perfectly
+      TRAD dropped and 1 obs not used
+
+note: 1980.YEAR != 0 predicts success perfectly
+      1980.YEAR dropped and 1 obs not used
+
+outcome = logexper > 1.609438 predicts data perfectly
+
+{hline}
+-> NR = 12182
+outcome = logexper > 1.098612 predicts data perfectly
+
+{hline}
+-> NR = 12220
+outcome = logexper > 1.386294 predicts data perfectly
+
+{hline}
+-> NR = 12221
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 12245
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 12276
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 12385
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 12410
+outcome = logexper <= 2.302585 predicts data perfectly
+
+{hline}
+-> NR = 12420
+note: MIN != 1 predicts failure perfectly
+      MIN dropped and 2 obs not used
+
+note: OCC1 != 0 predicts success perfectly
+      OCC1 dropped and 1 obs not used
+
+note: OCC2 != 0 predicts failure perfectly
+      OCC2 dropped and 1 obs not used
+
+outcome = logexper > 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 12433
+outcome = logexper > 1.94591 predicts data perfectly
+
+{hline}
+-> NR = 12451
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 12477
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 12500
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 12534
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+
+{hline}
+-> NR = 12548
+note: MAR != 1 predicts failure perfectly
+      MAR dropped and 3 obs not used
+
+note: CON != 1 predicts success perfectly
+      CON dropped and 2 obs not used
+
+note: 1983.YEAR != 0 predicts failure perfectly
+      1983.YEAR dropped and 1 obs not used
+
+outcome = logexper <= 2.302585 predicts data perfectly
+
+{com}. ng pooledprobit1_table1, title(Pooled probit model with heteroskedasticity-robust standard errors) word replace
+{err}command {bf}ng{sf} is unrecognized
+{txt}{search r(199), local:r(199);}
+
+end of do-file
+
+{search r(199), local:r(199);}
+
+{com}. do "C:\Users\AYSPS\AppData\Local\Temp\STD04000000.tmp"
+{txt}
+{com}. probit UNION logexper SCHOOL MAR BLACK HISP RUR HLTH NE S NC AG MIN CON MAN TRA TRAD FIN BUS PER ENT PRO OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 i.YEAR, nolog
+{res}
+{txt}Probit regression{col 49}Number of obs{col 67}= {res}     4,360
+{txt}{col 49}LR chi2({res}36{txt}){col 67}= {res}    570.06
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log likelihood = {res}-2137.7713{txt}{col 49}Pseudo R2{col 67}= {res}    0.1176
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       UNION{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}logexper {c |}{col 14}{res}{space 2} .3213463{col 26}{space 2} .1119392{col 37}{space 1}    2.87{col 46}{space 3}0.004{col 54}{space 4} .1019495{col 67}{space 3} .5407431
+{txt}{space 6}SCHOOL {c |}{col 14}{res}{space 2}  .065344{col 26}{space 2} .0165104{col 37}{space 1}    3.96{col 46}{space 3}0.000{col 54}{space 4} .0329842{col 67}{space 3} .0977038
+{txt}{space 9}MAR {c |}{col 14}{res}{space 2} .1456957{col 26}{space 2}  .048593{col 37}{space 1}    3.00{col 46}{space 3}0.003{col 54}{space 4} .0504552{col 67}{space 3} .2409362
+{txt}{space 7}BLACK {c |}{col 14}{res}{space 2} .3994051{col 26}{space 2} .0687009{col 37}{space 1}    5.81{col 46}{space 3}0.000{col 54}{space 4} .2647537{col 67}{space 3} .5340565
+{txt}{space 8}HISP {c |}{col 14}{res}{space 2} .1992929{col 26}{space 2} .0691834{col 37}{space 1}    2.88{col 46}{space 3}0.004{col 54}{space 4} .0636959{col 67}{space 3}   .33489
+{txt}{space 9}RUR {c |}{col 14}{res}{space 2} -.063686{col 26}{space 2} .0587423{col 37}{space 1}   -1.08{col 46}{space 3}0.278{col 54}{space 4}-.1788188{col 67}{space 3} .0514469
+{txt}{space 8}HLTH {c |}{col 14}{res}{space 2}-.4984663{col 26}{space 2} .1953893{col 37}{space 1}   -2.55{col 46}{space 3}0.011{col 54}{space 4}-.8814224{col 67}{space 3}-.1155103
+{txt}{space 10}NE {c |}{col 14}{res}{space 2} .1685646{col 26}{space 2} .0748482{col 37}{space 1}    2.25{col 46}{space 3}0.024{col 54}{space 4} .0218648{col 67}{space 3} .3152644
+{txt}{space 11}S {c |}{col 14}{res}{space 2}-.0285951{col 26}{space 2} .0686276{col 37}{space 1}   -0.42{col 46}{space 3}0.677{col 54}{space 4}-.1631026{col 67}{space 3} .1059124
+{txt}{space 10}NC {c |}{col 14}{res}{space 2} .1698988{col 26}{space 2} .0725448{col 37}{space 1}    2.34{col 46}{space 3}0.019{col 54}{space 4} .0277137{col 67}{space 3}  .312084
+{txt}{space 10}AG {c |}{col 14}{res}{space 2}-.7722583{col 26}{space 2} .1923116{col 37}{space 1}   -4.02{col 46}{space 3}0.000{col 54}{space 4}-1.149182{col 67}{space 3}-.3953345
+{txt}{space 9}MIN {c |}{col 14}{res}{space 2}-.3038761{col 26}{space 2} .1907388{col 37}{space 1}   -1.59{col 46}{space 3}0.111{col 54}{space 4}-.6777171{col 67}{space 3}  .069965
+{txt}{space 9}CON {c |}{col 14}{res}{space 2}-.7386713{col 26}{space 2}  .133057{col 37}{space 1}   -5.55{col 46}{space 3}0.000{col 54}{space 4}-.9994583{col 67}{space 3}-.4778843
+{txt}{space 9}MAN {c |}{col 14}{res}{space 2}-.3835445{col 26}{space 2} .1105875{col 37}{space 1}   -3.47{col 46}{space 3}0.001{col 54}{space 4}-.6002921{col 67}{space 3}-.1667969
+{txt}{space 9}TRA {c |}{col 14}{res}{space 2}-.0008608{col 26}{space 2} .1270332{col 37}{space 1}   -0.01{col 46}{space 3}0.995{col 54}{space 4}-.2498414{col 67}{space 3} .2481197
+{txt}{space 8}TRAD {c |}{col 14}{res}{space 2}-.7496549{col 26}{space 2} .1109381{col 37}{space 1}   -6.76{col 46}{space 3}0.000{col 54}{space 4}-.9670897{col 67}{space 3}-.5322201
+{txt}{space 9}FIN {c |}{col 14}{res}{space 2}-1.053801{col 26}{space 2} .1796603{col 37}{space 1}   -5.87{col 46}{space 3}0.000{col 54}{space 4}-1.405929{col 67}{space 3}-.7016732
+{txt}{space 9}BUS {c |}{col 14}{res}{space 2}-1.134537{col 26}{space 2} .1454581{col 37}{space 1}   -7.80{col 46}{space 3}0.000{col 54}{space 4}-1.419629{col 67}{space 3} -.849444
+{txt}{space 9}PER {c |}{col 14}{res}{space 2}-1.105549{col 26}{space 2} .2223098{col 37}{space 1}   -4.97{col 46}{space 3}0.000{col 54}{space 4}-1.541268{col 67}{space 3}  -.66983
+{txt}{space 9}ENT {c |}{col 14}{res}{space 2}-.8261857{col 26}{space 2} .2172345{col 37}{space 1}   -3.80{col 46}{space 3}0.000{col 54}{space 4}-1.251957{col 67}{space 3} -.400414
+{txt}{space 9}PRO {c |}{col 14}{res}{space 2} -.303772{col 26}{space 2} .1275002{col 37}{space 1}   -2.38{col 46}{space 3}0.017{col 54}{space 4}-.5536679{col 67}{space 3}-.0538761
+{txt}{space 8}OCC1 {c |}{col 14}{res}{space 2}-.8081782{col 26}{space 2} .1050769{col 37}{space 1}   -7.69{col 46}{space 3}0.000{col 54}{space 4}-1.014125{col 67}{space 3}-.6022314
+{txt}{space 8}OCC2 {c |}{col 14}{res}{space 2}-.9058924{col 26}{space 2} .1164071{col 37}{space 1}   -7.78{col 46}{space 3}0.000{col 54}{space 4}-1.134046{col 67}{space 3}-.6777385
+{txt}{space 8}OCC3 {c |}{col 14}{res}{space 2}-.9414642{col 26}{space 2} .1541168{col 37}{space 1}   -6.11{col 46}{space 3}0.000{col 54}{space 4}-1.243528{col 67}{space 3}-.6394009
+{txt}{space 8}OCC4 {c |}{col 14}{res}{space 2}-.1741098{col 26}{space 2} .0914655{col 37}{space 1}   -1.90{col 46}{space 3}0.057{col 54}{space 4}-.3533789{col 67}{space 3} .0051592
+{txt}{space 8}OCC5 {c |}{col 14}{res}{space 2}-.2441014{col 26}{space 2} .0866546{col 37}{space 1}   -2.82{col 46}{space 3}0.005{col 54}{space 4}-.4139412{col 67}{space 3}-.0742616
+{txt}{space 8}OCC6 {c |}{col 14}{res}{space 2}-.0344374{col 26}{space 2} .0858726{col 37}{space 1}   -0.40{col 46}{space 3}0.688{col 54}{space 4}-.2027446{col 67}{space 3} .1338699
+{txt}{space 8}OCC7 {c |}{col 14}{res}{space 2} .1523234{col 26}{space 2} .0945472{col 37}{space 1}    1.61{col 46}{space 3}0.107{col 54}{space 4}-.0329856{col 67}{space 3} .3376325
+{txt}{space 8}OCC8 {c |}{col 14}{res}{space 2}-.6297154{col 26}{space 2} .2767548{col 37}{space 1}   -2.28{col 46}{space 3}0.023{col 54}{space 4}-1.172145{col 67}{space 3}-.0872859
+{txt}{space 12} {c |}
+{space 8}YEAR {c |}
+{space 7}1981  {c |}{col 14}{res}{space 2}-.0917971{col 26}{space 2} .0908833{col 37}{space 1}   -1.01{col 46}{space 3}0.312{col 54}{space 4}-.2699252{col 67}{space 3}  .086331
+{txt}{space 7}1982  {c |}{col 14}{res}{space 2}-.1211369{col 26}{space 2} .0992179{col 37}{space 1}   -1.22{col 46}{space 3}0.222{col 54}{space 4}-.3156005{col 67}{space 3} .0733267
+{txt}{space 7}1983  {c |}{col 14}{res}{space 2}-.2334464{col 26}{space 2} .1096081{col 37}{space 1}   -2.13{col 46}{space 3}0.033{col 54}{space 4}-.4482744{col 67}{space 3}-.0186185
+{txt}{space 7}1984  {c |}{col 14}{res}{space 2}-.2248228{col 26}{space 2} .1194995{col 37}{space 1}   -1.88{col 46}{space 3}0.060{col 54}{space 4}-.4590376{col 67}{space 3} .0093919
+{txt}{space 7}1985  {c |}{col 14}{res}{space 2}-.3785973{col 26}{space 2} .1293501{col 37}{space 1}   -2.93{col 46}{space 3}0.003{col 54}{space 4}-.6321188{col 67}{space 3}-.1250758
+{txt}{space 7}1986  {c |}{col 14}{res}{space 2}-.4675467{col 26}{space 2} .1391467{col 37}{space 1}   -3.36{col 46}{space 3}0.001{col 54}{space 4}-.7402692{col 67}{space 3}-.1948243
+{txt}{space 7}1987  {c |}{col 14}{res}{space 2}-.2966825{col 26}{space 2} .1458285{col 37}{space 1}   -2.03{col 46}{space 3}0.042{col 54}{space 4} -.582501{col 67}{space 3} -.010864
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2}-1.281985{col 26}{space 2} .3293848{col 37}{space 1}   -3.89{col 46}{space 3}0.000{col 54}{space 4}-1.927568{col 67}{space 3}-.6364031
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. outreg2 using pooledprobit1_table1, title(Pooled probit model with heteroskedasticity-robust standard errors) word replace
+{txt}{stata `"shellout using `"pooledprobit1_table1.rtf"'"':pooledprobit1_table1.rtf}
+{browse `"D:\Sony\Econometrics\AdvEcon\Exercise6"' :dir}{com} : {txt}{stata `"seeout using "pooledprobit1_table1.txt""':seeout}
+
+{com}. estimates store probit1
+{txt}
+{com}. margins, dydx(logexper MAR) post
+{res}
+{txt}Average marginal effects{col 49}Number of obs{col 67}= {res}     4,360
+{txt}Model VCE{col 14}: {res}OIM
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:Expression}:{space 1}{res:Pr(UNION), predict()}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:dy/dx w.r.t.}:{space 1}{res:logexper MAR}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}logexper {c |}{col 14}{res}{space 2} .0888919{col 26}{space 2} .0309068{col 37}{space 1}    2.88{col 46}{space 3}0.004{col 54}{space 4} .0283158{col 67}{space 3} .1494681
+{txt}{space 9}MAR {c |}{col 14}{res}{space 2} .0403029{col 26}{space 2} .0134081{col 37}{space 1}    3.01{col 46}{space 3}0.003{col 54}{space 4} .0140235{col 67}{space 3} .0665822
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. estimates restore probit1
+{txt}(results {stata estimates replay probit1:probit1} are active now)
+
+{com}. margins, expression(_b[logexper]*predict()/100) post
+{res}
+{txt}Predictive margins{col 49}Number of obs{col 67}= {res}     4,360
+{txt}Model VCE{col 14}: {res}OIM
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:Expression}:{space 1}{res:_b[logexper]*predict()/100}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}     Margin{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}_cons {c |}{col 14}{res}{space 2} .0007857{col 26}{space 2} .0002747{col 37}{space 1}    2.86{col 46}{space 3}0.004{col 54}{space 4} .0002473{col 67}{space 3} .0013241
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\AYSPS\AppData\Local\Temp\STD04000000.tmp"
+{txt}
+{com}. xtset NR YEAR
+{res}{txt}{col 8}panel variable:  {res}NR (strongly balanced)
+{txt}{col 9}time variable:  {res}{col 25}YEAR, 1980 to 1987
+{txt}{col 17}delta:  {res}1 unit
+{txt}
+{com}. probit UNION logexper SCHOOL MAR BLACK HISP RUR HLTH NE S NC AG MIN CON MAN TRA TRAD FIN BUS PER ENT PRO OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 i.YEAR, nolog
+{res}
+{txt}Probit regression{col 49}Number of obs{col 67}= {res}     4,360
+{txt}{col 49}LR chi2({res}36{txt}){col 67}= {res}    570.06
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log likelihood = {res}-2137.7713{txt}{col 49}Pseudo R2{col 67}= {res}    0.1176
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       UNION{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}logexper {c |}{col 14}{res}{space 2} .3213463{col 26}{space 2} .1119392{col 37}{space 1}    2.87{col 46}{space 3}0.004{col 54}{space 4} .1019495{col 67}{space 3} .5407431
+{txt}{space 6}SCHOOL {c |}{col 14}{res}{space 2}  .065344{col 26}{space 2} .0165104{col 37}{space 1}    3.96{col 46}{space 3}0.000{col 54}{space 4} .0329842{col 67}{space 3} .0977038
+{txt}{space 9}MAR {c |}{col 14}{res}{space 2} .1456957{col 26}{space 2}  .048593{col 37}{space 1}    3.00{col 46}{space 3}0.003{col 54}{space 4} .0504552{col 67}{space 3} .2409362
+{txt}{space 7}BLACK {c |}{col 14}{res}{space 2} .3994051{col 26}{space 2} .0687009{col 37}{space 1}    5.81{col 46}{space 3}0.000{col 54}{space 4} .2647537{col 67}{space 3} .5340565
+{txt}{space 8}HISP {c |}{col 14}{res}{space 2} .1992929{col 26}{space 2} .0691834{col 37}{space 1}    2.88{col 46}{space 3}0.004{col 54}{space 4} .0636959{col 67}{space 3}   .33489
+{txt}{space 9}RUR {c |}{col 14}{res}{space 2} -.063686{col 26}{space 2} .0587423{col 37}{space 1}   -1.08{col 46}{space 3}0.278{col 54}{space 4}-.1788188{col 67}{space 3} .0514469
+{txt}{space 8}HLTH {c |}{col 14}{res}{space 2}-.4984663{col 26}{space 2} .1953893{col 37}{space 1}   -2.55{col 46}{space 3}0.011{col 54}{space 4}-.8814224{col 67}{space 3}-.1155103
+{txt}{space 10}NE {c |}{col 14}{res}{space 2} .1685646{col 26}{space 2} .0748482{col 37}{space 1}    2.25{col 46}{space 3}0.024{col 54}{space 4} .0218648{col 67}{space 3} .3152644
+{txt}{space 11}S {c |}{col 14}{res}{space 2}-.0285951{col 26}{space 2} .0686276{col 37}{space 1}   -0.42{col 46}{space 3}0.677{col 54}{space 4}-.1631026{col 67}{space 3} .1059124
+{txt}{space 10}NC {c |}{col 14}{res}{space 2} .1698988{col 26}{space 2} .0725448{col 37}{space 1}    2.34{col 46}{space 3}0.019{col 54}{space 4} .0277137{col 67}{space 3}  .312084
+{txt}{space 10}AG {c |}{col 14}{res}{space 2}-.7722583{col 26}{space 2} .1923116{col 37}{space 1}   -4.02{col 46}{space 3}0.000{col 54}{space 4}-1.149182{col 67}{space 3}-.3953345
+{txt}{space 9}MIN {c |}{col 14}{res}{space 2}-.3038761{col 26}{space 2} .1907388{col 37}{space 1}   -1.59{col 46}{space 3}0.111{col 54}{space 4}-.6777171{col 67}{space 3}  .069965
+{txt}{space 9}CON {c |}{col 14}{res}{space 2}-.7386713{col 26}{space 2}  .133057{col 37}{space 1}   -5.55{col 46}{space 3}0.000{col 54}{space 4}-.9994583{col 67}{space 3}-.4778843
+{txt}{space 9}MAN {c |}{col 14}{res}{space 2}-.3835445{col 26}{space 2} .1105875{col 37}{space 1}   -3.47{col 46}{space 3}0.001{col 54}{space 4}-.6002921{col 67}{space 3}-.1667969
+{txt}{space 9}TRA {c |}{col 14}{res}{space 2}-.0008608{col 26}{space 2} .1270332{col 37}{space 1}   -0.01{col 46}{space 3}0.995{col 54}{space 4}-.2498414{col 67}{space 3} .2481197
+{txt}{space 8}TRAD {c |}{col 14}{res}{space 2}-.7496549{col 26}{space 2} .1109381{col 37}{space 1}   -6.76{col 46}{space 3}0.000{col 54}{space 4}-.9670897{col 67}{space 3}-.5322201
+{txt}{space 9}FIN {c |}{col 14}{res}{space 2}-1.053801{col 26}{space 2} .1796603{col 37}{space 1}   -5.87{col 46}{space 3}0.000{col 54}{space 4}-1.405929{col 67}{space 3}-.7016732
+{txt}{space 9}BUS {c |}{col 14}{res}{space 2}-1.134537{col 26}{space 2} .1454581{col 37}{space 1}   -7.80{col 46}{space 3}0.000{col 54}{space 4}-1.419629{col 67}{space 3} -.849444
+{txt}{space 9}PER {c |}{col 14}{res}{space 2}-1.105549{col 26}{space 2} .2223098{col 37}{space 1}   -4.97{col 46}{space 3}0.000{col 54}{space 4}-1.541268{col 67}{space 3}  -.66983
+{txt}{space 9}ENT {c |}{col 14}{res}{space 2}-.8261857{col 26}{space 2} .2172345{col 37}{space 1}   -3.80{col 46}{space 3}0.000{col 54}{space 4}-1.251957{col 67}{space 3} -.400414
+{txt}{space 9}PRO {c |}{col 14}{res}{space 2} -.303772{col 26}{space 2} .1275002{col 37}{space 1}   -2.38{col 46}{space 3}0.017{col 54}{space 4}-.5536679{col 67}{space 3}-.0538761
+{txt}{space 8}OCC1 {c |}{col 14}{res}{space 2}-.8081782{col 26}{space 2} .1050769{col 37}{space 1}   -7.69{col 46}{space 3}0.000{col 54}{space 4}-1.014125{col 67}{space 3}-.6022314
+{txt}{space 8}OCC2 {c |}{col 14}{res}{space 2}-.9058924{col 26}{space 2} .1164071{col 37}{space 1}   -7.78{col 46}{space 3}0.000{col 54}{space 4}-1.134046{col 67}{space 3}-.6777385
+{txt}{space 8}OCC3 {c |}{col 14}{res}{space 2}-.9414642{col 26}{space 2} .1541168{col 37}{space 1}   -6.11{col 46}{space 3}0.000{col 54}{space 4}-1.243528{col 67}{space 3}-.6394009
+{txt}{space 8}OCC4 {c |}{col 14}{res}{space 2}-.1741098{col 26}{space 2} .0914655{col 37}{space 1}   -1.90{col 46}{space 3}0.057{col 54}{space 4}-.3533789{col 67}{space 3} .0051592
+{txt}{space 8}OCC5 {c |}{col 14}{res}{space 2}-.2441014{col 26}{space 2} .0866546{col 37}{space 1}   -2.82{col 46}{space 3}0.005{col 54}{space 4}-.4139412{col 67}{space 3}-.0742616
+{txt}{space 8}OCC6 {c |}{col 14}{res}{space 2}-.0344374{col 26}{space 2} .0858726{col 37}{space 1}   -0.40{col 46}{space 3}0.688{col 54}{space 4}-.2027446{col 67}{space 3} .1338699
+{txt}{space 8}OCC7 {c |}{col 14}{res}{space 2} .1523234{col 26}{space 2} .0945472{col 37}{space 1}    1.61{col 46}{space 3}0.107{col 54}{space 4}-.0329856{col 67}{space 3} .3376325
+{txt}{space 8}OCC8 {c |}{col 14}{res}{space 2}-.6297154{col 26}{space 2} .2767548{col 37}{space 1}   -2.28{col 46}{space 3}0.023{col 54}{space 4}-1.172145{col 67}{space 3}-.0872859
+{txt}{space 12} {c |}
+{space 8}YEAR {c |}
+{space 7}1981  {c |}{col 14}{res}{space 2}-.0917971{col 26}{space 2} .0908833{col 37}{space 1}   -1.01{col 46}{space 3}0.312{col 54}{space 4}-.2699252{col 67}{space 3}  .086331
+{txt}{space 7}1982  {c |}{col 14}{res}{space 2}-.1211369{col 26}{space 2} .0992179{col 37}{space 1}   -1.22{col 46}{space 3}0.222{col 54}{space 4}-.3156005{col 67}{space 3} .0733267
+{txt}{space 7}1983  {c |}{col 14}{res}{space 2}-.2334464{col 26}{space 2} .1096081{col 37}{space 1}   -2.13{col 46}{space 3}0.033{col 54}{space 4}-.4482744{col 67}{space 3}-.0186185
+{txt}{space 7}1984  {c |}{col 14}{res}{space 2}-.2248228{col 26}{space 2} .1194995{col 37}{space 1}   -1.88{col 46}{space 3}0.060{col 54}{space 4}-.4590376{col 67}{space 3} .0093919
+{txt}{space 7}1985  {c |}{col 14}{res}{space 2}-.3785973{col 26}{space 2} .1293501{col 37}{space 1}   -2.93{col 46}{space 3}0.003{col 54}{space 4}-.6321188{col 67}{space 3}-.1250758
+{txt}{space 7}1986  {c |}{col 14}{res}{space 2}-.4675467{col 26}{space 2} .1391467{col 37}{space 1}   -3.36{col 46}{space 3}0.001{col 54}{space 4}-.7402692{col 67}{space 3}-.1948243
+{txt}{space 7}1987  {c |}{col 14}{res}{space 2}-.2966825{col 26}{space 2} .1458285{col 37}{space 1}   -2.03{col 46}{space 3}0.042{col 54}{space 4} -.582501{col 67}{space 3} -.010864
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2}-1.281985{col 26}{space 2} .3293848{col 37}{space 1}   -3.89{col 46}{space 3}0.000{col 54}{space 4}-1.927568{col 67}{space 3}-.6364031
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. outreg2 using pooledprobit1_table1, title(Pooled probit model with heteroskedasticity-robust standard errors) word replace
+{txt}{stata `"shellout using `"pooledprobit1_table1.rtf"'"':pooledprobit1_table1.rtf}
+{browse `"D:\Sony\Econometrics\AdvEcon\Exercise6"' :dir}{com} : {txt}{stata `"seeout using "pooledprobit1_table1.txt""':seeout}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\AYSPS\AppData\Local\Temp\STD04000000.tmp"
+{txt}
+{com}. outreg2 using pooledprobit1_table1, title(Pooled probit model) word replace
+{txt}{stata `"shellout using `"pooledprobit1_table1.rtf"'"':pooledprobit1_table1.rtf}
+{browse `"D:\Sony\Econometrics\AdvEcon\Exercise6"' :dir}{com} : {txt}{stata `"seeout using "pooledprobit1_table1.txt""':seeout}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\AYSPS\AppData\Local\Temp\STD04000000.tmp"
+{txt}
+{com}. infile  NR YEAR AG BLACK BUS CON ENT EXPER FIN HISP HLTH HOURS MAN MAR MIN NC NE OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 OCC9 PER PRO PUB RUR S SCHOOL TRA TRAD UNION WAGE  using vv-data.dat, clear
+{txt}(4,360 observations read)
+
+{com}. 
+. * Descriptive statistics
+. logout, save(problem2_summary) word replace: sum
+
+{smcl}
+{com}{sf}{ul off}{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}D:\Sony\Econometrics\AdvEcon\Exercise6\Exercise6.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}17 Nov 2016, 14:56:10
+{txt}
+{com}. 
+. *(A) Table II. Find the average marginal effects of logexper, mar, and exper
+. gen logexper = log(EXPER+1)
+{txt}
+{com}. probit UNION logexper SCHOOL MAR BLACK HISP RUR HLTH NE S NC AG MIN CON MAN TRA TRAD FIN BUS PER ENT PRO OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 i.YEAR, nolog
+{res}
+{txt}Probit regression{col 49}Number of obs{col 67}= {res}     4,360
+{txt}{col 49}LR chi2({res}36{txt}){col 67}= {res}    570.06
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log likelihood = {res}-2137.7713{txt}{col 49}Pseudo R2{col 67}= {res}    0.1176
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       UNION{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}logexper {c |}{col 14}{res}{space 2} .3213463{col 26}{space 2} .1119392{col 37}{space 1}    2.87{col 46}{space 3}0.004{col 54}{space 4} .1019495{col 67}{space 3} .5407431
+{txt}{space 6}SCHOOL {c |}{col 14}{res}{space 2}  .065344{col 26}{space 2} .0165104{col 37}{space 1}    3.96{col 46}{space 3}0.000{col 54}{space 4} .0329842{col 67}{space 3} .0977038
+{txt}{space 9}MAR {c |}{col 14}{res}{space 2} .1456957{col 26}{space 2}  .048593{col 37}{space 1}    3.00{col 46}{space 3}0.003{col 54}{space 4} .0504552{col 67}{space 3} .2409362
+{txt}{space 7}BLACK {c |}{col 14}{res}{space 2} .3994051{col 26}{space 2} .0687009{col 37}{space 1}    5.81{col 46}{space 3}0.000{col 54}{space 4} .2647537{col 67}{space 3} .5340565
+{txt}{space 8}HISP {c |}{col 14}{res}{space 2} .1992929{col 26}{space 2} .0691834{col 37}{space 1}    2.88{col 46}{space 3}0.004{col 54}{space 4} .0636959{col 67}{space 3}   .33489
+{txt}{space 9}RUR {c |}{col 14}{res}{space 2} -.063686{col 26}{space 2} .0587423{col 37}{space 1}   -1.08{col 46}{space 3}0.278{col 54}{space 4}-.1788188{col 67}{space 3} .0514469
+{txt}{space 8}HLTH {c |}{col 14}{res}{space 2}-.4984663{col 26}{space 2} .1953893{col 37}{space 1}   -2.55{col 46}{space 3}0.011{col 54}{space 4}-.8814224{col 67}{space 3}-.1155103
+{txt}{space 10}NE {c |}{col 14}{res}{space 2} .1685646{col 26}{space 2} .0748482{col 37}{space 1}    2.25{col 46}{space 3}0.024{col 54}{space 4} .0218648{col 67}{space 3} .3152644
+{txt}{space 11}S {c |}{col 14}{res}{space 2}-.0285951{col 26}{space 2} .0686276{col 37}{space 1}   -0.42{col 46}{space 3}0.677{col 54}{space 4}-.1631026{col 67}{space 3} .1059124
+{txt}{space 10}NC {c |}{col 14}{res}{space 2} .1698988{col 26}{space 2} .0725448{col 37}{space 1}    2.34{col 46}{space 3}0.019{col 54}{space 4} .0277137{col 67}{space 3}  .312084
+{txt}{space 10}AG {c |}{col 14}{res}{space 2}-.7722583{col 26}{space 2} .1923116{col 37}{space 1}   -4.02{col 46}{space 3}0.000{col 54}{space 4}-1.149182{col 67}{space 3}-.3953345
+{txt}{space 9}MIN {c |}{col 14}{res}{space 2}-.3038761{col 26}{space 2} .1907388{col 37}{space 1}   -1.59{col 46}{space 3}0.111{col 54}{space 4}-.6777171{col 67}{space 3}  .069965
+{txt}{space 9}CON {c |}{col 14}{res}{space 2}-.7386713{col 26}{space 2}  .133057{col 37}{space 1}   -5.55{col 46}{space 3}0.000{col 54}{space 4}-.9994583{col 67}{space 3}-.4778843
+{txt}{space 9}MAN {c |}{col 14}{res}{space 2}-.3835445{col 26}{space 2} .1105875{col 37}{space 1}   -3.47{col 46}{space 3}0.001{col 54}{space 4}-.6002921{col 67}{space 3}-.1667969
+{txt}{space 9}TRA {c |}{col 14}{res}{space 2}-.0008608{col 26}{space 2} .1270332{col 37}{space 1}   -0.01{col 46}{space 3}0.995{col 54}{space 4}-.2498414{col 67}{space 3} .2481197
+{txt}{space 8}TRAD {c |}{col 14}{res}{space 2}-.7496549{col 26}{space 2} .1109381{col 37}{space 1}   -6.76{col 46}{space 3}0.000{col 54}{space 4}-.9670897{col 67}{space 3}-.5322201
+{txt}{space 9}FIN {c |}{col 14}{res}{space 2}-1.053801{col 26}{space 2} .1796603{col 37}{space 1}   -5.87{col 46}{space 3}0.000{col 54}{space 4}-1.405929{col 67}{space 3}-.7016732
+{txt}{space 9}BUS {c |}{col 14}{res}{space 2}-1.134537{col 26}{space 2} .1454581{col 37}{space 1}   -7.80{col 46}{space 3}0.000{col 54}{space 4}-1.419629{col 67}{space 3} -.849444
+{txt}{space 9}PER {c |}{col 14}{res}{space 2}-1.105549{col 26}{space 2} .2223098{col 37}{space 1}   -4.97{col 46}{space 3}0.000{col 54}{space 4}-1.541268{col 67}{space 3}  -.66983
+{txt}{space 9}ENT {c |}{col 14}{res}{space 2}-.8261857{col 26}{space 2} .2172345{col 37}{space 1}   -3.80{col 46}{space 3}0.000{col 54}{space 4}-1.251957{col 67}{space 3} -.400414
+{txt}{space 9}PRO {c |}{col 14}{res}{space 2} -.303772{col 26}{space 2} .1275002{col 37}{space 1}   -2.38{col 46}{space 3}0.017{col 54}{space 4}-.5536679{col 67}{space 3}-.0538761
+{txt}{space 8}OCC1 {c |}{col 14}{res}{space 2}-.8081782{col 26}{space 2} .1050769{col 37}{space 1}   -7.69{col 46}{space 3}0.000{col 54}{space 4}-1.014125{col 67}{space 3}-.6022314
+{txt}{space 8}OCC2 {c |}{col 14}{res}{space 2}-.9058924{col 26}{space 2} .1164071{col 37}{space 1}   -7.78{col 46}{space 3}0.000{col 54}{space 4}-1.134046{col 67}{space 3}-.6777385
+{txt}{space 8}OCC3 {c |}{col 14}{res}{space 2}-.9414642{col 26}{space 2} .1541168{col 37}{space 1}   -6.11{col 46}{space 3}0.000{col 54}{space 4}-1.243528{col 67}{space 3}-.6394009
+{txt}{space 8}OCC4 {c |}{col 14}{res}{space 2}-.1741098{col 26}{space 2} .0914655{col 37}{space 1}   -1.90{col 46}{space 3}0.057{col 54}{space 4}-.3533789{col 67}{space 3} .0051592
+{txt}{space 8}OCC5 {c |}{col 14}{res}{space 2}-.2441014{col 26}{space 2} .0866546{col 37}{space 1}   -2.82{col 46}{space 3}0.005{col 54}{space 4}-.4139412{col 67}{space 3}-.0742616
+{txt}{space 8}OCC6 {c |}{col 14}{res}{space 2}-.0344374{col 26}{space 2} .0858726{col 37}{space 1}   -0.40{col 46}{space 3}0.688{col 54}{space 4}-.2027446{col 67}{space 3} .1338699
+{txt}{space 8}OCC7 {c |}{col 14}{res}{space 2} .1523234{col 26}{space 2} .0945472{col 37}{space 1}    1.61{col 46}{space 3}0.107{col 54}{space 4}-.0329856{col 67}{space 3} .3376325
+{txt}{space 8}OCC8 {c |}{col 14}{res}{space 2}-.6297154{col 26}{space 2} .2767548{col 37}{space 1}   -2.28{col 46}{space 3}0.023{col 54}{space 4}-1.172145{col 67}{space 3}-.0872859
+{txt}{space 12} {c |}
+{space 8}YEAR {c |}
+{space 7}1981  {c |}{col 14}{res}{space 2}-.0917971{col 26}{space 2} .0908833{col 37}{space 1}   -1.01{col 46}{space 3}0.312{col 54}{space 4}-.2699252{col 67}{space 3}  .086331
+{txt}{space 7}1982  {c |}{col 14}{res}{space 2}-.1211369{col 26}{space 2} .0992179{col 37}{space 1}   -1.22{col 46}{space 3}0.222{col 54}{space 4}-.3156005{col 67}{space 3} .0733267
+{txt}{space 7}1983  {c |}{col 14}{res}{space 2}-.2334464{col 26}{space 2} .1096081{col 37}{space 1}   -2.13{col 46}{space 3}0.033{col 54}{space 4}-.4482744{col 67}{space 3}-.0186185
+{txt}{space 7}1984  {c |}{col 14}{res}{space 2}-.2248228{col 26}{space 2} .1194995{col 37}{space 1}   -1.88{col 46}{space 3}0.060{col 54}{space 4}-.4590376{col 67}{space 3} .0093919
+{txt}{space 7}1985  {c |}{col 14}{res}{space 2}-.3785973{col 26}{space 2} .1293501{col 37}{space 1}   -2.93{col 46}{space 3}0.003{col 54}{space 4}-.6321188{col 67}{space 3}-.1250758
+{txt}{space 7}1986  {c |}{col 14}{res}{space 2}-.4675467{col 26}{space 2} .1391467{col 37}{space 1}   -3.36{col 46}{space 3}0.001{col 54}{space 4}-.7402692{col 67}{space 3}-.1948243
+{txt}{space 7}1987  {c |}{col 14}{res}{space 2}-.2966825{col 26}{space 2} .1458285{col 37}{space 1}   -2.03{col 46}{space 3}0.042{col 54}{space 4} -.582501{col 67}{space 3} -.010864
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2}-1.281985{col 26}{space 2} .3293848{col 37}{space 1}   -3.89{col 46}{space 3}0.000{col 54}{space 4}-1.927568{col 67}{space 3}-.6364031
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. outreg2 using pooledprobit1_table1, title(Pooled probit model) word replace
+{txt}{stata `"shellout using `"pooledprobit1_table1.rtf"'"':pooledprobit1_table1.rtf}
+{browse `"D:\Sony\Econometrics\AdvEcon\Exercise6"' :dir}{com} : {txt}{stata `"seeout using "pooledprobit1_table1.txt""':seeout}
+
+{com}. estimates store probit1
+{txt}
+{com}. margins, dydx(logexper MAR) post
+{res}
+{txt}Average marginal effects{col 49}Number of obs{col 67}= {res}     4,360
+{txt}Model VCE{col 14}: {res}OIM
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:Expression}:{space 1}{res:Pr(UNION), predict()}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:dy/dx w.r.t.}:{space 1}{res:logexper MAR}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}logexper {c |}{col 14}{res}{space 2} .0888919{col 26}{space 2} .0309068{col 37}{space 1}    2.88{col 46}{space 3}0.004{col 54}{space 4} .0283158{col 67}{space 3} .1494681
+{txt}{space 9}MAR {c |}{col 14}{res}{space 2} .0403029{col 26}{space 2} .0134081{col 37}{space 1}    3.01{col 46}{space 3}0.003{col 54}{space 4} .0140235{col 67}{space 3} .0665822
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. estimates restore probit1
+{txt}(results {stata estimates replay probit1:probit1} are active now)
+
+{com}. margins, expression(_b[logexper]*predict()/100) post
+{res}
+{txt}Predictive margins{col 49}Number of obs{col 67}= {res}     4,360
+{txt}Model VCE{col 14}: {res}OIM
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:Expression}:{space 1}{res:_b[logexper]*predict()/100}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}     Margin{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}_cons {c |}{col 14}{res}{space 2} .0007857{col 26}{space 2} .0002747{col 37}{space 1}    2.86{col 46}{space 3}0.004{col 54}{space 4} .0002473{col 67}{space 3} .0013241
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. exit, clear

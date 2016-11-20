@@ -1,0 +1,40 @@
+Ordered probit model for pctstk	
+	(1)
+VARIABLES	pctstck
+	
+choice	0.371**
+	(0.184)
+age	-0.0501**
+	(0.0226)
+educ	0.0261
+	(0.0353)
+female	0.0456
+	(0.206)
+black	0.0934
+	(0.282)
+married	0.0936
+	(0.233)
+finc25	-0.578
+	(0.423)
+finc35	-0.135
+	(0.431)
+finc50	-0.262
+	(0.427)
+finc75	-0.566
+	(0.478)
+finc100	-0.228
+	(0.469)
+finc101	-0.864
+	(0.529)
+wealth89	-9.56e-05
+	(0.000374)
+prftshr	0.482**
+	(0.216)
+Constant cut1	-3.087*
+	(1.624)
+Constant cut2	-2.054
+	(1.619)
+	
+Observations	194
+Standard errors in parentheses	
+*** p<0.01, ** p<0.05, * p<0.1	

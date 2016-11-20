@@ -3,8 +3,9 @@
 * Problem 1
 clear all
 set seed 1234
-*cd D:\Sony\Econometrics\AdvEcon\Exercise6
-cd C:\sony\github\AdvEcon\Exercise6
+cd D:\Sony\Econometrics\AdvEcon\Exercise6
+log using Exercise6.smcl, replace
+*cd C:\sony\github\AdvEcon\Exercise6
 infile id  pyears    prftshr   choice    female    married   age  educ finc25    finc35    finc50    finc75    finc100   finc101   wealth89  black stckin89  irain89   pctstck   using "pension.raw", clear 
 
 label var id 								"family identifier"
@@ -30,12 +31,16 @@ label var pctstck                           "0=mstbnds,50=mixed,100=mststcks"
 * (A)Estimate an ordered probit model for pctstk, where the explanatory variables are as identified above.
 oprobit pctstck choice age educ female black married finc* wealth89 prftshr, nolog
 estimates store oprobit1 
+outreg2 using oprobit1_table, title(Ordered probit model for pctstk) word replace
 
 * (B) With heteroskedasticity-robust to cluster correlation within family
 oprobit pctstck choice age educ female black married finc* wealth89 prftshr, nolog vce(cluster id) 
+outreg2 using oprobit1_table2, title(Ordered probit model for pctstk with heteroskedasticity-robust to cluster correlation within family) word replace
 
 *With heteroskedasticity-robust standard errors
 oprobit pctstck choice age educ female black married finc* wealth89 prftshr, nolog vce(robust) 
+outreg2 using oprobit1_table3, title(Ordered probit model with heteroskedasticity-robust standard errors) word replace
+
 *(C) Obtain the estimated average marginal effects of choice on probabilities of asset allocation in defined contribution plans. Interpret the results.
 margins, dydx(choice) post
 
@@ -62,11 +67,13 @@ display    .3440748  * 50 + .1774666 * 100
 infile  NR YEAR AG BLACK BUS CON ENT EXPER FIN HISP HLTH HOURS MAN MAR MIN NC NE OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 OCC9 PER PRO PUB RUR S SCHOOL TRA TRAD UNION WAGE  using vv-data.dat, clear
 
 * Descriptive statistics
-sum
+logout, save(problem2_summary) word replace: sum
+log using Exercise6.smcl, append
 
 *(A) Table II. Find the average marginal effects of logexper, mar, and exper
 gen logexper = log(EXPER+1)
-probit UNION logexper SCHOOL MAR BLACK HISP RUR HLTH NE S NC AG MIN CON MAN TRA TRAD FIN BUS PER ENT PRO OCC* i.YEAR, nolog
+probit UNION logexper SCHOOL MAR BLACK HISP RUR HLTH NE S NC AG MIN CON MAN TRA TRAD FIN BUS PER ENT PRO OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 i.YEAR, nolog
+outreg2 using pooledprobit1_table1, title(Pooled probit model) word replace
 estimates store probit1
 margins, dydx(logexper MAR) post
 estimates restore probit1
@@ -74,11 +81,21 @@ margins, expression(_b[logexper]*predict()/100) post
 
 *(B) The random effects probit estimator
 xtset NR YEAR
-xtprobit UNION logexper SCHOOL MAR BLACK HISP RUR HLTH NE S NC AG MIN CON MAN TRA TRAD FIN BUS PER ENT PRO OCC* YEAR if 1981<=YEAR & YEAR<=1987, nolog
+xtprobit UNION logexper SCHOOL MAR BLACK HISP RUR HLTH NE S NC AG MIN CON MAN TRA TRAD FIN BUS PER ENT PRO OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 YEAR if 1981<=YEAR & YEAR<=1987, nolog
 estimates store probit2
 margins, dydx(logexper MAR) post
 estimates restore probit2
 margins, expression(_b[logexper]*predict()/100) post
 
 *(C) The correlated random effects probit estimator
+xtprobit UNION logexper SCHOOL MAR BLACK HISP RUR HLTH NE S NC AG MIN CON MAN TRA TRAD FIN BUS PER ENT PRO OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 YEAR if 1981<=YEAR & YEAR<=1987, vce(robust) nolog 
+margins, dydx(logexper) post
 
+*(D) Test for state dependence in unionism.
+* create the lagged variable
+by NR: gen lagged_union = UNION[_n-1] if YEAR==YEAR[_n-1]+1 
+
+xtprobit UNION logexper lagged_union SCHOOL MAR BLACK HISP RUR HLTH NE S NC AG MIN CON MAN TRA TRAD FIN BUS PER ENT PRO OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 YEAR if 1981<=YEAR & YEAR<=1987, vce(robust) nolog 
+* very low p-value with a highly statistical significance. There is state dependence.
+
+log close
