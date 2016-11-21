@@ -2,10 +2,9 @@
 * Title: Exercise 6 
 * Problem 1
 clear all
-set seed 1234
-cd D:\Sony\Econometrics\AdvEcon\Exercise6
+*cd D:\Sony\Econometrics\AdvEcon\Exercise6
 log using Exercise6.smcl, replace
-*cd C:\sony\github\AdvEcon\Exercise6
+cd C:\sony\github\AdvEcon\Exercise6
 infile id  pyears    prftshr   choice    female    married   age  educ finc25    finc35    finc50    finc75    finc100   finc101   wealth89  black stckin89  irain89   pctstck   using "pension.raw", clear 
 
 label var id 								"family identifier"
@@ -72,7 +71,8 @@ log using Exercise6.smcl, append
 
 *(A) Table II. Find the average marginal effects of logexper, mar, and exper
 gen logexper = log(EXPER+1)
-probit UNION logexper SCHOOL MAR BLACK HISP RUR HLTH NE S NC AG MIN CON MAN TRA TRAD FIN BUS PER ENT PRO OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 i.YEAR, nolog
+* do pooled probit 
+probit UNION logexper SCHOOL MAR BLACK HISP RUR HLTH NE S NC AG MIN CON MAN TRA TRAD FIN BUS PER ENT PRO OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 i.YEAR, vce(cluster NR) nolog
 outreg2 using pooledprobit1_table1, title(Pooled probit model) word replace
 estimates store probit1
 margins, dydx(logexper MAR) post
@@ -96,6 +96,6 @@ margins, dydx(logexper) post
 by NR: gen lagged_union = UNION[_n-1] if YEAR==YEAR[_n-1]+1 
 
 xtprobit UNION logexper lagged_union SCHOOL MAR BLACK HISP RUR HLTH NE S NC AG MIN CON MAN TRA TRAD FIN BUS PER ENT PRO OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 YEAR if 1981<=YEAR & YEAR<=1987, vce(robust) nolog 
-* very low p-value with a highly statistical significance. There is state dependence.
+* very low p-value for lagged_union. There is state dependence.
 
 log close
