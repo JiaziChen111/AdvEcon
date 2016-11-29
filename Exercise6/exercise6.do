@@ -2,9 +2,9 @@
 * Title: Exercise 6 
 * Problem 1
 clear all
-*cd D:\Sony\Econometrics\AdvEcon\Exercise6
+cd D:\Sony\Econometrics\AdvEcon\Exercise6
+*cd C:\sony\github\AdvEcon\Exercise6
 log using Exercise6.smcl, replace
-cd C:\sony\github\AdvEcon\Exercise6
 infile id  pyears    prftshr   choice    female    married   age  educ finc25    finc35    finc50    finc75    finc100   finc101   wealth89  black stckin89  irain89   pctstck   using "pension.raw", clear 
 
 label var id 								"family identifier"
