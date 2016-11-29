@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}C:\sony\github\AdvEcon\Exercise6\Exercise6.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}20 Nov 2016, 18:59:31
+ {txt}opened on:  {res}28 Nov 2016, 23:20:56
 {txt}
 {com}. cd C:\sony\github\AdvEcon\Exercise6
 {res}C:\sony\github\AdvEcon\Exercise6
@@ -84,8 +84,7 @@
 {com}. estimates store oprobit1 
 {txt}
 {com}. outreg2 using oprobit1_table, title(Ordered probit model for pctstk) word replace
-{txt}c:\ado\plus/o/outreg2.ado
-{stata `"shellout using `"oprobit1_table.rtf"'"':oprobit1_table.rtf}
+{txt}{stata `"shellout using `"oprobit1_table.rtf"'"':oprobit1_table.rtf}
 {browse `"C:\sony\github\AdvEcon\Exercise6"' :dir}{com} : {txt}{stata `"seeout using "oprobit1_table.txt""':seeout}
 
 {com}. 
@@ -183,11 +182,7 @@
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {res}{txt}
 {com}. 
-{txt}end of do-file
-
-{com}. do "C:\Users\nghie\AppData\Local\Temp\STD00000000.tmp"
-{txt}
-{com}. *(D) Estimate the marginal effect of choice on probabilities of asset allocation in defined contribution
+. *(D) Estimate the marginal effect of choice on probabilities of asset allocation in defined contribution
 . estimates restore oprobit1
 {txt}(results {stata estimates replay oprobit1:oprobit1} are active now)
 
@@ -489,158 +484,8 @@
 {res}34.9504
 {txt}
 {com}. 
-{txt}end of do-file
-
-{com}. do "C:\Users\nghie\AppData\Local\Temp\STD00000000.tmp"
-{txt}
-{com}. infile  NR YEAR AG BLACK BUS CON ENT EXPER FIN HISP HLTH HOURS MAN MAR MIN NC NE OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 OCC9 PER PRO PUB RUR S SCHOOL TRA TRAD UNION WAGE  using vv-data.dat, clear
-{txt}(4360 observations read)
-
-{com}. 
-. * Descriptive statistics
-. logout, save(problem2_summary) word replace: sum
-{err}unrecognized command:  logout
-{txt}{search r(199):r(199);}
-
-end of do-file
-
-{search r(199):r(199);}
-
-{com}. help logout
-
-. do "C:\Users\nghie\AppData\Local\Temp\STD00000000.tmp"
-{txt}
-{com}. logout, save(problem2_summary) word replace: sum
-
-{smcl}
-{com}{sf}{ul off}{smcl}
-{com}{sf}{ul off}{txt}{.-}
-      name:  {res}<unnamed>
-       {txt}log:  {res}C:\sony\github\AdvEcon\Exercise6\Exercise6.smcl
-  {txt}log type:  {res}smcl
- {txt}opened on:  {res}20 Nov 2016, 19:00:05
-{txt}
-{com}. 
-{txt}end of do-file
-
-{com}. do "C:\Users\nghie\AppData\Local\Temp\STD00000000.tmp"
-{txt}
-{com}. probit UNION logexper SCHOOL MAR BLACK HISP RUR HLTH NE S NC AG MIN CON MAN TRA TRAD FIN BUS PER ENT PRO OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 i.YEAR, nolog
-{err}variable logexper not found
-{txt}{search r(111):r(111);}
-
-end of do-file
-
-{search r(111):r(111);}
-
-{com}. do "C:\Users\nghie\AppData\Local\Temp\STD00000000.tmp"
-{txt}
-{com}. gen logexper = log(EXPER+1)
-{txt}
-{com}. * do pooled probit 
-. probit UNION logexper SCHOOL MAR BLACK HISP RUR HLTH NE S NC AG MIN CON MAN TRA TRAD FIN BUS PER ENT PRO OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 i.YEAR, nolog
-{res}
-{txt}Probit regression{col 51}Number of obs{col 67}= {res}      4360
-{txt}{col 51}LR chi2({res}36{txt}){col 67}= {res}    570.06
-{txt}{col 51}Prob > chi2{col 67}= {res}    0.0000
-{txt}Log likelihood = {res}-2137.7713{txt}{col 51}Pseudo R2{col 67}= {res}    0.1176
-
-{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}       UNION{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
-{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 4}logexper {c |}{col 14}{res}{space 2} .3213463{col 26}{space 2} .1119392{col 37}{space 1}    2.87{col 46}{space 3}0.004{col 54}{space 4} .1019495{col 67}{space 3} .5407431
-{txt}{space 6}SCHOOL {c |}{col 14}{res}{space 2}  .065344{col 26}{space 2} .0165104{col 37}{space 1}    3.96{col 46}{space 3}0.000{col 54}{space 4} .0329842{col 67}{space 3} .0977038
-{txt}{space 9}MAR {c |}{col 14}{res}{space 2} .1456957{col 26}{space 2}  .048593{col 37}{space 1}    3.00{col 46}{space 3}0.003{col 54}{space 4} .0504552{col 67}{space 3} .2409362
-{txt}{space 7}BLACK {c |}{col 14}{res}{space 2} .3994051{col 26}{space 2} .0687009{col 37}{space 1}    5.81{col 46}{space 3}0.000{col 54}{space 4} .2647537{col 67}{space 3} .5340565
-{txt}{space 8}HISP {c |}{col 14}{res}{space 2} .1992929{col 26}{space 2} .0691834{col 37}{space 1}    2.88{col 46}{space 3}0.004{col 54}{space 4} .0636959{col 67}{space 3}   .33489
-{txt}{space 9}RUR {c |}{col 14}{res}{space 2} -.063686{col 26}{space 2} .0587423{col 37}{space 1}   -1.08{col 46}{space 3}0.278{col 54}{space 4}-.1788188{col 67}{space 3} .0514469
-{txt}{space 8}HLTH {c |}{col 14}{res}{space 2}-.4984663{col 26}{space 2} .1953893{col 37}{space 1}   -2.55{col 46}{space 3}0.011{col 54}{space 4}-.8814224{col 67}{space 3}-.1155103
-{txt}{space 10}NE {c |}{col 14}{res}{space 2} .1685646{col 26}{space 2} .0748482{col 37}{space 1}    2.25{col 46}{space 3}0.024{col 54}{space 4} .0218648{col 67}{space 3} .3152644
-{txt}{space 11}S {c |}{col 14}{res}{space 2}-.0285951{col 26}{space 2} .0686276{col 37}{space 1}   -0.42{col 46}{space 3}0.677{col 54}{space 4}-.1631026{col 67}{space 3} .1059124
-{txt}{space 10}NC {c |}{col 14}{res}{space 2} .1698988{col 26}{space 2} .0725448{col 37}{space 1}    2.34{col 46}{space 3}0.019{col 54}{space 4} .0277137{col 67}{space 3}  .312084
-{txt}{space 10}AG {c |}{col 14}{res}{space 2}-.7722583{col 26}{space 2} .1923116{col 37}{space 1}   -4.02{col 46}{space 3}0.000{col 54}{space 4}-1.149182{col 67}{space 3}-.3953345
-{txt}{space 9}MIN {c |}{col 14}{res}{space 2}-.3038761{col 26}{space 2} .1907388{col 37}{space 1}   -1.59{col 46}{space 3}0.111{col 54}{space 4}-.6777171{col 67}{space 3}  .069965
-{txt}{space 9}CON {c |}{col 14}{res}{space 2}-.7386713{col 26}{space 2}  .133057{col 37}{space 1}   -5.55{col 46}{space 3}0.000{col 54}{space 4}-.9994583{col 67}{space 3}-.4778843
-{txt}{space 9}MAN {c |}{col 14}{res}{space 2}-.3835445{col 26}{space 2} .1105875{col 37}{space 1}   -3.47{col 46}{space 3}0.001{col 54}{space 4}-.6002921{col 67}{space 3}-.1667969
-{txt}{space 9}TRA {c |}{col 14}{res}{space 2}-.0008608{col 26}{space 2} .1270332{col 37}{space 1}   -0.01{col 46}{space 3}0.995{col 54}{space 4}-.2498414{col 67}{space 3} .2481197
-{txt}{space 8}TRAD {c |}{col 14}{res}{space 2}-.7496549{col 26}{space 2} .1109381{col 37}{space 1}   -6.76{col 46}{space 3}0.000{col 54}{space 4}-.9670897{col 67}{space 3}-.5322201
-{txt}{space 9}FIN {c |}{col 14}{res}{space 2}-1.053801{col 26}{space 2} .1796603{col 37}{space 1}   -5.87{col 46}{space 3}0.000{col 54}{space 4}-1.405929{col 67}{space 3}-.7016732
-{txt}{space 9}BUS {c |}{col 14}{res}{space 2}-1.134537{col 26}{space 2} .1454581{col 37}{space 1}   -7.80{col 46}{space 3}0.000{col 54}{space 4}-1.419629{col 67}{space 3} -.849444
-{txt}{space 9}PER {c |}{col 14}{res}{space 2}-1.105549{col 26}{space 2} .2223098{col 37}{space 1}   -4.97{col 46}{space 3}0.000{col 54}{space 4}-1.541268{col 67}{space 3}  -.66983
-{txt}{space 9}ENT {c |}{col 14}{res}{space 2}-.8261857{col 26}{space 2} .2172345{col 37}{space 1}   -3.80{col 46}{space 3}0.000{col 54}{space 4}-1.251957{col 67}{space 3} -.400414
-{txt}{space 9}PRO {c |}{col 14}{res}{space 2} -.303772{col 26}{space 2} .1275002{col 37}{space 1}   -2.38{col 46}{space 3}0.017{col 54}{space 4}-.5536679{col 67}{space 3}-.0538761
-{txt}{space 8}OCC1 {c |}{col 14}{res}{space 2}-.8081782{col 26}{space 2} .1050769{col 37}{space 1}   -7.69{col 46}{space 3}0.000{col 54}{space 4}-1.014125{col 67}{space 3}-.6022314
-{txt}{space 8}OCC2 {c |}{col 14}{res}{space 2}-.9058924{col 26}{space 2} .1164071{col 37}{space 1}   -7.78{col 46}{space 3}0.000{col 54}{space 4}-1.134046{col 67}{space 3}-.6777385
-{txt}{space 8}OCC3 {c |}{col 14}{res}{space 2}-.9414642{col 26}{space 2} .1541168{col 37}{space 1}   -6.11{col 46}{space 3}0.000{col 54}{space 4}-1.243528{col 67}{space 3}-.6394009
-{txt}{space 8}OCC4 {c |}{col 14}{res}{space 2}-.1741098{col 26}{space 2} .0914655{col 37}{space 1}   -1.90{col 46}{space 3}0.057{col 54}{space 4}-.3533789{col 67}{space 3} .0051592
-{txt}{space 8}OCC5 {c |}{col 14}{res}{space 2}-.2441014{col 26}{space 2} .0866546{col 37}{space 1}   -2.82{col 46}{space 3}0.005{col 54}{space 4}-.4139412{col 67}{space 3}-.0742616
-{txt}{space 8}OCC6 {c |}{col 14}{res}{space 2}-.0344374{col 26}{space 2} .0858726{col 37}{space 1}   -0.40{col 46}{space 3}0.688{col 54}{space 4}-.2027446{col 67}{space 3} .1338699
-{txt}{space 8}OCC7 {c |}{col 14}{res}{space 2} .1523234{col 26}{space 2} .0945472{col 37}{space 1}    1.61{col 46}{space 3}0.107{col 54}{space 4}-.0329856{col 67}{space 3} .3376325
-{txt}{space 8}OCC8 {c |}{col 14}{res}{space 2}-.6297154{col 26}{space 2} .2767548{col 37}{space 1}   -2.28{col 46}{space 3}0.023{col 54}{space 4}-1.172145{col 67}{space 3}-.0872859
-{txt}{space 12} {c |}
-{space 8}YEAR {c |}
-{space 7}1981  {c |}{col 14}{res}{space 2}-.0917971{col 26}{space 2} .0908833{col 37}{space 1}   -1.01{col 46}{space 3}0.312{col 54}{space 4}-.2699252{col 67}{space 3}  .086331
-{txt}{space 7}1982  {c |}{col 14}{res}{space 2}-.1211369{col 26}{space 2} .0992179{col 37}{space 1}   -1.22{col 46}{space 3}0.222{col 54}{space 4}-.3156005{col 67}{space 3} .0733267
-{txt}{space 7}1983  {c |}{col 14}{res}{space 2}-.2334464{col 26}{space 2} .1096081{col 37}{space 1}   -2.13{col 46}{space 3}0.033{col 54}{space 4}-.4482744{col 67}{space 3}-.0186185
-{txt}{space 7}1984  {c |}{col 14}{res}{space 2}-.2248228{col 26}{space 2} .1194995{col 37}{space 1}   -1.88{col 46}{space 3}0.060{col 54}{space 4}-.4590376{col 67}{space 3} .0093919
-{txt}{space 7}1985  {c |}{col 14}{res}{space 2}-.3785973{col 26}{space 2} .1293501{col 37}{space 1}   -2.93{col 46}{space 3}0.003{col 54}{space 4}-.6321188{col 67}{space 3}-.1250758
-{txt}{space 7}1986  {c |}{col 14}{res}{space 2}-.4675467{col 26}{space 2} .1391467{col 37}{space 1}   -3.36{col 46}{space 3}0.001{col 54}{space 4}-.7402692{col 67}{space 3}-.1948243
-{txt}{space 7}1987  {c |}{col 14}{res}{space 2}-.2966825{col 26}{space 2} .1458285{col 37}{space 1}   -2.03{col 46}{space 3}0.042{col 54}{space 4} -.582501{col 67}{space 3} -.010864
-{txt}{space 12} {c |}
-{space 7}_cons {c |}{col 14}{res}{space 2}-1.281985{col 26}{space 2} .3293848{col 37}{space 1}   -3.89{col 46}{space 3}0.000{col 54}{space 4}-1.927568{col 67}{space 3}-.6364031
-{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-
-{com}. outreg2 using pooledprobit1_table1, title(Pooled probit model) word replace
-{txt}{stata `"shellout using `"pooledprobit1_table1.rtf"'"':pooledprobit1_table1.rtf}
-{browse `"C:\sony\github\AdvEcon\Exercise6"' :dir}{com} : {txt}{stata `"seeout using "pooledprobit1_table1.txt""':seeout}
-
-{com}. estimates store probit1
-{txt}
-{com}. margins, dydx(logexper MAR) post
-{res}
-{txt}Average marginal effects{col 51}Number of obs{col 67}= {res}      4360
-{txt}Model VCE{col 14}: {res}OIM
-
-{txt}{p2colset 1 14 16 2}{...}
-{p2col:Expression}:{space 1}{res:Pr(UNION), predict()}{p_end}
-{p2colreset}{...}
-{txt}{p2colset 1 14 16 2}{...}
-{p2col:dy/dx w.r.t.}:{space 1}{res:logexper MAR}{p_end}
-{p2colreset}{...}
-
-{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 14}{c |}{col 26} Delta-method
-{col 14}{c |}      dy/dx{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
-{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 4}logexper {c |}{col 14}{res}{space 2} .0888919{col 26}{space 2} .0309068{col 37}{space 1}    2.88{col 46}{space 3}0.004{col 54}{space 4} .0283158{col 67}{space 3} .1494681
-{txt}{space 9}MAR {c |}{col 14}{res}{space 2} .0403029{col 26}{space 2} .0134081{col 37}{space 1}    3.01{col 46}{space 3}0.003{col 54}{space 4} .0140235{col 67}{space 3} .0665822
-{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{res}{txt}
-{com}. estimates restore probit1
-{txt}(results {stata estimates replay probit1:probit1} are active now)
-
-{com}. margins, expression(_b[logexper]*predict()/100) post
-{res}
-{txt}Predictive margins{col 51}Number of obs{col 67}= {res}      4360
-{txt}Model VCE{col 14}: {res}OIM
-
-{txt}{p2colset 1 14 16 2}{...}
-{p2col:Expression}:{space 1}{res:_b[logexper]*predict()/100}{p_end}
-{p2colreset}{...}
-
-{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 14}{c |}{col 26} Delta-method
-{col 14}{c |}     Margin{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
-{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 7}_cons {c |}{col 14}{res}{space 2} .0007857{col 26}{space 2} .0002747{col 37}{space 1}    2.86{col 46}{space 3}0.004{col 54}{space 4} .0002473{col 67}{space 3} .0013241
-{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{res}{txt}
-{com}. 
-{txt}end of do-file
-
-{com}. do "C:\Users\nghie\AppData\Local\Temp\STD00000000.tmp"
-{txt}
-{com}. infile  NR YEAR AG BLACK BUS CON ENT EXPER FIN HISP HLTH HOURS MAN MAR MIN NC NE OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 OCC9 PER PRO PUB RUR S SCHOOL TRA TRAD UNION WAGE  using vv-data.dat, clear
+. * Problem 2
+. infile  NR YEAR AG BLACK BUS CON ENT EXPER FIN HISP HLTH HOURS MAN MAR MIN NC NE OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 OCC9 PER PRO PUB RUR S SCHOOL TRA TRAD UNION WAGE  using vv-data.dat, clear
 {txt}(4360 observations read)
 
 {com}. 
@@ -653,7 +498,7 @@ end of do-file
       name:  {res}<unnamed>
        {txt}log:  {res}C:\sony\github\AdvEcon\Exercise6\Exercise6.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}20 Nov 2016, 19:01:37
+ {txt}opened on:  {res}28 Nov 2016, 23:21:10
 {txt}
 {com}. 
 . *(A) Table II. Find the average marginal effects of logexper, mar, and exper
@@ -760,11 +605,8 @@ end of do-file
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {res}{txt}
 {com}. 
-{txt}end of do-file
-
-{com}. do "C:\Users\nghie\AppData\Local\Temp\STD00000000.tmp"
-{txt}
-{com}. xtset NR YEAR
+. *(B) The random effects probit estimator
+. xtset NR YEAR
 {res}{txt}{col 8}panel variable:  {res}NR (strongly balanced)
 {txt}{col 9}time variable:  {res}{col 25}YEAR, 1980 to 1987
 {txt}{col 17}delta:  {res}1 unit
@@ -825,6 +667,10 @@ end of do-file
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 Likelihood-ratio test of rho=0: {help j_chibar##|_new:chibar2(01) = }{res} 1036.70{txt} Prob >= chibar2 = {res}0.000
 {txt}
+{com}. outreg2 using re_probit_table, title(Random effect Probit Regression) word replace
+{txt}{stata `"shellout using `"re_probit_table.rtf"'"':re_probit_table.rtf}
+{browse `"C:\sony\github\AdvEcon\Exercise6"' :dir}{com} : {txt}{stata `"seeout using "re_probit_table.txt""':seeout}
+
 {com}. estimates store probit2
 {txt}
 {com}. margins, dydx(logexper MAR) post
@@ -867,8 +713,13 @@ Likelihood-ratio test of rho=0: {help j_chibar##|_new:chibar2(01) = }{res} 1036.
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {res}{txt}
 {com}. 
-. *(C) The correlated random effects probit estimator
-. xtprobit UNION logexper SCHOOL MAR BLACK HISP RUR HLTH NE S NC AG MIN CON MAN TRA TRAD FIN BUS PER ENT PRO OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 YEAR if 1981<=YEAR & YEAR<=1987, vce(robust) nolog 
+. * C) The correlated random effects probit estimator
+. * Calculate means of covariates for each id */
+. foreach var of varlist logexper HOURS WAGE{c -(}
+{txt}  2{com}.     egen bar`var' = mean(`var'), by(NR)
+{txt}  3{com}. {c )-}
+{txt}
+{com}. xtprobit UNION bar* logexper SCHOOL MAR BLACK HISP RUR HLTH NE S NC AG MIN CON MAN TRA TRAD FIN BUS PER ENT PRO OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 YEAR if 1981<=YEAR & YEAR<=1987, vce(robust) nolog 
 
 {txt}Calculating robust standard errors:
 
@@ -881,51 +732,58 @@ Random-effects probit regression{col 49}Number of obs{col 68}={col 70}{res}     
 
 {txt}Integration method: {res}mvaghermite{txt}{col 49}Integration points{col 68}={col 70}{res}       12
 
-{txt}{col 49}Wald chi2({res}30{txt}){col 68}={col 70}{res}   109.86
-{txt}Log pseudolikelihood  = {res}-1347.6037{col 49}{txt}Prob > chi2{col 68}={res}{col 73}0.0000
+{txt}{col 49}Wald chi2({res}33{txt}){col 68}={col 70}{res}   124.91
+{txt}Log pseudolikelihood  = {res}-1335.7922{col 49}{txt}Prob > chi2{col 68}={res}{col 73}0.0000
 
 {txt}{ralign 78:(Std. Err. adjusted for {res:545} clusters in NR)}
 {hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {col 14}{c |}{col 26}    Robust
 {col 1}       UNION{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
 {hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 4}logexper {c |}{col 14}{res}{space 2} .3561606{col 26}{space 2} .3936003{col 37}{space 1}    0.90{col 46}{space 3}0.366{col 54}{space 4}-.4152818{col 67}{space 3} 1.127603
-{txt}{space 6}SCHOOL {c |}{col 14}{res}{space 2} .0395627{col 26}{space 2} .0574949{col 37}{space 1}    0.69{col 46}{space 3}0.491{col 54}{space 4}-.0731251{col 67}{space 3} .1522506
-{txt}{space 9}MAR {c |}{col 14}{res}{space 2} .1599713{col 26}{space 2} .1126968{col 37}{space 1}    1.42{col 46}{space 3}0.156{col 54}{space 4}-.0609104{col 67}{space 3}  .380853
-{txt}{space 7}BLACK {c |}{col 14}{res}{space 2}   1.0072{col 26}{space 2}   .27634{col 37}{space 1}    3.64{col 46}{space 3}0.000{col 54}{space 4} .4655835{col 67}{space 3} 1.548816
-{txt}{space 8}HISP {c |}{col 14}{res}{space 2} .5186857{col 26}{space 2} .2504657{col 37}{space 1}    2.07{col 46}{space 3}0.038{col 54}{space 4}  .027782{col 67}{space 3} 1.009589
-{txt}{space 9}RUR {c |}{col 14}{res}{space 2} .0233931{col 26}{space 2} .1567263{col 37}{space 1}    0.15{col 46}{space 3}0.881{col 54}{space 4}-.2837849{col 67}{space 3}  .330571
-{txt}{space 8}HLTH {c |}{col 14}{res}{space 2} -.362684{col 26}{space 2} .3357906{col 37}{space 1}   -1.08{col 46}{space 3}0.280{col 54}{space 4}-1.020822{col 67}{space 3} .2954535
-{txt}{space 10}NE {c |}{col 14}{res}{space 2}  .431466{col 26}{space 2} .2702698{col 37}{space 1}    1.60{col 46}{space 3}0.110{col 54}{space 4} -.098253{col 67}{space 3}  .961185
-{txt}{space 11}S {c |}{col 14}{res}{space 2}-.0758453{col 26}{space 2} .2312499{col 37}{space 1}   -0.33{col 46}{space 3}0.743{col 54}{space 4}-.5290867{col 67}{space 3} .3773961
-{txt}{space 10}NC {c |}{col 14}{res}{space 2}  .267029{col 26}{space 2} .2850185{col 37}{space 1}    0.94{col 46}{space 3}0.349{col 54}{space 4} -.291597{col 67}{space 3} .8256549
-{txt}{space 10}AG {c |}{col 14}{res}{space 2}-1.051351{col 26}{space 2} .4008687{col 37}{space 1}   -2.62{col 46}{space 3}0.009{col 54}{space 4}-1.837039{col 67}{space 3}-.2656624
-{txt}{space 9}MIN {c |}{col 14}{res}{space 2}-.4643731{col 26}{space 2} .5372608{col 37}{space 1}   -0.86{col 46}{space 3}0.387{col 54}{space 4}-1.517385{col 67}{space 3} .5886387
-{txt}{space 9}CON {c |}{col 14}{res}{space 2}-.7761026{col 26}{space 2} .2829533{col 37}{space 1}   -2.74{col 46}{space 3}0.006{col 54}{space 4}-1.330681{col 67}{space 3}-.2215244
-{txt}{space 9}MAN {c |}{col 14}{res}{space 2} -.254346{col 26}{space 2} .2644551{col 37}{space 1}   -0.96{col 46}{space 3}0.336{col 54}{space 4}-.7726685{col 67}{space 3} .2639766
-{txt}{space 9}TRA {c |}{col 14}{res}{space 2}-.1068427{col 26}{space 2} .2981191{col 37}{space 1}   -0.36{col 46}{space 3}0.720{col 54}{space 4}-.6911453{col 67}{space 3} .4774599
-{txt}{space 8}TRAD {c |}{col 14}{res}{space 2}-.8176787{col 26}{space 2} .2725159{col 37}{space 1}   -3.00{col 46}{space 3}0.003{col 54}{space 4}  -1.3518{col 67}{space 3}-.2835573
-{txt}{space 9}FIN {c |}{col 14}{res}{space 2}-2.136762{col 26}{space 2} .5149381{col 37}{space 1}   -4.15{col 46}{space 3}0.000{col 54}{space 4}-3.146022{col 67}{space 3}-1.127501
-{txt}{space 9}BUS {c |}{col 14}{res}{space 2} -1.14312{col 26}{space 2} .2886855{col 37}{space 1}   -3.96{col 46}{space 3}0.000{col 54}{space 4}-1.708933{col 67}{space 3}-.5773068
-{txt}{space 9}PER {c |}{col 14}{res}{space 2}-1.216819{col 26}{space 2} .3931733{col 37}{space 1}   -3.09{col 46}{space 3}0.002{col 54}{space 4}-1.987425{col 67}{space 3} -.446214
-{txt}{space 9}ENT {c |}{col 14}{res}{space 2}-.5096084{col 26}{space 2} .5379881{col 37}{space 1}   -0.95{col 46}{space 3}0.344{col 54}{space 4}-1.564046{col 67}{space 3} .5448289
-{txt}{space 9}PRO {c |}{col 14}{res}{space 2}-.0486409{col 26}{space 2} .3230515{col 37}{space 1}   -0.15{col 46}{space 3}0.880{col 54}{space 4}-.6818103{col 67}{space 3} .5845285
-{txt}{space 8}OCC1 {c |}{col 14}{res}{space 2}-.6474026{col 26}{space 2} .2730025{col 37}{space 1}   -2.37{col 46}{space 3}0.018{col 54}{space 4}-1.182478{col 67}{space 3}-.1123276
-{txt}{space 8}OCC2 {c |}{col 14}{res}{space 2}-.8618519{col 26}{space 2} .2570329{col 37}{space 1}   -3.35{col 46}{space 3}0.001{col 54}{space 4}-1.365627{col 67}{space 3}-.3580767
-{txt}{space 8}OCC3 {c |}{col 14}{res}{space 2}-.7015482{col 26}{space 2} .3348463{col 37}{space 1}   -2.10{col 46}{space 3}0.036{col 54}{space 4}-1.357835{col 67}{space 3}-.0452616
-{txt}{space 8}OCC4 {c |}{col 14}{res}{space 2}-.2776412{col 26}{space 2} .2330803{col 37}{space 1}   -1.19{col 46}{space 3}0.234{col 54}{space 4}-.7344702{col 67}{space 3} .1791878
-{txt}{space 8}OCC5 {c |}{col 14}{res}{space 2}-.1078973{col 26}{space 2} .2102794{col 37}{space 1}   -0.51{col 46}{space 3}0.608{col 54}{space 4}-.5200373{col 67}{space 3} .3042428
-{txt}{space 8}OCC6 {c |}{col 14}{res}{space 2}-.1657011{col 26}{space 2} .2136372{col 37}{space 1}   -0.78{col 46}{space 3}0.438{col 54}{space 4}-.5844224{col 67}{space 3} .2530201
-{txt}{space 8}OCC7 {c |}{col 14}{res}{space 2} .0629168{col 26}{space 2} .2160644{col 37}{space 1}    0.29{col 46}{space 3}0.771{col 54}{space 4}-.3605617{col 67}{space 3} .4863953
-{txt}{space 8}OCC8 {c |}{col 14}{res}{space 2} .1951042{col 26}{space 2} .5683269{col 37}{space 1}    0.34{col 46}{space 3}0.731{col 54}{space 4} -.918796{col 67}{space 3} 1.309004
-{txt}{space 8}YEAR {c |}{col 14}{res}{space 2}-.0692844{col 26}{space 2} .0558447{col 37}{space 1}   -1.24{col 46}{space 3}0.215{col 54}{space 4}-.1787379{col 67}{space 3} .0401691
-{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 135.2023{col 26}{space 2} 109.8061{col 37}{space 1}    1.23{col 46}{space 3}0.218{col 54}{space 4}-80.01364{col 67}{space 3} 350.4182
+{space 1}barlogexper {c |}{col 14}{res}{space 2}-.0667401{col 26}{space 2} .7660955{col 37}{space 1}   -0.09{col 46}{space 3}0.931{col 54}{space 4} -1.56826{col 67}{space 3} 1.434779
+{txt}{space 4}barHOURS {c |}{col 14}{res}{space 2}-.0001082{col 26}{space 2} .0002048{col 37}{space 1}   -0.53{col 46}{space 3}0.597{col 54}{space 4}-.0005095{col 67}{space 3} .0002931
+{txt}{space 5}barWAGE {c |}{col 14}{res}{space 2} 1.234156{col 26}{space 2} .2605658{col 37}{space 1}    4.74{col 46}{space 3}0.000{col 54}{space 4} .7234564{col 67}{space 3} 1.744856
+{txt}{space 4}logexper {c |}{col 14}{res}{space 2} .2403479{col 26}{space 2} .6319819{col 37}{space 1}    0.38{col 46}{space 3}0.704{col 54}{space 4}-.9983139{col 67}{space 3}  1.47901
+{txt}{space 6}SCHOOL {c |}{col 14}{res}{space 2}-.0549615{col 26}{space 2} .0650486{col 37}{space 1}   -0.84{col 46}{space 3}0.398{col 54}{space 4}-.1824543{col 67}{space 3} .0725314
+{txt}{space 9}MAR {c |}{col 14}{res}{space 2}  .131839{col 26}{space 2} .1133327{col 37}{space 1}    1.16{col 46}{space 3}0.245{col 54}{space 4}-.0902889{col 67}{space 3} .3539669
+{txt}{space 7}BLACK {c |}{col 14}{res}{space 2} 1.129955{col 26}{space 2} .2670444{col 37}{space 1}    4.23{col 46}{space 3}0.000{col 54}{space 4} .6065577{col 67}{space 3} 1.653353
+{txt}{space 8}HISP {c |}{col 14}{res}{space 2} .5344296{col 26}{space 2} .2431858{col 37}{space 1}    2.20{col 46}{space 3}0.028{col 54}{space 4} .0577941{col 67}{space 3} 1.011065
+{txt}{space 9}RUR {c |}{col 14}{res}{space 2}  .087887{col 26}{space 2} .1551132{col 37}{space 1}    0.57{col 46}{space 3}0.571{col 54}{space 4}-.2161292{col 67}{space 3} .3919032
+{txt}{space 8}HLTH {c |}{col 14}{res}{space 2}-.3729237{col 26}{space 2} .3296193{col 37}{space 1}   -1.13{col 46}{space 3}0.258{col 54}{space 4}-1.018966{col 67}{space 3} .2731182
+{txt}{space 10}NE {c |}{col 14}{res}{space 2} .3889116{col 26}{space 2} .2689517{col 37}{space 1}    1.45{col 46}{space 3}0.148{col 54}{space 4}-.1382241{col 67}{space 3} .9160472
+{txt}{space 11}S {c |}{col 14}{res}{space 2} .0288917{col 26}{space 2} .2294955{col 37}{space 1}    0.13{col 46}{space 3}0.900{col 54}{space 4}-.4209113{col 67}{space 3} .4786947
+{txt}{space 10}NC {c |}{col 14}{res}{space 2} .3133746{col 26}{space 2} .2788304{col 37}{space 1}    1.12{col 46}{space 3}0.261{col 54}{space 4} -.233123{col 67}{space 3} .8598722
+{txt}{space 10}AG {c |}{col 14}{res}{space 2}-.9665309{col 26}{space 2} .4015072{col 37}{space 1}   -2.41{col 46}{space 3}0.016{col 54}{space 4}-1.753471{col 67}{space 3}-.1795912
+{txt}{space 9}MIN {c |}{col 14}{res}{space 2}-.5864173{col 26}{space 2} .5245764{col 37}{space 1}   -1.12{col 46}{space 3}0.264{col 54}{space 4}-1.614568{col 67}{space 3} .4417336
+{txt}{space 9}CON {c |}{col 14}{res}{space 2}-.7943505{col 26}{space 2} .2818056{col 37}{space 1}   -2.82{col 46}{space 3}0.005{col 54}{space 4}-1.346679{col 67}{space 3}-.2420216
+{txt}{space 9}MAN {c |}{col 14}{res}{space 2}-.2976433{col 26}{space 2} .2647757{col 37}{space 1}   -1.12{col 46}{space 3}0.261{col 54}{space 4}-.8165942{col 67}{space 3} .2213076
+{txt}{space 9}TRA {c |}{col 14}{res}{space 2}-.1503728{col 26}{space 2} .2959105{col 37}{space 1}   -0.51{col 46}{space 3}0.611{col 54}{space 4}-.7303467{col 67}{space 3}  .429601
+{txt}{space 8}TRAD {c |}{col 14}{res}{space 2}-.8003605{col 26}{space 2} .2721292{col 37}{space 1}   -2.94{col 46}{space 3}0.003{col 54}{space 4}-1.333724{col 67}{space 3}-.2669971
+{txt}{space 9}FIN {c |}{col 14}{res}{space 2} -2.15266{col 26}{space 2} .5146853{col 37}{space 1}   -4.18{col 46}{space 3}0.000{col 54}{space 4}-3.161425{col 67}{space 3}-1.143895
+{txt}{space 9}BUS {c |}{col 14}{res}{space 2}-1.109356{col 26}{space 2} .2908992{col 37}{space 1}   -3.81{col 46}{space 3}0.000{col 54}{space 4}-1.679508{col 67}{space 3}-.5392045
+{txt}{space 9}PER {c |}{col 14}{res}{space 2}-1.174167{col 26}{space 2} .3948786{col 37}{space 1}   -2.97{col 46}{space 3}0.003{col 54}{space 4}-1.948115{col 67}{space 3}-.4002192
+{txt}{space 9}ENT {c |}{col 14}{res}{space 2}-.4033258{col 26}{space 2} .5466232{col 37}{space 1}   -0.74{col 46}{space 3}0.461{col 54}{space 4}-1.474688{col 67}{space 3} .6680359
+{txt}{space 9}PRO {c |}{col 14}{res}{space 2}-.0044617{col 26}{space 2} .3238986{col 37}{space 1}   -0.01{col 46}{space 3}0.989{col 54}{space 4}-.6392912{col 67}{space 3} .6303678
+{txt}{space 8}OCC1 {c |}{col 14}{res}{space 2}-.7347281{col 26}{space 2} .2755219{col 37}{space 1}   -2.67{col 46}{space 3}0.008{col 54}{space 4}-1.274741{col 67}{space 3}-.1947151
+{txt}{space 8}OCC2 {c |}{col 14}{res}{space 2}-.9122019{col 26}{space 2} .2580626{col 37}{space 1}   -3.53{col 46}{space 3}0.000{col 54}{space 4}-1.417995{col 67}{space 3}-.4064085
+{txt}{space 8}OCC3 {c |}{col 14}{res}{space 2} -.749746{col 26}{space 2} .3393052{col 37}{space 1}   -2.21{col 46}{space 3}0.027{col 54}{space 4}-1.414772{col 67}{space 3}-.0847201
+{txt}{space 8}OCC4 {c |}{col 14}{res}{space 2}-.3257138{col 26}{space 2} .2319527{col 37}{space 1}   -1.40{col 46}{space 3}0.160{col 54}{space 4}-.7803327{col 67}{space 3} .1289052
+{txt}{space 8}OCC5 {c |}{col 14}{res}{space 2}-.1738365{col 26}{space 2} .2112357{col 37}{space 1}   -0.82{col 46}{space 3}0.411{col 54}{space 4}-.5878509{col 67}{space 3} .2401779
+{txt}{space 8}OCC6 {c |}{col 14}{res}{space 2}-.2023133{col 26}{space 2} .2138088{col 37}{space 1}   -0.95{col 46}{space 3}0.344{col 54}{space 4}-.6213709{col 67}{space 3} .2167443
+{txt}{space 8}OCC7 {c |}{col 14}{res}{space 2} .0434653{col 26}{space 2}  .215735{col 37}{space 1}    0.20{col 46}{space 3}0.840{col 54}{space 4}-.3793676{col 67}{space 3} .4662982
+{txt}{space 8}OCC8 {c |}{col 14}{res}{space 2} .1882655{col 26}{space 2} .5617767{col 37}{space 1}    0.34{col 46}{space 3}0.738{col 54}{space 4}-.9127966{col 67}{space 3} 1.289328
+{txt}{space 8}YEAR {c |}{col 14}{res}{space 2}-.0500244{col 26}{space 2} .0853562{col 37}{space 1}   -0.59{col 46}{space 3}0.558{col 54}{space 4}-.2173194{col 67}{space 3} .1172706
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 96.68962{col 26}{space 2} 169.2792{col 37}{space 1}    0.57{col 46}{space 3}0.568{col 54}{space 4}-235.0915{col 67}{space 3} 428.4707
 {txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-    /lnsig2u {c |}{col 14}{res}{space 2} 1.134475{col 26}{space 2} .1364627{col 54}{space 4}  .867013{col 67}{space 3} 1.401937
+    /lnsig2u {c |}{col 14}{res}{space 2} 1.037548{col 26}{space 2}  .133295{col 54}{space 4}  .776295{col 67}{space 3} 1.298802
 {txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}     sigma_u{col 14}{c |}{res}{space 2} 1.763389{col 26}{space 2} .1203184{col 54}{space 4} 1.542657{col 67}{space 3} 2.015704
-{col 1}{txt}         rho{col 14}{c |}{res}{space 2} .7566638{col 26}{space 2}  .025126{col 54}{space 4} .7041238{col 67}{space 3} .8024911
+{col 1}     sigma_u{col 14}{c |}{res}{space 2} 1.679967{col 26}{space 2} .1119656{col 54}{space 4} 1.474247{col 67}{space 3} 1.914394
+{col 1}{txt}         rho{col 14}{c |}{res}{space 2} .7383767{col 26}{space 2} .0257495{col 54}{space 4} .6848811{col 67}{space 3} .7856333
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. outreg2 using correlated_re_probit_table, title(Correlated Random Effect Probit Regression) word replace
+{txt}{stata `"shellout using `"correlated_re_probit_table.rtf"'"':correlated_re_probit_table.rtf}
+{browse `"C:\sony\github\AdvEcon\Exercise6"' :dir}{com} : {txt}{stata `"seeout using "correlated_re_probit_table.txt""':seeout}
 
 {com}. margins, dydx(logexper) post
 {res}
@@ -943,7 +801,7 @@ Random-effects probit regression{col 49}Number of obs{col 68}={col 70}{res}     
 {col 14}{c |}{col 26} Delta-method
 {col 14}{c |}      dy/dx{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
 {hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 4}logexper {c |}{col 14}{res}{space 2} .3561606{col 26}{space 2} .3936003{col 37}{space 1}    0.90{col 46}{space 3}0.366{col 54}{space 4}-.4152818{col 67}{space 3} 1.127603
+{space 4}logexper {c |}{col 14}{res}{space 2} .2403479{col 26}{space 2} .6319819{col 37}{space 1}    0.38{col 46}{space 3}0.704{col 54}{space 4}-.9983139{col 67}{space 3}  1.47901
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {res}{txt}
 {com}. 
@@ -952,8 +810,7 @@ Random-effects probit regression{col 49}Number of obs{col 68}={col 70}{res}     
 . by NR: gen lagged_union = UNION[_n-1] if YEAR==YEAR[_n-1]+1 
 {txt}(545 missing values generated)
 
-{com}. 
-. xtprobit UNION logexper lagged_union SCHOOL MAR BLACK HISP RUR HLTH NE S NC AG MIN CON MAN TRA TRAD FIN BUS PER ENT PRO OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 YEAR if 1981<=YEAR & YEAR<=1987, vce(robust) nolog 
+{com}. xtprobit UNION logexper lagged_union SCHOOL MAR BLACK HISP RUR HLTH NE S NC AG MIN CON MAN TRA TRAD FIN BUS PER ENT PRO OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 YEAR if 1981<=YEAR & YEAR<=1987, vce(robust) nolog 
 
 {txt}Calculating robust standard errors:
 
@@ -1013,13 +870,17 @@ Random-effects probit regression{col 49}Number of obs{col 68}={col 70}{res}     
 {col 1}{txt}         rho{col 14}{c |}{res}{space 2} .4697753{col 26}{space 2}  .073236{col 54}{space 4} .3324085{col 67}{space 3} .6118794
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 
-{com}. * very low p-value with a highly statistical significance. There is state dependence.
+{com}. outreg2 using state_dependence_test_table, title(Random effect probit with lagged union status) word replace
+{txt}{stata `"shellout using `"state_dependence_test_table.rtf"'"':state_dependence_test_table.rtf}
+{browse `"C:\sony\github\AdvEcon\Exercise6"' :dir}{com} : {txt}{stata `"seeout using "state_dependence_test_table.txt""':seeout}
+
+{com}. * very low p-value for lagged_union. There is state dependence.
 . 
 . log close
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}C:\sony\github\AdvEcon\Exercise6\Exercise6.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}20 Nov 2016, 19:03:55
+ {txt}closed on:  {res}28 Nov 2016, 23:23:21
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

@@ -82,20 +82,26 @@ margins, expression(_b[logexper]*predict()/100) post
 *(B) The random effects probit estimator
 xtset NR YEAR
 xtprobit UNION logexper SCHOOL MAR BLACK HISP RUR HLTH NE S NC AG MIN CON MAN TRA TRAD FIN BUS PER ENT PRO OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 YEAR if 1981<=YEAR & YEAR<=1987, nolog
+outreg2 using re_probit_table, title(Random effect Probit Regression) word replace
 estimates store probit2
 margins, dydx(logexper MAR) post
 estimates restore probit2
 margins, expression(_b[logexper]*predict()/100) post
 
-*(C) The correlated random effects probit estimator
-xtprobit UNION logexper SCHOOL MAR BLACK HISP RUR HLTH NE S NC AG MIN CON MAN TRA TRAD FIN BUS PER ENT PRO OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 YEAR if 1981<=YEAR & YEAR<=1987, vce(robust) nolog 
+* C) The correlated random effects probit estimator
+* Calculate means of covariates for each id */
+foreach var of varlist logexper HOURS WAGE{
+    egen bar`var' = mean(`var'), by(NR)
+}
+xtprobit UNION bar* logexper SCHOOL MAR BLACK HISP RUR HLTH NE S NC AG MIN CON MAN TRA TRAD FIN BUS PER ENT PRO OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 YEAR if 1981<=YEAR & YEAR<=1987, vce(robust) nolog 
+outreg2 using correlated_re_probit_table, title(Correlated Random Effect Probit Regression) word replace
 margins, dydx(logexper) post
 
 *(D) Test for state dependence in unionism.
 * create the lagged variable
 by NR: gen lagged_union = UNION[_n-1] if YEAR==YEAR[_n-1]+1 
-
 xtprobit UNION logexper lagged_union SCHOOL MAR BLACK HISP RUR HLTH NE S NC AG MIN CON MAN TRA TRAD FIN BUS PER ENT PRO OCC1 OCC2 OCC3 OCC4 OCC5 OCC6 OCC7 OCC8 YEAR if 1981<=YEAR & YEAR<=1987, vce(robust) nolog 
+outreg2 using state_dependence_test_table, title(Random effect probit with lagged union status) word replace
 * very low p-value for lagged_union. There is state dependence.
 
 log close
